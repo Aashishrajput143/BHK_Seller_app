@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "687529134060",
+    "project_id": "bhartiyaseller-10ba5",
+    "storage_bucket": "bhartiyaseller-10ba5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:687529134060:android:27b3c05e47a5234b3922c9",
+        "android_client_info": {
+          "package_name": "com.hastkushal.org"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "687529134060-a5ro413ovmb7hn0jum2u85fb1lljr83s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hastkushal.org",
+            "certificate_hash": "e1cc5885199d85533d0bbe5806ec3adb3952564b"
+          }
+        },
+        {
+          "client_id": "687529134060-v9amongbo4lev62n33br1tmfa3kodkgc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4gcveyf5NwPMxJluWQwzvUZfaT8GGwU0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "687529134060-v9amongbo4lev62n33br1tmfa3kodkgc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "687529134060-moh3oritund002crkthsn5d2c6kfth6f.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.hastkushal.org"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

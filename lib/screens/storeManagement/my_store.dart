@@ -1,0 +1,429 @@
+import 'package:bhk_seller_app/controller/getstorecontroller.dart';
+import 'package:bhk_seller_app/resources/appconstants.dart';
+import 'package:bhk_seller_app/resources/images.dart';
+import 'package:bhk_seller_app/routes/RoutesClass.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../common/myUtils.dart';
+import '../../data/response/status.dart';
+
+class MyStores extends StatelessWidget {
+  const MyStores({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    GetStoreController controller = Get.put(GetStoreController());
+    return Obx(() => Stack(
+          children: [
+            Scaffold(
+              appBar: AppBar(
+                flexibleSpace: Container(
+                  decoration: const BoxDecoration(
+                    gradient: AppConstants.customGradient,
+                  ),
+                ),
+                iconTheme: IconThemeData(color: Colors.white),
+                centerTitle: true,
+                title: Text(
+                  "My Stores".toUpperCase(),
+                  style: const TextStyle(fontSize: 16, color: Colors.white),
+                ),
+              ),
+              body: RefreshIndicator(
+                color: Colors.brown,
+                onRefresh: controller.storeRefresh,
+                child: Container(
+                  color: const Color.fromARGB(195, 247, 243, 233),
+                  padding: EdgeInsets.all(16),
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      controller.getStoreModel.value.data?.docs?.isEmpty ?? true
+                          ? const SizedBox()
+                          : Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Text(
+                                  'My Stores',
+                                  style: TextStyle(
+                                    fontSize: 18.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                InkWell(
+                                  onTap: () {
+                                    Get.toNamed(
+                                            RoutesClass.gotoaddStoreScreen())
+                                        ?.then((onValue) {
+                                      controller.getStoreApi();
+                                    });
+                                  },
+                                  child: const Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Icon(
+                                        Icons.add,
+                                        color: Colors.brown,
+                                        size: 22.0,
+                                      ),
+                                      SizedBox(width: 2),
+                                      Text(
+                                        'Add Store',
+                                        style: TextStyle(
+                                          color: Colors.brown,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 13,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                      const SizedBox(height: 10),
+                      Expanded(
+                        child: controller
+                                    .getStoreModel.value.data?.docs?.isEmpty ??
+                                true
+                            ? Column(
+                                children: [
+                                  const Text(
+                                    "Hi, there.",
+                                    style: TextStyle(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 100),
+                                  Image.asset(
+                                    AppImages.storeimage,
+                                    height: 250,
+                                    width: 220,
+                                    fit: BoxFit.fill,
+                                  ),
+                                  const SizedBox(height: 70),
+                                  const Text(
+                                    'Add Your First Store',
+                                    style: TextStyle(
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 10),
+                                  const Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 20.0),
+                                    child: Text(
+                                      "Thanks for Adding the Store, we hope your Stores can make your routine a little more enjoyable.",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(fontSize: 16),
+                                    ),
+                                  ),
+                                ],
+                              )
+                            : SingleChildScrollView(
+                                controller: controller.scrollController.value,
+                                child: Padding(
+                                  padding: EdgeInsets.all(5),
+                                  child: ListView.builder(
+                                    shrinkWrap: true,
+                                    physics: NeverScrollableScrollPhysics(),
+                                    itemCount: controller.brandList.length,
+                                    itemBuilder: (context, index) {
+                                      return InkWell(
+                                        onTap: () {
+                                          Get.toNamed(
+                                            RoutesClass
+                                                .gotoStoreDetailsScreen(),
+                                            arguments: {
+                                              'storeid': controller
+                                                      .brandList[index]
+                                                      .storeId ??
+                                                  "",
+                                            },
+                                          );
+                                        },
+                                        // child: Column(
+                                        //   crossAxisAlignment:
+                                        //       CrossAxisAlignment.start,
+                                        //   children: [
+                                        //     SizedBox(
+                                        //       width: 180,
+                                        //       height: 150,
+                                        //       child: Image.network(
+                                        //         controller
+                                        //                 .getStoreModel
+                                        //                 .value
+                                        //                 .data
+                                        //                 ?.docs?[index]
+                                        //                 .storeLogo ??
+                                        //             "",
+                                        //         fit: BoxFit.fill,
+                                        //         errorBuilder: (context, error,
+                                        //             stackTrace) {
+                                        //           return Container(
+                                        //             decoration: BoxDecoration(
+                                        //               color: Colors.grey
+                                        //                   .withOpacity(0.5),
+                                        //             ),
+                                        //             child: const Center(
+                                        //               child: Text(
+                                        //                 "No Image data Found",
+                                        //                 textAlign:
+                                        //                     TextAlign.center,
+                                        //               ),
+                                        //             ),
+                                        //           );
+                                        //         },
+                                        //       ),
+                                        //     ),
+                                        //     const SizedBox(height: 10),
+                                        //     Text(
+                                        //       controller
+                                        //               .getStoreModel
+                                        //               .value
+                                        //               .data
+                                        //               ?.docs?[index]
+                                        //               .storeName ??
+                                        //           "",
+                                        //       style: const TextStyle(
+                                        //         color: Colors.black,
+                                        //         fontWeight: FontWeight.bold,
+                                        //         fontSize: 14,
+                                        //       ),
+                                        //     ),
+                                        //     const SizedBox(height: 6),
+                                        //     Row(
+                                        //       mainAxisSize: MainAxisSize.min,
+                                        //       mainAxisAlignment:
+                                        //           MainAxisAlignment.start,
+                                        //       children: [
+                                        //         Text(
+                                        //           controller
+                                        //                   .getStoreModel
+                                        //                   .value
+                                        //                   .data
+                                        //                   ?.docs?[index]
+                                        //                   .address
+                                        //                   ?.city ??
+                                        //               "",
+                                        //           style: const TextStyle(
+                                        //             color: Colors.black,
+                                        //             fontWeight: FontWeight.bold,
+                                        //             fontSize: 12,
+                                        //           ),
+                                        //         ),
+                                        //         const SizedBox(width: 4),
+                                        //         Text(
+                                        //           "(${controller.getStoreModel.value.data?.docs?[index].address?.state ?? ""})",
+                                        //           style: const TextStyle(
+                                        //             color: Color.fromARGB(
+                                        //                 197, 0, 0, 0),
+                                        //             fontSize: 9,
+                                        //           ),
+                                        //         ),
+                                        //       ],
+                                        //     ),
+                                        //   ],
+                                        // ),
+                                        child: Card(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(16)),
+                                          margin: EdgeInsets.symmetric(
+                                              vertical: 8.0),
+                                          elevation: 3,
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Row(
+                                              children: [
+                                                // Product Image
+                                                Container(
+                                                  padding: EdgeInsets.all(10),
+                                                  width: 120,
+                                                  height: 120,
+                                                  child: ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8),
+                                                    child: Image.network(
+                                                      controller
+                                                              .brandList[index]
+                                                              .storeLogo ??
+                                                          "",
+                                                      height: 80,
+                                                      width: 80,
+                                                      fit: BoxFit.cover,
+                                                      errorBuilder: (context,
+                                                          error, stackTrace) {
+                                                        return Container(
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: Colors.grey
+                                                                .withOpacity(
+                                                                    0.5),
+                                                          ),
+                                                          child: const Center(
+                                                            child: Text(
+                                                              "No Image",
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
+                                                            ),
+                                                          ),
+                                                        );
+                                                      },
+                                                    ),
+                                                  ),
+                                                ),
+                                                SizedBox(width: 12),
+                                                // Order Info
+                                                Expanded(
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      Text(
+                                                        controller
+                                                                .brandList[
+                                                                    index]
+                                                                .storeName ??
+                                                            "",
+                                                        style: TextStyle(
+                                                          fontSize: 16,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                        ),
+                                                      ),
+                                                      SizedBox(height: 4),
+                                                      Row(
+                                                        children: [
+                                                          Icon(
+                                                              Icons.location_on,
+                                                              size: 14,
+                                                              color: Colors
+                                                                  .orange),
+                                                          SizedBox(width: 4),
+                                                          Text(
+                                                            controller
+                                                                    .brandList[
+                                                                        index]
+                                                                    .address
+                                                                    ?.city ??
+                                                                "",
+                                                            style: TextStyle(
+                                                                fontSize: 12,
+                                                                color: Colors
+                                                                    .grey),
+                                                          ),
+                                                          SizedBox(width: 10),
+                                                          Text(
+                                                            "(${controller.brandList[index].address?.state ?? ""})",
+                                                            style: TextStyle(
+                                                                fontSize: 12,
+                                                                color: Colors
+                                                                    .grey),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      SizedBox(height: 4),
+                                                      Row(
+                                                        children: [
+                                                          Icon(Icons.push_pin,
+                                                              size: 14,
+                                                              color: Colors
+                                                                  .orange),
+                                                          SizedBox(width: 4),
+                                                          Text(
+                                                            controller
+                                                                    .brandList[
+                                                                        index]
+                                                                    .address
+                                                                    ?.country ??
+                                                                "",
+                                                            style: TextStyle(
+                                                                fontSize: 12,
+                                                                color: Colors
+                                                                    .grey),
+                                                          ),
+                                                        ],
+                                                      )
+                                                    ],
+                                                  ),
+                                                ),
+                                                // Status Button
+                                                // Container(
+                                                //   padding: EdgeInsets.symmetric(
+                                                //       horizontal: 8.0,
+                                                //       vertical: 4.0),
+                                                //   decoration: BoxDecoration(
+                                                //     color: Colors.purple[50],
+                                                //     borderRadius:
+                                                //         BorderRadius.circular(
+                                                //             12),
+                                                //   ),
+                                                //   child: Text(
+                                                //     'Delivered',
+                                                //     style: TextStyle(
+                                                //         color: Colors.purple,
+                                                //         fontSize: 12),
+                                                //   ),
+                                                // ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              floatingActionButtonLocation:
+                  FloatingActionButtonLocation.centerFloat,
+              floatingActionButton: controller
+                          .getStoreModel.value.data?.docs?.isEmpty ??
+                      true
+                  ? Container(
+                      height: 50,
+                      width: 250,
+                      padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                            backgroundColor: WidgetStateProperty.all(
+                                const Color.fromARGB(255, 118, 60, 31)),
+                            shape:
+                                WidgetStateProperty.all<RoundedRectangleBorder>(
+                                    RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(30)))),
+                        child: const Text(
+                          'Add New Store',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16),
+                        ),
+                        onPressed: () {
+                          Get.toNamed(RoutesClass.gotoaddStoreScreen());
+                        },
+                      ),
+                    )
+                  : Container(),
+            ),
+            progressBarTransparent(
+                controller.rxRequestStatus.value == Status.LOADING,
+                MediaQuery.of(context).size.height,
+                MediaQuery.of(context).size.height)
+          ],
+        ));
+  }
+}
