@@ -5,7 +5,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 class BannerCarousel extends StatelessWidget {
   BannerCarousel({super.key});
 
-  int _currentIndex = 0;
   final CarouselSliderController _controller = CarouselSliderController();
   final List<BannerItem> bannerItems = [
     BannerItem(
@@ -36,6 +35,7 @@ class BannerCarousel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    int currentIndex = 0;
     return Column(
       children: [
         CarouselSlider(
@@ -56,7 +56,7 @@ class BannerCarousel extends StatelessWidget {
             viewportFraction: 1.035,
             aspectRatio: 2.0,
             onPageChanged: (index, reason) {
-              _currentIndex = index;
+              currentIndex = index;
             },
           ),
         ),
@@ -75,7 +75,7 @@ class BannerCarousel extends StatelessWidget {
                   color: (Theme.of(context).brightness == Brightness.dark
                           ? Colors.white
                           : Colors.black)
-                      .withOpacity(_currentIndex == entry.key ? 0.9 : 0.4),
+                      .withOpacity(currentIndex == entry.key ? 0.9 : 0.4),
                 ),
               ),
             );
