@@ -1,6 +1,7 @@
 import 'package:bhk_seller_app/common/myUtils.dart';
 import 'package:bhk_seller_app/controller/getproductcontroller.dart';
 import 'package:bhk_seller_app/resources/images.dart';
+import 'package:bhk_seller_app/resources/stringlimitter.dart';
 import 'package:bhk_seller_app/routes/RoutesClass.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -87,9 +88,293 @@ class MyProducts extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      controller.getProductModel.value.data?.docs?.isEmpty ??
+                      controller.getProductModel.value.data?.docs?.isNotEmpty ??
                               true
-                          ? Column(
+                          ? Container(
+                              color: const Color.fromARGB(195, 247, 243, 233),
+                              width: MediaQuery.of(context).size.width,
+                              height:
+                                  MediaQuery.of(context).size.height * 0.705,
+                              child: ListView.builder(
+                                padding:
+                                    const EdgeInsets.fromLTRB(10.0, 0, 10, 10),
+                                itemCount: controller.getProductModel.value.data
+                                        ?.docs?.length ??
+                                    0,
+                                itemBuilder: (context, index) {
+                                  return InkWell(
+                                    onTap: () {
+                                      Get.toNamed(
+                                          RoutesClass.gotoProductDetailScreen(),
+                                          arguments: {
+                                            "productid": controller
+                                                    .getProductModel
+                                                    .value
+                                                    .data
+                                                    ?.docs?[index]
+                                                    .productId ??
+                                                0
+                                          })?.then((onValue) {
+                                        controller.getProductApi();
+                                      });
+                                    },
+                                    child: Stack(
+                                      children: [
+                                        Card(
+                                          color: Color.fromARGB(
+                                              255, 251, 249, 244),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          margin: const EdgeInsets.symmetric(
+                                              vertical: 10.0),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                                child: Container(
+                                                  //padding: EdgeInsets.all(5),
+                                                  color: Colors.brown.shade100,
+                                                  child: Image.network(
+                                                    controller
+                                                            .getProductModel
+                                                            .value
+                                                            .data
+                                                            ?.docs?[index]
+                                                            .variants?[(controller
+                                                                        .getProductModel
+                                                                        .value
+                                                                        .data
+                                                                        ?.docs?[
+                                                                            index]
+                                                                        .variants
+                                                                        ?.length ??
+                                                                    0) -
+                                                                1]
+                                                            .media
+                                                            ?.images
+                                                            ?.rearView ??
+                                                        "",
+                                                    width: 100,
+                                                    height: 115,
+                                                    fit: BoxFit.fill,
+                                                    errorBuilder: (context,
+                                                        error, stackTrace) {
+                                                      return SizedBox(
+                                                        width: 100,
+                                                        height: 115,
+                                                        child: Center(
+                                                          child: Text(
+                                                            "No Image",
+                                                            style: TextStyle(
+                                                                fontSize: 11),
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                          ),
+                                                        ),
+                                                      );
+                                                    },
+                                                  ),
+                                                ),
+                                              ),
+                                              const SizedBox(width: 10),
+                                              Expanded(
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(9.0),
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      SizedBox(
+                                                        width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width *
+                                                            0.4,
+                                                        child: Text(
+                                                          StringLimiter.limitCharacters(
+                                                              controller
+                                                                      .getProductModel
+                                                                      .value
+                                                                      .data
+                                                                      ?.docs?[
+                                                                          index]
+                                                                      .productName ??
+                                                                  "",
+                                                              35),
+                                                          style:
+                                                              const TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontSize: 13,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      const SizedBox(height: 5),
+                                                      Text(
+                                                        StringLimiter.limitCharacters(
+                                                            controller
+                                                                    .getProductModel
+                                                                    .value
+                                                                    .data
+                                                                    ?.docs?[
+                                                                        index]
+                                                                    .description ??
+                                                                "",
+                                                            35),
+                                                        style: TextStyle(
+                                                          fontSize: 11,
+                                                          color:
+                                                              Colors.grey[700],
+                                                        ),
+                                                      ),
+                                                      const SizedBox(height: 5),
+                                                      Row(children: [
+                                                        Container(
+                                                          padding: EdgeInsets
+                                                              .symmetric(
+                                                                  horizontal:
+                                                                      10,
+                                                                  vertical: 5),
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        20),
+                                                            border: Border.all(
+                                                              color: Colors.grey
+                                                                  .shade300, // Border color
+                                                              width:
+                                                                  2, // Border width
+                                                            ),
+                                                          ),
+                                                          child: Row(
+                                                            children: [
+                                                              Text(
+                                                                controller
+                                                                        .getProductModel
+                                                                        .value
+                                                                        .data
+                                                                        ?.docs?[
+                                                                            index]
+                                                                        .category
+                                                                        ?.categoryName ??
+                                                                    "",
+                                                                style:
+                                                                    TextStyle(
+                                                                  color: Colors
+                                                                      .deepPurple,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontSize: 10,
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                        SizedBox(width: 10),
+                                                        Container(
+                                                          padding: EdgeInsets
+                                                              .symmetric(
+                                                                  horizontal:
+                                                                      10,
+                                                                  vertical: 5),
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        20),
+                                                            border: Border.all(
+                                                              color: Colors.grey
+                                                                  .shade300, // Border color
+                                                              width:
+                                                                  2, // Border width
+                                                            ),
+                                                          ),
+                                                          child: Row(
+                                                            children: [
+                                                              Text(
+                                                                controller
+                                                                        .getProductModel
+                                                                        .value
+                                                                        .data
+                                                                        ?.docs?[
+                                                                            index]
+                                                                        .brand
+                                                                        ?.brandName ??
+                                                                    "",
+                                                                style:
+                                                                    TextStyle(
+                                                                  color: Color
+                                                                      .fromARGB(
+                                                                          255,
+                                                                          129,
+                                                                          69,
+                                                                          39),
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontSize: 10,
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ]),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                        Positioned(
+                                          right: 0,
+                                          top: 10,
+                                          child: Container(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.21,
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 7.0,
+                                              vertical: 4.0,
+                                            ),
+                                            decoration: BoxDecoration(
+                                              color: Colors.deepPurple,
+                                              borderRadius:
+                                                  const BorderRadius.only(
+                                                topRight: Radius.circular(10.0),
+                                                bottomLeft:
+                                                    Radius.circular(10.0),
+                                              ),
+                                            ),
+                                            child: Text(
+                                              "₹ ${controller.getProductModel.value.data?.docs?[index].variants?[(controller.getProductModel.value.data?.docs?[index].variants?.length ?? 0) - 1].sellingPrice ?? ""}",
+                                              style: const TextStyle(
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 12),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                              ),
+                            )
+                          : Column(
                               children: [
                                 // Empty state content
                                 Text(
@@ -100,16 +385,16 @@ class MyProducts extends StatelessWidget {
                                     color: Colors.blue[900],
                                   ),
                                 ),
-                                SizedBox(height: 100),
+                                SizedBox(height: 50),
                                 Image.asset(
                                   AppImages.myproductcart,
                                   height: 250,
                                   width: 220,
                                   fit: BoxFit.fill,
                                 ),
-                                SizedBox(height: 70),
+                                SizedBox(height: 50),
                                 Text(
-                                  'Add Your Products',
+                                  'Add Your First Product',
                                   style: TextStyle(
                                     fontSize: 22,
                                     fontWeight: FontWeight.bold,
@@ -132,268 +417,7 @@ class MyProducts extends StatelessWidget {
                                 ),
                                 SizedBox(height: 40),
                               ],
-                            )
-                          : Container(
-                              color: const Color.fromARGB(195, 247, 243, 233),
-                              width: MediaQuery.of(context).size.width,
-                              height: MediaQuery.of(context).size.height * 0.76,
-                              child: SingleChildScrollView(
-                                child: ListView.builder(
-                                  shrinkWrap: true,
-                                  physics: NeverScrollableScrollPhysics(),
-                                  itemCount: controller.getProductModel.value
-                                          .data?.docs?.length ??
-                                      0,
-                                  itemBuilder: (context, index) {
-                                    return InkWell(
-                                        onTap: () {
-                                          Get.toNamed(
-                                              RoutesClass
-                                                  .gotoProductDetailScreen(),
-                                              arguments: {
-                                                "productid": controller
-                                                        .getProductModel
-                                                        .value
-                                                        .data
-                                                        ?.docs?[index]
-                                                        .productId ??
-                                                    0
-                                              })?.then((onValue) {
-                                            controller.getProductApi();
-                                          });
-                                        },
-                                        child: Container(
-                                          margin: EdgeInsets.all(10),
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 3),
-                                          decoration: BoxDecoration(
-                                            color: const Color.fromARGB(
-                                                255, 255, 255, 255),
-                                            border: Border.all(
-                                              color: Colors.grey
-                                                  .shade300, // Border color
-                                              width: 1.0, // Border width
-                                            ),
-                                            borderRadius:
-                                                BorderRadius.circular(16),
-                                            boxShadow: [
-                                              BoxShadow(
-                                                color: Colors.grey
-                                                    .shade300, // Shadow color
-                                                blurRadius:
-                                                    6, // Blur radius for the shadow
-                                                offset: Offset(0,
-                                                    4), // Offset for shadow position
-                                              ),
-                                            ], // Match the card's border radius
-                                          ),
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(
-                                                12.0), // Slightly reduced padding
-                                            child: Column(
-                                              children: [
-                                                Row(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.center,
-                                                  children: [
-                                                    // Product Image
-                                                    ClipRRect(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              12),
-                                                      child: Container(
-                                                        color: Colors.grey
-                                                            .shade200, // Set your desired background color here
-                                                        child: Image.network(
-                                                          controller
-                                                                  .getProductModel
-                                                                  .value
-                                                                  .data
-                                                                  ?.docs?[index]
-                                                                  .variants?[(controller
-                                                                              .getProductModel
-                                                                              .value
-                                                                              .data
-                                                                              ?.docs?[index]
-                                                                              .variants
-                                                                              ?.length ??
-                                                                          0) -
-                                                                      1]
-                                                                  .media
-                                                                  ?.images
-                                                                  ?.frontView ??
-                                                              "",
-                                                          height:
-                                                              60, // Adjusted size to match the design
-                                                          width: 60,
-                                                          fit: BoxFit.fill,
-                                                          errorBuilder:
-                                                              (context, error,
-                                                                  stackTrace) {
-                                                            return Container(
-                                                              padding:
-                                                                  EdgeInsets
-                                                                      .all(10),
-                                                              width: 60,
-                                                              height: 60,
-                                                              color: Colors.grey
-                                                                  .shade300,
-                                                              child: Center(
-                                                                child: Text(
-                                                                  "No Image",
-                                                                  style: TextStyle(
-                                                                      fontSize:
-                                                                          11),
-                                                                  textAlign:
-                                                                      TextAlign
-                                                                          .center,
-                                                                ),
-                                                              ),
-                                                            );
-                                                          },
-                                                        ),
-                                                      ),
-                                                    ),
-
-                                                    SizedBox(
-                                                        width:
-                                                            16), // Adjusted spacing
-                                                    // Product Info
-                                                    Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        Text(
-                                                          controller
-                                                                  .getProductModel
-                                                                  .value
-                                                                  .data
-                                                                  ?.docs?[index]
-                                                                  .productName ??
-                                                              "",
-                                                          style: TextStyle(
-                                                            fontSize: 16,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            color: Colors
-                                                                .black87, // Darker text for the product name
-                                                          ),
-                                                        ),
-                                                        SizedBox(
-                                                            height:
-                                                                6), // Slight space adjustment
-                                                        Text(
-                                                          "₹ ${controller.getProductModel.value.data?.docs?[index].variants?[(controller.getProductModel.value.data?.docs?[index].variants?.length ?? 0) - 1].sellingPrice ?? ""}",
-                                                          style: TextStyle(
-                                                            fontSize: 14,
-                                                            color: Colors
-                                                                .black54, // Lighter grey for the price
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ],
-                                                ),
-                                                SizedBox(height: 16),
-                                                // Stock and Last Restock Info
-                                                Divider(
-                                                    color: Colors.grey.shade300,
-                                                    height:
-                                                        2), // Light divider for separation
-                                                SizedBox(height: 12),
-                                                Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    // Stock info
-                                                    Column(
-                                                      children: [
-                                                        Text(
-                                                          controller
-                                                                  .getProductModel
-                                                                  .value
-                                                                  .data
-                                                                  ?.docs?[index]
-                                                                  .variants?[(controller
-                                                                              .getProductModel
-                                                                              .value
-                                                                              .data
-                                                                              ?.docs?[index]
-                                                                              .variants
-                                                                              ?.length ??
-                                                                          0) -
-                                                                      1]
-                                                                  .quantity
-                                                                  .toString() ??
-                                                              "",
-                                                          style: TextStyle(
-                                                            fontSize: 16,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            color: Colors
-                                                                .black87, // Darker text for stock info
-                                                          ),
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                        ),
-                                                        SizedBox(height: 4),
-                                                        Text(
-                                                          'In Stock',
-                                                          style: TextStyle(
-                                                            fontSize: 12,
-                                                            color: Colors.grey,
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    // Last Restock info
-                                                    Column(
-                                                      children: [
-                                                        Text(
-                                                          (controller
-                                                                      .getProductModel
-                                                                      .value
-                                                                      .data
-                                                                      ?.docs?[
-                                                                          index]
-                                                                      .variants?[
-                                                                          (controller.getProductModel.value.data?.docs?[index].variants?.length ?? 0) -
-                                                                              1]
-                                                                      .quantity ??
-                                                                  0 - 50)
-                                                              .toString(),
-                                                          style: TextStyle(
-                                                            fontSize: 16,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            color: Colors
-                                                                .black87, // Darker text for last restock info
-                                                          ),
-                                                          textAlign:
-                                                              TextAlign.center,
-                                                        ),
-                                                        SizedBox(height: 4),
-                                                        Text(
-                                                          'Last Restock',
-                                                          style: TextStyle(
-                                                            fontSize: 12,
-                                                            color: Colors.grey,
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ));
-                                  },
-                                ),
-                              ),
-                            )
+                            ),
                     ],
                   ),
                 ],
@@ -402,9 +426,10 @@ class MyProducts extends StatelessWidget {
             floatingActionButtonLocation:
                 FloatingActionButtonLocation.centerFloat,
             floatingActionButton: controller
-                        .getProductModel.value.data?.docs?.isEmpty ??
+                        .getProductModel.value.data?.docs?.isNotEmpty ??
                     true
-                ? Container(
+                ? SizedBox()
+                : Container(
                     height: 50,
                     width: 230,
                     padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -435,8 +460,7 @@ class MyProducts extends StatelessWidget {
                         });
                       },
                     ),
-                  )
-                : Container(),
+                  ),
           ),
           // Progress bar overlay
           progressBarTransparent(

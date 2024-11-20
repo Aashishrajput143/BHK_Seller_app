@@ -6,6 +6,7 @@ import 'package:bhk_seller_app/controller/addproductmediacontroller.dart';
 import 'package:bhk_seller_app/data/response/status.dart';
 import 'package:bhk_seller_app/resources/appconstants.dart';
 import 'package:bhk_seller_app/routes/RoutesClass.dart';
+import 'package:bhk_seller_app/screens/productManagement/buildStepCircle.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -100,20 +101,9 @@ class AddProductfiles extends StatelessWidget {
                             SizedBox(height: 25.0),
 
                             // Step Indicator
-                            Row(
-                              children: [
-                                controller.buildStepCircle(
-                                    "General", 01, false, true),
-                                controller.buildStepDivider(),
-                                controller.buildStepCircle(
-                                    "Details", 02, false, true),
-                                controller.buildStepDivider(),
-                                controller.buildStepCircle(
-                                    "Files", 03, true, false),
-                                controller.buildStepDivider(),
-                                controller.buildStepCircle(
-                                    "Review", 04, false, false),
-                              ],
+                            BuildStepCircle(
+                              iscompleted: 2,
+                              active: 2,
                             ),
                             SizedBox(height: 16.0),
 
@@ -149,7 +139,7 @@ class AddProductfiles extends StatelessWidget {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  const Icon(Icons.cloud_upload,
+                                  const Icon(Icons.image,
                                       size: 50, color: Colors.grey),
                                   const SizedBox(height: 8.0),
                                   const Text("Upload your images here"),
@@ -180,7 +170,7 @@ class AddProductfiles extends StatelessWidget {
                               controller.errormessage.value,
                               style: TextStyle(color: Colors.red),
                             ),
-                            SizedBox(height: 60.0),
+                            SizedBox(height: 30.0),
                             controller.producteditId == true
                                 ? Text("Your Product Images:")
                                 : Text("Picked Files:"),
@@ -226,8 +216,31 @@ class AddProductfiles extends StatelessWidget {
                                                                       .count--;
                                                                 }
                                                               },
-                                                              child: Icon(
-                                                                  Icons.close)),
+                                                              child: Align(
+                                                                alignment:
+                                                                    Alignment
+                                                                        .topRight,
+                                                                child:
+                                                                    Container(
+                                                                        decoration: BoxDecoration(
+                                                                            color: Colors
+                                                                                .brown.shade300,
+                                                                            shape: BoxShape
+                                                                                .circle),
+                                                                        child:
+                                                                            Padding(
+                                                                          padding:
+                                                                              EdgeInsets.all(2),
+                                                                          child:
+                                                                              Icon(
+                                                                            Icons.close,
+                                                                            size:
+                                                                                17,
+                                                                            color:
+                                                                                Colors.white,
+                                                                          ),
+                                                                        )),
+                                                              )),
                                                           Image.file(
                                                             File(controller
                                                                 .imagefiles[
@@ -368,8 +381,29 @@ class AddProductfiles extends StatelessWidget {
                                                                   .count--;
                                                             }
                                                           },
-                                                          child: Icon(
-                                                              Icons.close)),
+                                                          child: Align(
+                                                            alignment: Alignment
+                                                                .topRight,
+                                                            child: Container(
+                                                                decoration: BoxDecoration(
+                                                                    color: Colors
+                                                                        .brown
+                                                                        .shade300,
+                                                                    shape: BoxShape
+                                                                        .circle),
+                                                                child: Padding(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .all(
+                                                                              2),
+                                                                  child: Icon(
+                                                                    Icons.close,
+                                                                    size: 17,
+                                                                    color: Colors
+                                                                        .white,
+                                                                  ),
+                                                                )),
+                                                          )),
                                                       Image.file(
                                                         File(controller
                                                             .imagefiles[index]

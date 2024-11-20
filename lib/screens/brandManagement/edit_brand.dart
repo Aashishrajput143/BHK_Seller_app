@@ -2,20 +2,13 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:bhk_seller_app/screens/dashboardManagement/dashboard.dart';
-import 'package:bhk_seller_app/screens/productManagement/my_products.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import '../../Constants/constants.dart';
-
-import 'package:path_provider/path_provider.dart';
-import 'package:async/async.dart';
 
 class EditBrand extends StatefulWidget {
   final List object;
@@ -40,14 +33,12 @@ class _EditBrandState extends State<EditBrand> {
   final _formKey = GlobalKey<FormState>();
 
   final ImagePicker imgpicker = ImagePicker();
-  int _value = 1;
   File? imagefiles;
 
   Future EditBrand(BuildContext context, String name, String des, File? images,
       int id) async {
     final prefManager = await SharedPreferences.getInstance();
     String? login_token = prefManager.getString(Constant.KEY_LOGIN_TOKEN);
-    String? group = prefManager.getString(Constant.KEY_USER_GROUP);
     Map<String, String> headers = {'Authorization': 'Bearer $login_token'};
     // print(heading);
     // print(type);

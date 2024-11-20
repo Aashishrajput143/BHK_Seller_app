@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:get/get.dart';
 
 import '../Constants/utils.dart';
@@ -17,8 +19,9 @@ class SplashController extends GetxController {
           Utils.printLog("token $value"),
           if (value != "" && value != null)
             {
-              Get.offAllNamed(RoutesClass.gotoDashboardScreen(),
-                  arguments: {"index": 0}),
+              Timer(const Duration(seconds: 1), () {
+                Get.offAllNamed(RoutesClass.gotoDashboardScreen());
+              }),
               print(value)
             }
           else

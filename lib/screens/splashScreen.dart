@@ -1,18 +1,15 @@
 import 'package:bhk_seller_app/controller/splashController.dart';
 import 'package:bhk_seller_app/main.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 
 import '../Constants/constants.dart';
 
 class SplashScreen extends ParentWidget {
-  SplashController controller = Get.put(SplashController());
-
-  SplashScreen({super.key});
+  const SplashScreen({super.key});
   @override
   Widget buildingView(BuildContext context, double h, double w) {
+    Get.put(SplashController());
     return Container(
         height: h,
         color: Colors.white,

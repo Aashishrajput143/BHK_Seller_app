@@ -52,6 +52,7 @@ class AddProductMediaController extends GetxController {
             fontSize: 16.0,
           );
         } else {
+          mediaimage = true;
           imagefiles
               .addAll(pickedfiles); // Add picked files to the observable list
           print("Total images: ${imagefiles.length}");
@@ -164,7 +165,7 @@ class AddProductMediaController extends GetxController {
   }
 
   redirect() {
-    Get.offNamed(RoutesClass.gotoProductScreen());
+    Get.offAllNamed(RoutesClass.gotoProductScreen());
   }
 
   Widget buildStepCircle(

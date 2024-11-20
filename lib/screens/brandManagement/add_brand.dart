@@ -3,7 +3,7 @@ import 'package:bhk_seller_app/common/myUtils.dart';
 import 'package:bhk_seller_app/controller/addbrandcontroller.dart';
 import 'package:bhk_seller_app/data/response/status.dart';
 import 'package:bhk_seller_app/resources/appconstants.dart';
-import 'package:bhk_seller_app/resources/component/inputformatter.dart';
+import 'package:bhk_seller_app/resources/inputformatter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -234,7 +234,7 @@ class AddBrand extends StatelessWidget {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Icon(Icons.cloud_upload,
+                              const Icon(Icons.image,
                                   size: 50, color: Colors.grey),
                               const SizedBox(height: 8.0),
                               const Text("Upload your image here"),
@@ -286,9 +286,7 @@ class AddBrand extends StatelessWidget {
                                 controller.descriptionController.value.text
                                     .isNotEmpty &&
                                 controller.imagefiles.value != null) {
-                              controller.addBrandApi(context).then((onValue) {
-                                controller.getBrandApi();
-                              });
+                              controller.addBrandApi(context);
                             } else {
                               CommonMethods.showToast(
                                   "Please Fill All the Details");

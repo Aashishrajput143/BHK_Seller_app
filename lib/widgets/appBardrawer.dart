@@ -1,5 +1,6 @@
 import 'package:bhk_seller_app/common/myUtils.dart';
 import 'package:bhk_seller_app/controller/appBardrawercontroller.dart';
+import 'package:bhk_seller_app/controller/commondashcontroller.dart';
 import 'package:bhk_seller_app/data/response/status.dart';
 import 'package:bhk_seller_app/routes/RoutesClass.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ class Appbardrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Appbardrawercontroller controller = Get.put(Appbardrawercontroller());
+    CommonDashController commoncontroller = Get.put(CommonDashController());
     return Obx(
       () => Stack(
         children: [
@@ -28,7 +30,8 @@ class Appbardrawer extends StatelessWidget {
                       height: MediaQuery.of(context).size.height * 0.18,
                       child: InkWell(
                         onTap: () {
-                          Get.toNamed(RoutesClass.gotoProfileScreen());
+                          Navigator.of(context).pop();
+                          commoncontroller.selectedScreenIndex.value = 3;
                         },
                         child: UserAccountsDrawerHeader(
                           decoration: const BoxDecoration(
@@ -47,7 +50,7 @@ class Appbardrawer extends StatelessWidget {
                                         ?.isNotEmpty ??
                                     true
                                 ? controller.getProfileModel.value.data?.name ??
-                                    ""
+                                    "User".toUpperCase()
                                 : "User".toUpperCase(),
                             style: TextStyle(
                                 color: Colors.white,
@@ -57,16 +60,16 @@ class Appbardrawer extends StatelessWidget {
                               controller.getProfileModel.value.data?.email
                                           ?.isNotEmpty ??
                                       true
-                                  ? controller.getProfileModel.value.data
-                                              ?.phoneNo?.isNotEmpty ??
-                                          true
-                                      ? controller.getProfileModel.value.data
-                                              ?.email ??
-                                          ""
-                                      : "User@gmail.com"
-                                  : "XXXXXX4321",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 12)),
+                                  ? controller
+                                          .getProfileModel.value.data?.email ??
+                                      "User@gmail.com"
+                                  : controller.getProfileModel.value.data
+                                          ?.phoneNo ??
+                                      "XXXXXXXX10",
+                              style: TextStyle(
+                                  color: Colors.white70,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold)),
                         ),
                       ),
                     ),
@@ -88,7 +91,7 @@ class Appbardrawer extends StatelessWidget {
                           style: TextStyle(color: Colors.black, fontSize: 15)),
                       onTap: () {
                         Navigator.of(context).pop();
-                        Get.offNamed(RoutesClass.gotoDashboardScreen());
+                        commoncontroller.selectedScreenIndex.value = 0;
                       },
                     ),
                     // ListTile(
@@ -119,20 +122,10 @@ class Appbardrawer extends StatelessWidget {
                           style: TextStyle(color: Colors.black, fontSize: 15)),
                       onTap: () {
                         Navigator.of(context).pop();
-                        Get.offNamed(RoutesClass.gotoProductScreen());
+                        commoncontroller.selectedScreenIndex.value = 1;
                       },
                     ),
-                    ListTile(
-                      minTileHeight: 7,
-                      leading: Icon(Icons.branding_watermark_outlined,
-                          color: Colors.black),
-                      title: Text('My Brands',
-                          style: TextStyle(color: Colors.black, fontSize: 15)),
-                      onTap: () {
-                        Navigator.of(context).pop();
-                        Get.toNamed(RoutesClass.gotoBrandScreen());
-                      },
-                    ),
+
                     ListTile(
                       minTileHeight: 7,
                       leading: Icon(Icons.store, color: Colors.black),
@@ -141,6 +134,17 @@ class Appbardrawer extends StatelessWidget {
                       onTap: () {
                         Navigator.of(context).pop();
                         Get.toNamed(RoutesClass.gotoStoreScreen());
+                      },
+                    ),
+                    ListTile(
+                      minTileHeight: 7,
+                      leading: Icon(Icons.branding_watermark_outlined,
+                          color: Colors.black),
+                      title: Text('Explore Brands',
+                          style: TextStyle(color: Colors.black, fontSize: 15)),
+                      onTap: () {
+                        Navigator.of(context).pop();
+                        Get.toNamed(RoutesClass.gotoBrandScreen());
                       },
                     ),
                     Divider(),
@@ -162,7 +166,7 @@ class Appbardrawer extends StatelessWidget {
                           style: TextStyle(color: Colors.black, fontSize: 15)),
                       onTap: () {
                         Navigator.of(context).pop();
-                        Get.offNamed(RoutesClass.gotoProfileScreen());
+                        commoncontroller.selectedScreenIndex.value = 3;
                       },
                     ),
                     Divider(),
@@ -184,7 +188,7 @@ class Appbardrawer extends StatelessWidget {
                           style: TextStyle(color: Colors.black, fontSize: 15)),
                       onTap: () {
                         Navigator.of(context).pop();
-                        controller.logOutApi(context);
+                        controller.showlogoutDialog();
                       },
                     ),
                     Divider(),

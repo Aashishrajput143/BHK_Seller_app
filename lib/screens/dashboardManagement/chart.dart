@@ -3,12 +3,19 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 
 class Charts extends StatelessWidget {
   Charts({super.key});
-  List<_SalesData> data = [
+  final List<_SalesData> data = [
     _SalesData('Jan', 35),
     _SalesData('Feb', 28),
     _SalesData('Mar', 34),
     _SalesData('Apr', 32),
-    _SalesData('May', 40)
+    _SalesData('May', 40),
+    _SalesData('Jun', 25),
+    _SalesData('Jul', 48),
+    _SalesData('Aug', 34),
+    _SalesData('Sept', 100),
+    _SalesData('Oct', 12),
+    _SalesData('Nov', 80),
+    _SalesData('Dec', 35)
   ];
 
   @override
@@ -24,7 +31,7 @@ class Charts extends StatelessWidget {
                 backgroundColor: const Color.fromARGB(195, 247, 243, 233),
                 primaryXAxis: CategoryAxis(),
                 // Chart title
-                title: ChartTitle(text: 'Half yearly sales analysis'),
+                title: ChartTitle(text: 'Yearly sales analysis'),
                 // Enable legend
                 legend: Legend(isVisible: true),
                 // Enable tooltip

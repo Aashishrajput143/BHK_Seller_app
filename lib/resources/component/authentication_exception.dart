@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../../Constants/utils.dart';
 import '../../common/Constants.dart';
@@ -8,9 +7,8 @@ import '../../main.dart';
 import '../colors.dart';
 import '../strings.dart';
 
-
 class AuthenticationExceptionWidget extends ParentWidget {
-  AuthenticationExceptionWidget({Key? key}) : super(key: key);
+  const AuthenticationExceptionWidget({super.key});
 
   @override
   Widget buildingView(BuildContext context, double h, double w) {
@@ -18,8 +16,16 @@ class AuthenticationExceptionWidget extends ParentWidget {
       height: h,
       width: w,
       child: AlertDialog(
-        title: Text(appStrings.alert,style: TextStyle(fontSize: 20,color: Colors.black,)),
-        content: Text(appStrings.yourAuthExpired,style: TextStyle(fontSize: 16,color: Colors.black,)),
+        title: Text(appStrings.alert,
+            style: TextStyle(
+              fontSize: 20,
+              color: Colors.black,
+            )),
+        content: Text(appStrings.yourAuthExpired,
+            style: TextStyle(
+              fontSize: 16,
+              color: Colors.black,
+            )),
         actions: [
           Center(
             child: TextButton(
@@ -30,12 +36,15 @@ class AuthenticationExceptionWidget extends ParentWidget {
               style: TextButton.styleFrom(
                   backgroundColor: Color(appColors.colorPrimary),
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)
-                  )
-              ),
+                      borderRadius: BorderRadius.circular(10))),
               child: SizedBox(
-                width: w * 0.2,
-                  child: Center(child: Text(appStrings.ok,style: TextStyle(fontSize: 16,color: Colors.white,)))),
+                  width: w * 0.2,
+                  child: Center(
+                      child: Text(appStrings.ok,
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.white,
+                          )))),
             ),
           ),
         ],

@@ -2,7 +2,7 @@ import 'package:bhk_seller_app/common/CommonMethods.dart';
 import 'package:bhk_seller_app/common/myUtils.dart';
 import 'package:bhk_seller_app/controller/addstorecontroller.dart';
 import 'package:bhk_seller_app/resources/appconstants.dart';
-import 'package:bhk_seller_app/resources/component/inputformatter.dart';
+import 'package:bhk_seller_app/resources/inputformatter.dart';
 import 'package:csc_picker/csc_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -684,7 +684,7 @@ class AddStore extends StatelessWidget {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              const Icon(Icons.cloud_upload,
+                              const Icon(Icons.image,
                                   size: 50, color: Colors.grey),
                               const SizedBox(height: 8.0),
                               const Text("Upload your image here"),

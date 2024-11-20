@@ -1,146 +1,321 @@
-import 'package:bhk_seller_app/controller/ordercontroller.dart';
+import 'package:bhk_seller_app/controller/orderdetailscontroller.dart';
+import 'package:bhk_seller_app/resources/appconstants.dart';
 import 'package:bhk_seller_app/resources/images.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class MyordersDetails extends StatelessWidget {
-  const MyordersDetails({super.key});
+class OrderDetailsPage extends StatelessWidget {
+  const OrderDetailsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    GetOrderController controller = Get.put(GetOrderController());
-    return Obx(
-      () => Container(
-        color: const Color.fromARGB(195, 247, 243, 233),
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height * 0.8,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Check if the data is empty
-            controller.getorderModel.value.data?.docs?.isEmpty ?? true
-                ? Padding(
-                    padding: EdgeInsets.only(top: 24),
+    GetOrderDetailsController controller = Get.put(GetOrderDetailsController());
+    return Container(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
+      color: const Color.fromARGB(195, 247, 243, 233),
+      child: Scaffold(
+        appBar: AppBar(
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(
+              gradient: AppConstants.customGradient,
+            ),
+          ),
+          iconTheme: IconThemeData(color: Colors.white),
+          centerTitle: true,
+          // automaticallyImplyLeading: false,
+          title: Text(
+            "Order Details".toUpperCase(),
+            style: const TextStyle(fontSize: 16, color: Colors.white),
+          ),
+        ),
+        body: SingleChildScrollView(
+          child: Container(
+            color: const Color.fromARGB(195, 247, 243, 233),
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Order Header
+                Text(
+                  'Order#: 702-4157249-6337018',
+                  style: TextStyle(
+                      fontSize: 15,
+                      color: Colors.grey[500],
+                      fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 5),
+
+                // Card(
+                //   margin: const EdgeInsets.symmetric(
+                //       vertical: 8.0, horizontal: 8.0),
+                //   shape: RoundedRectangleBorder(
+                //     borderRadius: BorderRadius.circular(8),
+                //   ),
+                //   elevation: 4,
+                //   shadowColor: Colors.grey.withOpacity(0.3),
+                //   child: Padding(
+                //     padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                //     child: DropdownButtonHideUnderline(
+                //       child: DropdownButton<String>(
+                //         isExpanded:
+                //             true, // Allows the dropdown to take full width
+                //         value: controller.selectedPackage.value,
+                //         style:
+                //             TextStyle(color: Colors.grey[800], fontSize: 16.0),
+                //         onChanged: (String? newValue) {
+                //           controller.selectedPackage.value = newValue!;
+                //         },
+                //         items: <String>['Package 1 of 2', 'Package 2 of 2']
+                //             .map<DropdownMenuItem<String>>((String value) {
+                //           return DropdownMenuItem<String>(
+                //             value: value,
+                //             child: Row(
+                //               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //               children: [
+                //                 Row(
+                //                   children: [
+                //                     Icon(Icons.inventory_2,
+                //                         color: Colors.grey[700]), // Icon
+                //                     SizedBox(width: 8),
+                //                     Text(value,
+                //                         style: TextStyle(
+                //                             fontWeight: FontWeight.bold)),
+                //                   ],
+                //                 ),
+                //               ],
+                //             ),
+                //           );
+                //         }).toList(),
+                //       ),
+                //     ),
+                //   ),
+                // ),
+                // Package Information
+                Card(
+                  margin: const EdgeInsets.symmetric(vertical: 8.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  elevation: 4,
+                  shadowColor: Colors.grey.withOpacity(0.3),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Estimated Delivery Date
+                        Text(
+                          'Estimated Delivery Date',
+                          style: TextStyle(color: Colors.grey[600]),
+                        ),
+                        SizedBox(height: 3),
+                        Text(
+                          'Monday, May 30',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 15),
+                        Text(
+                          'Out For Delivery',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: const Color.fromARGB(255, 54, 143, 57),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(height: 3),
+                        Text(
+                          'Your package is on the way',
+                          style: TextStyle(color: Colors.grey[700]),
+                        ),
+                        SizedBox(height: 20),
+                        Row(
+                          children: [
+                            Text(
+                              'Contact information',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              width: MediaQuery.sizeOf(context).width * 0.08,
+                            ),
+                            Text(
+                              'Payment Method',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SizedBox(
+                              width: MediaQuery.sizeOf(context).width * 0.4,
+                              child: Text(
+                                'Pete Griffth\npete.griffth@example.com',
+                                style: TextStyle(fontSize: 13),
+                              ),
+                            ),
+                            SizedBox(
+                              width: MediaQuery.sizeOf(context).width * 0.37,
+                              child: Text(
+                                "UPI",
+                                style: TextStyle(fontSize: 13),
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 20),
+
+                        // Shipping Details
+                        Row(
+                          children: [
+                            Text(
+                              'Shipping Address',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(
+                              width: MediaQuery.sizeOf(context).width * 0.135,
+                            ),
+                            Text(
+                              'Delivery Method',
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            SizedBox(
+                              width: MediaQuery.sizeOf(context).width * 0.4,
+                              child: Text(
+                                'Jane Doe\n1455 Market Street, \nSan Francisco, CA 10977 \nUnited States',
+                                style: TextStyle(fontSize: 13),
+                              ),
+                            ),
+                            SizedBox(
+                              width: MediaQuery.sizeOf(context).width * 0.365,
+                              child: Text(
+                                "Standard (5-7 Business Days)",
+                                style: TextStyle(fontSize: 13),
+                              ),
+                            ),
+                          ],
+                        ),
+
+                        SizedBox(height: 20),
+
+                        // Tracking Info
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.location_on,
+                              color: Colors.red,
+                            ),
+                            SizedBox(width: 4),
+                            Expanded(
+                                child: Row(
+                              children: [
+                                Text(
+                                  'Tracking ID : ',
+                                ),
+                                Text(
+                                  '12315124192421',
+                                  style: TextStyle(
+                                    color: Colors.blue,
+                                  ),
+                                ),
+                              ],
+                            )),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+
+                Card(
+                  margin: const EdgeInsets.symmetric(vertical: 8.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  elevation: 4,
+                  shadowColor: Colors.grey.withOpacity(0.3),
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Hi, there.",
+                          'Order Summary',
                           style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.blue[900],
-                          ),
-                        ),
-                        const SizedBox(height: 100),
-                        Image.asset(
-                          AppImages.orderscreen,
-                          height: 250,
-                          width: 220,
-                          fit: BoxFit.fill,
-                        ),
-                        const SizedBox(height: 70),
-                        const Text(
-                          'No Orders Available',
-                          style: TextStyle(
-                            fontSize: 22,
+                            fontSize: 18,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        const SizedBox(height: 10),
-                        const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 20.0),
-                          child: Text(
-                            "Thanks for checking out orders, we hope our products can make your morning routine a little more enjoyable.",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 16),
+                        SizedBox(height: 16),
+                        // Package 1
+                        controller.buildPackageItem(
+                          context,
+                          'Package 1 of 2',
+                          'Retro Rainbows Organic Baby Boy Footless Sleep',
+                          'Quantity: 1',
+                          'Colour : Red | Size : M',
+                          '₹ 100.99',
+                          AppImages.product2, // Replace with actual image path
+                        ),
+                        Divider(),
+                        // Package 2
+                        controller.buildPackageItem(
+                          context,
+                          'Package 2 of 2',
+                          'Sunny Skies Organic Toddler Boy Tee & Short',
+                          'Quantity: 1',
+
+                          'Colour : Red | Size : M',
+
+                          '₹ 160.99',
+                          AppImages.product3, // Replace with actual image path
+                        ),
+                        Divider(),
+                        SizedBox(height: 8),
+                        // Subtotal, Shipping, Taxes
+                        controller.buildPriceRow('Subtotal', '₹ 33.99'),
+                        controller.buildPriceRow('Shipping', 'Free'),
+                        controller.buildPriceRow('Taxes', '₹ 5.33'),
+                        Divider(),
+                        // Total
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Total',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                ),
+                              ),
+                              Text(
+                                '₹ 37.29',
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                  color: Colors.blue,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ],
                     ),
-                  )
-                : Expanded(
-                    child: GridView.builder(
-                      padding: EdgeInsets.all(10),
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3, // 3 columns
-                        childAspectRatio:
-                            2 / 3, // Control the size of the grid items
-                        crossAxisSpacing: 10, // Space between columns
-                        mainAxisSpacing: 10, // Space between rows
-                      ),
-                      itemCount:
-                          controller.getorderModel.value.data?.docs?.length ??
-                              0,
-                      itemBuilder: (context, index) {
-                        return Container(
-                          width: 200,
-                          child: Card(
-                            shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.circular(15), // Rounded corners
-                              side: BorderSide(
-                                color: Colors.grey, // Border color
-                                width: 2, // Border width
-                              ),
-                            ),
-                            elevation: 3, // Shadow under the card
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment
-                                  .stretch, // Ensure the image and text stretch
-                              children: [
-                                // Image container with full width and fit
-                                Expanded(
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(15),
-                                      topRight: Radius.circular(15),
-                                    ),
-                                    child: Image.network(
-                                      controller.getorderModel.value.data
-                                              ?.docs?[index].brandLogo ??
-                                          "",
-                                      fit: BoxFit.fill,
-                                      errorBuilder:
-                                          (context, error, stackTrace) {
-                                        return Image.asset(
-                                          AppImages.orderproductdefault,
-                                          fit: BoxFit.fill,
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(height: 5),
-                                Container(
-                                  width: 100,
-                                  height: 40,
-                                  child: Padding(
-                                    padding: EdgeInsets.only(
-                                        top: 5, left: 5, right: 5),
-                                    child: Text(
-                                      controller.getorderModel.value.data
-                                              ?.docs?[index].brandName
-                                              .toString() ??
-                                          "",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontSize: 10,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(height: 10), // Space at the bottom
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                    ),
                   ),
-          ],
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );

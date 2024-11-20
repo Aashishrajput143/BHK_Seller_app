@@ -1,6 +1,6 @@
 import 'package:bhk_seller_app/common/myUtils.dart';
 import 'package:bhk_seller_app/controller/logincontroller.dart';
-import 'package:bhk_seller_app/resources/component/inputformatter.dart';
+import 'package:bhk_seller_app/resources/inputformatter.dart';
 import 'package:bhk_seller_app/resources/strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -134,7 +134,7 @@ class LoginScreen extends StatelessWidget {
                                               EmailInputFormatter(),
                                               NoLeadingSpaceFormatter(),
                                               EmojiInputFormatter(),
-                                              RemoveTrailingPeriodsFormatter(),
+                                              //RemoveTrailingPeriodsFormatter(),
                                               LengthLimitingTextInputFormatter(
                                                   50), // Optional: Limit email length
                                             ],

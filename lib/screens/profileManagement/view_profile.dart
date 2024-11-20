@@ -45,6 +45,8 @@ class ViewProfile extends StatelessWidget {
                           Container(
                             alignment: const Alignment(0.0, 2.5),
                             child: CircleAvatar(
+                              backgroundColor:
+                                  Color.fromARGB(195, 250, 248, 238),
                               backgroundImage:
                                   controller.avatar?.isNotEmpty ?? true
                                       ? NetworkImage(
@@ -92,7 +94,7 @@ class ViewProfile extends StatelessWidget {
                       subtitle: Text(
                         controller.name!.isNotEmpty
                             ? controller.name.toString()
-                            : "User",
+                            : "Please set your Name",
                         style: TextStyle(fontSize: 16, color: Colors.black),
                       ),
                     ),
@@ -106,7 +108,7 @@ class ViewProfile extends StatelessWidget {
                         style: TextStyle(color: Colors.grey),
                       ),
                       subtitle: Text(
-                        "${controller.countrycode!.isNotEmpty ? controller.countrycode.toString() : "Null"} ${controller.phone!.isNotEmpty ? controller.phone.toString() : "Null"}",
+                        "${controller.countrycode!.isNotEmpty ? controller.countrycode.toString() : "Please set your Phone number"} ${controller.phone!.isNotEmpty ? controller.phone.toString() : ""}",
                         style: TextStyle(fontSize: 16, color: Colors.black),
                       ),
                     ),
@@ -122,7 +124,7 @@ class ViewProfile extends StatelessWidget {
                       subtitle: Text(
                         controller.email!.isNotEmpty
                             ? controller.email.toString()
-                            : "Null",
+                            : "Please set your Email",
                         style: TextStyle(fontSize: 16, color: Colors.black),
                       ),
                     ),

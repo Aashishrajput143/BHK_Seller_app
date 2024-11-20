@@ -157,5 +157,7 @@ class OtpController extends GetxController {
         Constants.email, "${verifyOTPData.value.data?.email}");
     //}
     Get.offNamed(RoutesClass.gotoDashboardScreen());
+    Get.toNamed(RoutesClass.gotoDashboardScreen(),
+        arguments: {"isDialog": true});
   }
 }

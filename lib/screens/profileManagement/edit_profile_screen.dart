@@ -4,7 +4,7 @@ import 'package:bhk_seller_app/common/myUtils.dart';
 import 'package:bhk_seller_app/controller/updateprofilecontroller.dart';
 import 'package:bhk_seller_app/data/response/status.dart';
 import 'package:bhk_seller_app/resources/appconstants.dart';
-import 'package:bhk_seller_app/resources/component/inputformatter.dart';
+import 'package:bhk_seller_app/resources/inputformatter.dart';
 import 'package:bhk_seller_app/resources/images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -12,7 +12,7 @@ import 'package:get/get.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
 class EditProfile extends StatelessWidget {
-  EditProfile({super.key});
+  const EditProfile({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +55,8 @@ class EditProfile extends StatelessWidget {
                                     ? Container(
                                         alignment: const Alignment(0.0, 2.5),
                                         child: CircleAvatar(
+                                          backgroundColor: Color.fromARGB(
+                                              195, 250, 248, 242),
                                           backgroundImage: controller
                                                       .getProfileModel
                                                       .value

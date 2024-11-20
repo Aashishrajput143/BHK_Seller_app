@@ -47,8 +47,14 @@ class ProductRepository {
   }
 
   Future<GetProductModel> getproductApi() async {
-    dynamic response =
-        await _apiServices.getApi("${AppUrl.getproductlisting}?isSeller=true");
+    dynamic response = await _apiServices.getApi(
+        "${AppUrl.getproductlisting}?product_status=AVAILABLE&isSeller=true");
+    return GetProductModel.fromJson(response);
+  }
+
+  Future<GetProductModel> getpendingproductApi() async {
+    dynamic response = await _apiServices.getApi(
+        "${AppUrl.getproductlisting}?product_status=DRAFT&isSeller=true&admin_approval_status=Pending");
     return GetProductModel.fromJson(response);
   }
 

@@ -29,7 +29,7 @@ class Brand extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: 120, // Give a fixed height
+              height: 90, // Give a fixed height
               child: ListView.builder(
                 scrollDirection: Axis.horizontal, // Enable horizontal scrolling
                 itemCount:
@@ -48,11 +48,11 @@ class Brand extends StatelessWidget {
                           },
                         );
                       },
-                      child: Container(
-                        width: 150,
+                      child: Padding(
                         padding: EdgeInsets.only(top: 16),
                         child: Container(
-                          padding: EdgeInsets.all(20),
+                          width: 120,
+                          padding: EdgeInsets.all(10),
                           decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(2),

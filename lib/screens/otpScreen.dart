@@ -1,7 +1,7 @@
 import 'package:bhk_seller_app/common/myUtils.dart';
 import 'package:bhk_seller_app/controller/otpController.dart';
 import 'package:bhk_seller_app/main.dart';
-import 'package:bhk_seller_app/resources/component/inputformatter.dart';
+import 'package:bhk_seller_app/resources/inputformatter.dart';
 import 'package:bhk_seller_app/resources/strings.dart';
 import 'package:bhk_seller_app/routes/RoutesClass.dart';
 import 'package:flutter/material.dart';

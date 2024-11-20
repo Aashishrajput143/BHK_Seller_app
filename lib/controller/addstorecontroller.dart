@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:bhk_seller_app/Constants/utils.dart';
 import 'package:bhk_seller_app/model/addstoremodel.dart';
 import 'package:bhk_seller_app/repository/storerepository.dart';
-import 'package:bhk_seller_app/routes/RoutesClass.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -94,7 +93,7 @@ class AddStoreController extends GetxController {
         setaddstoredata(value);
         CommonMethods.showToast(value.message);
         Utils.printLog("Response===> ${value.toString()}");
-        Get.offNamed(RoutesClass.gotoStoreScreen());
+        Get.back();
       }).onError((error, stackTrace) {
         setError(error.toString());
         setRxRequestStatus(Status.ERROR);

@@ -4,7 +4,8 @@ import 'package:bhk_seller_app/controller/addproductdetailscontroller.dart';
 import 'package:bhk_seller_app/data/response/status.dart';
 import 'package:bhk_seller_app/main.dart';
 import 'package:bhk_seller_app/resources/appconstants.dart';
-import 'package:bhk_seller_app/resources/component/inputformatter.dart';
+import 'package:bhk_seller_app/resources/inputformatter.dart';
+import 'package:bhk_seller_app/screens/productManagement/buildStepCircle.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -127,19 +128,9 @@ class AddProductDetails extends ParentWidget {
                       SizedBox(height: 25.0),
 
                       // Step Indicator
-                      Row(
-                        children: [
-                          controller.buildStepCircle(
-                              "General", 01, false, true),
-                          controller.buildStepDivider(),
-                          controller.buildStepCircle(
-                              "Details", 02, true, false),
-                          controller.buildStepDivider(),
-                          controller.buildStepCircle("Files", 03, false, false),
-                          controller.buildStepDivider(),
-                          controller.buildStepCircle(
-                              "Review", 04, false, false),
-                        ],
+                      BuildStepCircle(
+                        iscompleted: 1,
+                        active: 1,
                       ),
                       const SizedBox(height: 16.0),
                       Container(

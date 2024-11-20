@@ -31,6 +31,8 @@ class MainProfile extends StatelessWidget {
                             Container(
                               alignment: const Alignment(0.0, 2.5),
                               child: CircleAvatar(
+                                backgroundColor:
+                                    Color.fromARGB(195, 250, 248, 238),
                                 backgroundImage: controller.getProfileModel
                                             .value.data?.avatar?.isNotEmpty ??
                                         false
@@ -52,8 +54,9 @@ class MainProfile extends StatelessWidget {
                     SizedBox(height: 20),
                     Text(
                       controller.getProfileModel.value.data?.name?.isNotEmpty ??
-                              false
-                          ? controller.getProfileModel.value.data?.name ?? ""
+                              true
+                          ? controller.getProfileModel.value.data?.name ??
+                              "User".toUpperCase()
                           : "User".toUpperCase(),
                       style: const TextStyle(
                         fontSize: 20,
@@ -67,13 +70,15 @@ class MainProfile extends StatelessWidget {
                     Text(
                       controller.getProfileModel.value.data?.email
                                   ?.isNotEmpty ??
-                              false
-                          ? controller.getProfileModel.value.data?.email ?? ""
-                          : "User@gmail.com",
+                              true
+                          ? controller.getProfileModel.value.data?.email ??
+                              "User@gmail.com"
+                          : controller.getProfileModel.value.data?.phoneNo ??
+                              "XXXXXXXX10",
                       style: const TextStyle(
-                        fontSize: 14,
-                        color: Colors.black,
-                      ),
+                          fontSize: 14,
+                          color: Colors.black54,
+                          fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(
                       height: 10,

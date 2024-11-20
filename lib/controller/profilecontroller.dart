@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:bhk_seller_app/Constants/utils.dart';
 import 'package:bhk_seller_app/common/CommonMethods.dart';
+import 'package:bhk_seller_app/controller/commondashcontroller.dart';
 import 'package:bhk_seller_app/data/response/status.dart';
 import 'package:bhk_seller_app/model/getprofilemodel.dart';
 import 'package:bhk_seller_app/repository/profilerepository.dart';
@@ -11,11 +12,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProfileController extends GetxController {
+  CommonDashController commonDashController = Get.put(CommonDashController());
   profile(int index) {
     print(index);
     switch (index) {
       case 1: //MyOrders
-        Get.toNamed(RoutesClass.gotoOrderScreen());
+        commonDashController.selectedScreenIndex.value = 2;
 
         break;
       case 2: //Mystores

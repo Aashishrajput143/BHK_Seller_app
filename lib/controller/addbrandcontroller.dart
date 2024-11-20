@@ -3,9 +3,7 @@ import 'dart:io';
 
 import 'package:bhk_seller_app/Constants/utils.dart';
 import 'package:bhk_seller_app/model/addbrandmodel.dart';
-import 'package:bhk_seller_app/model/getbrandModel.dart';
 import 'package:bhk_seller_app/repository/brandrepository.dart';
-import 'package:bhk_seller_app/routes/RoutesClass.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -48,48 +46,12 @@ class AddBrandController extends GetxController {
   var isLoading = false.obs;
   final rxRequestStatus = Status.COMPLETED.obs;
 
-  final getBrandModel = GetBrandModel().obs;
-
-  void setGetbranddata(GetBrandModel value) => getBrandModel.value = value;
-
   final addBrandModel = AddBrandModel().obs;
   void setError(String value) => error.value = value;
   RxString error = ''.obs;
   void setRxRequestStatus(Status value) => rxRequestStatus.value = value;
 
   void setaddbranddata(AddBrandModel value) => addBrandModel.value = value;
-
-  Future<void> getBrandApi() async {
-    var connection = await CommonMethods.checkInternetConnectivity();
-    Utils.printLog("CheckInternetConnection===> ${connection.toString()}");
-
-    if (connection == true) {
-      setRxRequestStatus(Status.LOADING);
-
-      repository.getbrandApi(page.value).then((value) {
-        setRxRequestStatus(Status.COMPLETED);
-        setGetbranddata(value);
-        CommonMethods.showToast(value.message);
-        Utils.printLog("Response===> ${value.toString()}");
-        print("redirect");
-      }).onError((error, stackTrace) {
-        setError(error.toString());
-        setRxRequestStatus(Status.ERROR);
-        if (error.toString().contains("{")) {
-          var errorResponse = json.decode(error.toString());
-          print("errrrorrr=====>$errorResponse");
-          if (errorResponse is Map || errorResponse.containsKey('message')) {
-            CommonMethods.showToast(errorResponse['message']);
-          } else {
-            CommonMethods.showToast("An unexpected error occurred.");
-          }
-        }
-        Utils.printLog("Error===> ${error.toString()}");
-      });
-    } else {
-      CommonMethods.showToast(appStrings.weUnableCheckData);
-    }
-  }
 
   Future<void> addBrandApi(context) async {
     var connection = await CommonMethods.checkInternetConnectivity();
@@ -108,7 +70,7 @@ class AddBrandController extends GetxController {
           .then((value) {
         setRxRequestStatus(Status.COMPLETED);
         setaddbranddata(value);
-        Get.offNamed(RoutesClass.gotoBrandScreen());
+        Get.back();
         CommonMethods.showToast(value.message);
         Utils.printLog("Response===> ${value.toString()}");
       }).onError((error, stackTrace) {

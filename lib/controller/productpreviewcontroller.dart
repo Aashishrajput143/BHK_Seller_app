@@ -14,13 +14,21 @@ import 'package:get/get.dart';
 class ProductPreviewController extends GetxController {
   final repository = ProductRepository();
   var currentIndex = 0.obs;
+  int? productId;
   var slidercontroller = CarouselSliderController();
 
   @override
   void onInit() {
     super.onInit();
-    int productId = Get.arguments['productid'];
+    productId = Get.arguments['productid'];
     print(productId);
+    getproductDetailsApi(productId);
+  }
+
+  @override
+  void onReady() {
+    // TODO: implement onReady
+    super.onReady();
     getproductDetailsApi(productId);
   }
 
@@ -71,6 +79,14 @@ class ProductPreviewController extends GetxController {
     }
   }
 
+  Future<void> productRefresh() async {
+    // Simulate network fetch or database query
+    await Future.delayed(Duration(seconds: 2));
+    // Update the list of items and refresh the UI
+    getproductDetailsApi(productId);
+    print("items.length");
+  }
+
   Widget productDetailRow(String title, String detail) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4.0),
@@ -79,6 +95,56 @@ class ProductPreviewController extends GetxController {
         children: [
           Text('$title :'),
           Text(detail),
+        ],
+      ),
+    );
+  }
+
+  Widget buildSection(
+      String title, String title2, String content, String content2) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                title,
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Text(
+                title2,
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 4),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                content,
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              Text(
+                content2,
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );

@@ -262,19 +262,6 @@ class Updateprofilecontroller extends GetxController {
     }
   }
 
-  void fetchAndSetImage(context) async {
-    File? downloadedImage =
-        await downloadImage(getProfileModel.value.data?.avatar ?? "");
-
-    if (downloadedImage != null) {
-      isprofileimage = true;
-      imagefiles.value = downloadedImage; // Set the downloaded file
-      print('Image downloaded and set successfully.');
-    } else {
-      print('Failed to download image.');
-    }
-  }
-
   Future<void> updateProfileApi(context) async {
     var connection = await CommonMethods.checkInternetConnectivity();
     Utils.printLog("CheckInternetConnection===> ${connection.toString()}");

@@ -42,9 +42,10 @@ class MyBrands extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          controller.brandList.isEmpty
-                              ? Row()
-                              : Row(
+                          controller.getBrandModel.value.data?.docs
+                                      ?.isNotEmpty ??
+                                  true
+                              ? Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
@@ -87,61 +88,17 @@ class MyBrands extends StatelessWidget {
                                       ),
                                     ),
                                   ],
-                                ),
+                                )
+                              : Row(),
                         ],
                       ),
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        controller.brandList.isEmpty
-                            ? Column(
-                                children: [
-                                  // Header Text
-                                  Text(
-                                    "Hi, there.",
-                                    style: TextStyle(
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.blue[900],
-                                    ),
-                                  ),
-                                  const SizedBox(height: 100),
-                                  // Mammoth Image (Use asset image here)
-                                  Image.asset(
-                                    AppImages
-                                        .firstbrand, // Add your mammoth image to assets
-                                    height: 250,
-                                    width: 220,
-                                    fit: BoxFit.fill,
-                                  ),
-                                  const SizedBox(height: 70),
-                                  // Greeting Text
-                                  Text(
-                                    'Add Your First Brand',
-                                    style: TextStyle(
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.blueGrey[900],
-                                    ),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  // Subtext
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 20.0),
-                                    child: Text(
-                                      "Thanks for Adding Brand, we hope your brands can "
-                                      "make our routine a little more enjoyable.",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          color: Colors.grey[700]),
-                                    ),
-                                  ),
-                                ],
-                              )
-                            : Container(
+                        controller.getBrandModel.value.data?.docs?.isNotEmpty ??
+                                true
+                            ? Container(
                                 color: const Color.fromARGB(195, 247, 243, 233),
                                 width: MediaQuery.of(context).size.width,
                                 height:
@@ -151,7 +108,6 @@ class MyBrands extends StatelessWidget {
                                       16.0, 0, 16, 16),
                                   child: GridView.builder(
                                     shrinkWrap: true,
-                                    physics: NeverScrollableScrollPhysics(),
                                     controller:
                                         controller.scrollController.value,
                                     itemCount: controller.brandList.length,
@@ -203,6 +159,52 @@ class MyBrands extends StatelessWidget {
                                     },
                                   ),
                                 ),
+                              )
+                            : Column(
+                                children: [
+                                  // Header Text
+                                  Text(
+                                    "Hi, there.",
+                                    style: TextStyle(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.blue[900],
+                                    ),
+                                  ),
+                                  const SizedBox(height: 100),
+                                  // Mammoth Image (Use asset image here)
+                                  Image.asset(
+                                    AppImages
+                                        .firstbrand, // Add your mammoth image to assets
+                                    height: 250,
+                                    width: 220,
+                                    fit: BoxFit.fill,
+                                  ),
+                                  const SizedBox(height: 70),
+                                  // Greeting Text
+                                  Text(
+                                    'Add Your First Brand',
+                                    style: TextStyle(
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.blueGrey[900],
+                                    ),
+                                  ),
+                                  const SizedBox(height: 10),
+                                  // Subtext
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 20.0),
+                                    child: Text(
+                                      "Thanks for Adding Brand, we hope your brands can "
+                                      "make our routine a little more enjoyable.",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                          fontSize: 16,
+                                          color: Colors.grey[700]),
+                                    ),
+                                  ),
+                                ],
                               ),
                       ],
                     ),
@@ -211,8 +213,11 @@ class MyBrands extends StatelessWidget {
               ),
               floatingActionButtonLocation:
                   FloatingActionButtonLocation.centerFloat,
-              floatingActionButton: controller.brandList.isEmpty
-                  ? Container(
+              floatingActionButton: controller
+                          .getBrandModel.value.data?.docs?.isNotEmpty ??
+                      true
+                  ? Container()
+                  : Container(
                       height: 50,
                       width: 230,
                       padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -236,10 +241,13 @@ class MyBrands extends StatelessWidget {
                               fontSize: 16),
                         ),
                         onPressed: () {
-                          Get.toNamed(RoutesClass.gotoaddBrandScreen());
+                          Get.toNamed(
+                            RoutesClass.gotoaddBrandScreen(),
+                          )?.then((onValue) {
+                            controller.getBrandApi();
+                          });
                         },
-                      ))
-                  : Container()),
+                      ))),
           progressBarTransparent(
               controller.rxRequestStatus.value == Status.LOADING,
               MediaQuery.of(context).size.height,

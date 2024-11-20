@@ -1,7 +1,6 @@
 import 'package:bhk_seller_app/common/myUtils.dart';
 import 'package:bhk_seller_app/controller/dashboardcontroller.dart';
 import 'package:bhk_seller_app/data/response/status.dart';
-import 'package:bhk_seller_app/routes/RoutesClass.dart';
 import 'package:bhk_seller_app/screens/dashboardManagement/chart.dart';
 import 'package:bhk_seller_app/screens/dashboardManagement/product.dart';
 import 'package:bhk_seller_app/screens/dashboardManagement/salesinfo.dart';
@@ -205,45 +204,10 @@ class DashBoard extends StatelessWidget {
                 ],
               ),
             ),*/
-                    Container(
-                      color: const Color.fromARGB(195, 247, 243,
-                          233), // Background color below the Shop By Category
-                      padding: const EdgeInsets.all(16.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 0.0, vertical: 8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Recently Added Products',
-                                  style: TextStyle(
-                                    fontSize: 18.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    Get.toNamed(
-                                        RoutesClass.gotoProductScreen());
-                                  },
-                                  child: Text(
-                                    'View All>',
-                                    style: TextStyle(
-                                        fontSize: 14.0, color: Colors.brown),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(height: 15),
-                          const ProductSaleScreen(),
-                        ],
-                      ),
-                    ),
+                    controller.getProductModel.value.data?.docs?.isNotEmpty ??
+                            true
+                        ? ProductSaleScreen()
+                        : SizedBox(),
                   ],
                 ),
               ),

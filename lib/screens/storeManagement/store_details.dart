@@ -1,9 +1,7 @@
 import 'package:bhk_seller_app/common/myUtils.dart';
-import 'package:bhk_seller_app/controller/productpreviewcontroller.dart';
 import 'package:bhk_seller_app/controller/storedetailscontroller.dart';
 import 'package:bhk_seller_app/data/response/status.dart';
 import 'package:bhk_seller_app/resources/appconstants.dart';
-import 'package:bhk_seller_app/resources/images.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

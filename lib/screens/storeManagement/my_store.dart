@@ -85,46 +85,10 @@ class MyStores extends StatelessWidget {
                             ),
                       const SizedBox(height: 10),
                       Expanded(
-                        child: controller
-                                    .getStoreModel.value.data?.docs?.isEmpty ??
+                        child: controller.getStoreModel.value.data?.docs
+                                    ?.isNotEmpty ??
                                 true
-                            ? Column(
-                                children: [
-                                  const Text(
-                                    "Hi, there.",
-                                    style: TextStyle(
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 100),
-                                  Image.asset(
-                                    AppImages.storeimage,
-                                    height: 250,
-                                    width: 220,
-                                    fit: BoxFit.fill,
-                                  ),
-                                  const SizedBox(height: 70),
-                                  const Text(
-                                    'Add Your First Store',
-                                    style: TextStyle(
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  const Padding(
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 20.0),
-                                    child: Text(
-                                      "Thanks for Adding the Store, we hope your Stores can make your routine a little more enjoyable.",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 16),
-                                    ),
-                                  ),
-                                ],
-                              )
-                            : SingleChildScrollView(
+                            ? SingleChildScrollView(
                                 controller: controller.scrollController.value,
                                 child: Padding(
                                   padding: EdgeInsets.all(5),
@@ -381,6 +345,43 @@ class MyStores extends StatelessWidget {
                                     },
                                   ),
                                 ),
+                              )
+                            : Column(
+                                children: [
+                                  Text(
+                                    "Hi, there.",
+                                    style: TextStyle(
+                                      color: Colors.blue[900],
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 100),
+                                  Image.asset(
+                                    AppImages.storeimage,
+                                    height: 250,
+                                    width: 220,
+                                    fit: BoxFit.fill,
+                                  ),
+                                  const SizedBox(height: 70),
+                                  const Text(
+                                    'Add Your First Store',
+                                    style: TextStyle(
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 10),
+                                  const Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 20.0),
+                                    child: Text(
+                                      "Thanks for Adding the Store, we hope your Stores can make your routine a little more enjoyable.",
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(fontSize: 16),
+                                    ),
+                                  ),
+                                ],
                               ),
                       ),
                     ],

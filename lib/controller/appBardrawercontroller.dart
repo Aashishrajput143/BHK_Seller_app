@@ -7,6 +7,7 @@ import 'package:bhk_seller_app/model/logoutmodel.dart';
 import 'package:bhk_seller_app/repository/logoutRepository.dart';
 import 'package:bhk_seller_app/repository/profilerepository.dart';
 import 'package:bhk_seller_app/routes/RoutesClass.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../common/CommonMethods.dart';
@@ -16,6 +17,56 @@ import '../resources/strings.dart';
 class Appbardrawercontroller extends GetxController {
   final repository = LogoutRepository();
   final profilerepository = ProfileRepository();
+
+  void showlogoutDialog() {
+    Get.dialog(
+      AlertDialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+        title: Row(
+          children: [
+            Icon(Icons.logout, color: Colors.orange, size: 30),
+            SizedBox(width: 8),
+            Text("Confirm",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+          ],
+        ),
+        content: Text("Are you sure you want to Logout?"),
+        actions: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              TextButton(
+                onPressed: () {
+                  Get.back(); // Close dialog without doing anything
+                },
+                child: Text("CANCEL", style: TextStyle(color: Colors.pink)),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      Get.back(); // Close dialog and stay in the app
+                    },
+                    child: Text("NO", style: TextStyle(color: Colors.pink)),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      logOutApi();
+                    },
+                    child: Text("YES", style: TextStyle(color: Colors.pink)),
+                  ),
+                ],
+              )
+            ],
+          )
+        ],
+      ),
+      barrierDismissible: false,
+    );
+  }
 
   var isLoading = false.obs;
   final rxRequestStatus = Status.COMPLETED.obs;
@@ -40,7 +91,6 @@ class Appbardrawercontroller extends GetxController {
 
   @override
   void onReady() {
-    // TODO: implement onReady
     super.onReady();
     getProfileApi();
   }
@@ -85,7 +135,7 @@ class Appbardrawercontroller extends GetxController {
     print("items.length");
   }
 
-  Future<void> logOutApi(context) async {
+  Future<void> logOutApi() async {
     var connection = await CommonMethods.checkInternetConnectivity();
     Utils.printLog("CheckInternetConnection===> ${connection.toString()}");
 
@@ -120,6 +170,7 @@ class Appbardrawercontroller extends GetxController {
   redirect() {
     Utils.savePreferenceValues(Constants.accessToken, "");
     Utils.savePreferenceValues(Constants.email, "");
-    Get.offNamed(RoutesClass.gotoLoginScreen());
+    Utils.clearPreferenceValues();
+    Get.offAllNamed(RoutesClass.gotoLoginScreen());
   }
 }

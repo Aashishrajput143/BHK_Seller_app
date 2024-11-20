@@ -27,7 +27,7 @@ class Data {
   bool? isDisabled;
   String? productStatus;
   String? adminApprovalStatus;
-  Null? adminRemarks;
+  String? adminRemarks;
   String? updatedAt;
   List<Variants>? variants;
   Category? category;
@@ -189,7 +189,7 @@ class Variants {
 class Media {
   int? mediaId;
   List<String>? images;
-  Null? videos;
+  String? videos;
   String? createdAt;
   String? updatedAt;
 

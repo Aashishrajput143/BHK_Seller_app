@@ -5,6 +5,7 @@ import 'package:bhk_seller_app/screens/changepassword.dart';
 import 'package:bhk_seller_app/screens/dashboardManagement/notifications.dart';
 import 'package:bhk_seller_app/screens/brandManagement/add_brand.dart';
 import 'package:bhk_seller_app/screens/brandManagement/my_brands.dart';
+import 'package:bhk_seller_app/screens/ordersManagement/orderdetails.dart';
 import 'package:bhk_seller_app/screens/profileManagement/edit_profile_screen.dart';
 import 'package:bhk_seller_app/screens/productManagement/add_productdetails.dart';
 import 'package:bhk_seller_app/screens/productManagement/add_productfiles.dart';
@@ -49,6 +50,7 @@ class RoutesClass {
   static String editprofile = '/editprofile';
   static String viewprofile = '/viewprofile';
   static String productdetail = '/productdetail';
+  static String ordersdetails = '/ordersdetails';
 
   //BR1
   static String gotoSplash() => splash;
@@ -68,6 +70,7 @@ class RoutesClass {
   static String gotoaddProductdetailsScreen() => addproductdetails;
   static String gotoaddProductmediaScreen() => addproductmedia;
   static String gotoOrderScreen() => orders;
+  static String gotoOrderDetailsScreen() => ordersdetails;
   static String gotoProfileScreen() => profile;
   static String gotoNotificationScreen() => notifications;
   static String gotoChangePasswordScreen() => changepassword;
@@ -169,6 +172,12 @@ class RoutesClass {
     GetPage(
       name: orders,
       page: () => const CommonDash(index: 2),
+      transition: Transition.fade,
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
+    GetPage(
+      name: ordersdetails,
+      page: () => OrderDetailsPage(),
       transition: Transition.fade,
       transitionDuration: const Duration(milliseconds: 300),
     ),
