@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:bhk_seller_app/Constants/utils.dart';
-import 'package:bhk_seller_app/controller/commondashcontroller.dart';
 import 'package:bhk_seller_app/model/addproductmodel.dart';
 import 'package:bhk_seller_app/model/productdetailsmodel.dart';
 import 'package:bhk_seller_app/repository/productrepository.dart';
@@ -17,7 +16,6 @@ class AddProductDetailsController extends GetxController {
   final repository = ProductRepository();
   int? productId;
   bool producteditId = false;
-  CommonDashController controller = Get.put(CommonDashController());
 
   @override
   void onInit() {
@@ -40,6 +38,7 @@ class AddProductDetailsController extends GetxController {
   var lengthController = TextEditingController().obs;
   var breadthController = TextEditingController().obs;
   var heightController = TextEditingController().obs;
+  var colorEditingController = TextEditingController().obs;
 
   var dropdownValues = 'gm'.obs;
   var dropdownValue = 'cm'.obs;
@@ -466,7 +465,9 @@ class AddProductDetailsController extends GetxController {
         );
       }
     } else {
-      controller.selectedScreenIndex.value = 1;
+      Get.offNamed(
+        RoutesClass.gotoProductScreen(),
+      );
     }
   }
 

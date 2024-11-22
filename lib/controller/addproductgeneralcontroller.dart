@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:bhk_seller_app/Constants/utils.dart';
-import 'package:bhk_seller_app/controller/commondashcontroller.dart';
 import 'package:bhk_seller_app/model/addproductmodel.dart';
 import 'package:bhk_seller_app/model/getbrandModel.dart';
 import 'package:bhk_seller_app/model/getcategorymodel.dart';
@@ -23,7 +22,6 @@ class AddProductGeneralController extends GetxController {
   bool producteditId = false;
   var nameController = TextEditingController().obs;
   var detaileddescriptionController = TextEditingController().obs;
-  CommonDashController dashcontroller = Get.put(CommonDashController());
 
   bool gm = false;
   bool storebool = false;
@@ -345,7 +343,9 @@ class AddProductGeneralController extends GetxController {
                         1]
                 .variantId ==
             null) {
-          dashcontroller.selectedScreenIndex.value = 1;
+          Get.offNamed(
+            RoutesClass.gotoProductScreen(),
+          );
         } else {
           Get.offNamed(
             RoutesClass.gotoaddProductdetailsScreen(),
@@ -365,7 +365,9 @@ class AddProductGeneralController extends GetxController {
         );
       }
     } else {
-      dashcontroller.selectedScreenIndex.value = 0;
+      Get.offNamed(
+        RoutesClass.gotoProductScreen(),
+      );
     }
   }
 

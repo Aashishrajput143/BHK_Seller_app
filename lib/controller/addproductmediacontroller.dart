@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:bhk_seller_app/Constants/utils.dart';
+import 'package:bhk_seller_app/controller/commondashcontroller.dart';
 import 'package:bhk_seller_app/model/addproductmediamodel.dart';
 import 'package:bhk_seller_app/model/productdetailsmodel.dart';
 import 'package:bhk_seller_app/repository/productrepository.dart';
@@ -22,6 +23,7 @@ class AddProductMediaController extends GetxController {
   final ImagePicker imgpicker = ImagePicker();
   var imagefiles = <XFile>[].obs; // Observable list
   var errormessage = "".obs;
+  CommonDashController dashcontroller = Get.put(CommonDashController());
 
   @override
   void onInit() {
@@ -53,6 +55,7 @@ class AddProductMediaController extends GetxController {
           );
         } else {
           mediaimage = true;
+          errormessage.value = "";
           imagefiles
               .addAll(pickedfiles); // Add picked files to the observable list
           print("Total images: ${imagefiles.length}");
@@ -165,7 +168,9 @@ class AddProductMediaController extends GetxController {
   }
 
   redirect() {
-    Get.offAllNamed(RoutesClass.gotoProductScreen());
+    Get.offNamed(
+      RoutesClass.gotoProductScreen(),
+    );
   }
 
   Widget buildStepCircle(

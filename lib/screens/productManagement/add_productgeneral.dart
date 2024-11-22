@@ -42,7 +42,6 @@ class AddProductPage extends ParentWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Title Row
                     controller.producteditId == true
                         ? const Row(
                             children: [
@@ -80,7 +79,6 @@ class AddProductPage extends ParentWidget {
                           ),
                     SizedBox(height: 5.0),
 
-                    // Subtitle
                     controller.producteditId == true
                         ? const Text(
                             'Edit and manage your product.',
@@ -100,7 +98,6 @@ class AddProductPage extends ParentWidget {
                           ),
                     SizedBox(height: 25.0),
 
-                    // Step Indicator
                     BuildStepCircle(
                       iscompleted: 0,
                       active: 0,
@@ -128,16 +125,13 @@ class AddProductPage extends ParentWidget {
                     ),
                     const SizedBox(height: 5.0),
                     Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8.0), // Padding inside the container
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: const Color.fromARGB(
-                              197, 113, 113, 113), // Border color
-                          width: 1.5, // Border width
+                          color: const Color.fromARGB(197, 113, 113, 113),
+                          width: 1.5,
                         ),
-                        borderRadius:
-                            BorderRadius.circular(8.0), // Rounded corners
+                        borderRadius: BorderRadius.circular(8.0),
                       ),
                       child: DropdownButton2<String>(
                         hint: Text(controller.getProductDetailsModel.value.data
@@ -147,13 +141,11 @@ class AddProductPage extends ParentWidget {
                         value: controller.selectedcategory.value?.isNotEmpty ??
                                 false
                             ? controller.selectedcategory.value
-                            : null, // Nullable selected value
-
+                            : null,
                         items: controller.getCategoryModel.value.data?.docs
                             ?.map((item) {
                           return DropdownMenuItem<String>(
-                            value: item.categoryId
-                                .toString(), // Use the correct item value
+                            value: item.categoryId.toString(),
                             child: Text(
                               item.categoryName ?? "",
                               style: const TextStyle(fontSize: 14),
@@ -165,7 +157,7 @@ class AddProductPage extends ParentWidget {
                             : (String? newValue) {
                                 controller.selectedsubcategory.value = null;
                                 controller.selectedcategory.value =
-                                    newValue ?? ""; // Update selected item
+                                    newValue ?? "";
                                 controller.categoryid.value = newValue!;
                                 controller.getSubCategoryApi(
                                     controller.categoryid.value);
@@ -173,27 +165,25 @@ class AddProductPage extends ParentWidget {
                               },
                         dropdownStyleData: DropdownStyleData(
                           maxHeight: MediaQuery.of(context).size.height * .25,
-                          width: MediaQuery.of(context).size.width * .95,
-                          offset: const Offset(
-                              0, 10), // Adjust top margin for dropdown menu
+                          width: MediaQuery.of(context).size.width * .918,
+                          offset: const Offset(-9, -3),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
                             color: Colors.white,
                           ),
                         ),
                         isExpanded: true,
-                        underline: const SizedBox(), // Remove default underline
+                        underline: const SizedBox(),
                       ),
                     ),
 
                     const SizedBox(height: 16.0),
-                    Container(
+                    SizedBox(
                       width: MediaQuery.of(context).size.width * 0.9,
                       child: const Row(
                         children: [
                           Expanded(
-                            flex:
-                                7, // Adjust the flex ratio according to your needs
+                            flex: 7,
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
@@ -215,13 +205,9 @@ class AddProductPage extends ParentWidget {
                               ],
                             ),
                           ),
-                          SizedBox(
-                              width:
-                                  8), // Space between TextFormField and DropdownButton
-
+                          SizedBox(width: 8),
                           Expanded(
-                            flex:
-                                7, // Adjust the flex ratio according to your needs
+                            flex: 7,
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
@@ -249,25 +235,22 @@ class AddProductPage extends ParentWidget {
                     const SizedBox(
                       height: 5,
                     ),
-                    Container(
+                    SizedBox(
                       width: MediaQuery.of(context).size.width * 0.9,
                       child: Row(
                         children: [
                           Expanded(
-                            flex:
-                                5, // Adjust the flex ratio according to your needs
+                            flex: 5,
                             child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal:
-                                      8.0), // Padding inside the container
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 8.0),
                               decoration: BoxDecoration(
                                 border: Border.all(
-                                  color: const Color.fromARGB(
-                                      197, 113, 113, 113), // Border color
-                                  width: 1.5, // Border width
+                                  color:
+                                      const Color.fromARGB(197, 113, 113, 113),
+                                  width: 1.5,
                                 ),
-                                borderRadius: BorderRadius.circular(
-                                    8.0), // Rounded corners
+                                borderRadius: BorderRadius.circular(8.0),
                               ),
                               child: DropdownButton2<String>(
                                 hint: Text(controller.getProductDetailsModel
@@ -279,14 +262,12 @@ class AddProductPage extends ParentWidget {
                                             ?.isNotEmpty ??
                                         false
                                     ? controller.selectedsubcategory.value
-                                    : null, // Nullable selected value
-
+                                    : null,
                                 items: controller
                                     .getSubCategoryModel.value.data?.docs
                                     ?.map((item) {
                                   return DropdownMenuItem<String>(
-                                    value: item.categoryId
-                                        .toString(), // Use the correct item value
+                                    value: item.categoryId.toString(),
                                     child: Text(
                                       item.categoryName.toString(),
                                       style: const TextStyle(fontSize: 14),
@@ -299,42 +280,37 @@ class AddProductPage extends ParentWidget {
                                         controller.selectedsubcategory.value =
                                             newValue ?? "";
                                         controller.subcategoryid.value =
-                                            newValue!; // Update selected item
+                                            newValue!;
                                       },
                                 dropdownStyleData: DropdownStyleData(
                                   maxHeight:
                                       MediaQuery.of(context).size.height * .25,
                                   width:
-                                      MediaQuery.of(context).size.width * .95,
-                                  offset: const Offset(0,
-                                      10), // Adjust top margin for dropdown menu
+                                      MediaQuery.of(context).size.width * .438,
+                                  offset: const Offset(-8, -2),
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(8),
                                     color: Colors.white,
                                   ),
                                 ),
                                 isExpanded: true,
-                                underline:
-                                    const SizedBox(), // Remove default underline
+                                underline: const SizedBox(),
                               ),
                             ),
                           ),
                           const SizedBox(width: 8),
                           Expanded(
-                            flex:
-                                5, // Adjust the flex ratio according to your needs
+                            flex: 5,
                             child: Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal:
-                                      8.0), // Padding inside the container
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 8.0),
                               decoration: BoxDecoration(
                                 border: Border.all(
-                                  color: const Color.fromARGB(
-                                      197, 113, 113, 113), // Border color
-                                  width: 1.5, // Border width
+                                  color:
+                                      const Color.fromARGB(197, 113, 113, 113),
+                                  width: 1.5,
                                 ),
-                                borderRadius: BorderRadius.circular(
-                                    8.0), // Rounded corners
+                                borderRadius: BorderRadius.circular(8.0),
                               ),
                               child: DropdownButton2<String>(
                                 hint: Text(controller.getProductDetailsModel
@@ -346,13 +322,11 @@ class AddProductPage extends ParentWidget {
                                             .selectedbrand.value?.isNotEmpty ??
                                         false
                                     ? controller.selectedbrand.value
-                                    : null, // Nullable selected value
-
+                                    : null,
                                 items: controller.getBrandModel.value.data?.docs
                                     ?.map((item) {
                                   return DropdownMenuItem<String>(
-                                    value: item.brandId
-                                        .toString(), // Use the correct item value
+                                    value: item.brandId.toString(),
                                     child: Text(
                                       item.brandName.toString(),
                                       style: const TextStyle(fontSize: 14),
@@ -364,33 +338,29 @@ class AddProductPage extends ParentWidget {
                                     : (String? newValue) {
                                         controller.selectedbrand.value =
                                             newValue ?? "";
-                                        controller.brandid.value =
-                                            newValue!; // Update selected item
+                                        controller.brandid.value = newValue!;
                                       },
                                 dropdownStyleData: DropdownStyleData(
                                   maxHeight:
                                       MediaQuery.of(context).size.height * .25,
                                   width:
-                                      MediaQuery.of(context).size.width * .95,
-                                  offset: const Offset(0,
-                                      10), // Adjust top margin for dropdown menu
+                                      MediaQuery.of(context).size.width * .438,
+                                  offset: const Offset(-8, -2),
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(8),
                                     color: Colors.white,
                                   ),
                                 ),
                                 isExpanded: true,
-                                underline:
-                                    const SizedBox(), // Remove default underline
+                                underline: const SizedBox(),
                               ),
                             ),
-                          ), // Space between TextFormField and DropdownButton
+                          ),
                         ],
                       ),
                     ),
                     SizedBox(height: 16.0),
 
-                    // Name Field
                     const Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -434,15 +404,13 @@ class AddProductPage extends ParentWidget {
                         hintText: 'Enter your  Product name',
                         hintStyle: TextStyle(fontSize: 12),
                         border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              width: 2.0), // Customize border color and width
+                          borderSide: BorderSide(width: 2.0),
                           borderRadius: BorderRadius.all(Radius.circular(8.0)),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                               color: Color.fromARGB(82, 151, 92, 71),
-                              width:
-                                  2.0), // Customize border color and width when focused
+                              width: 2.0),
                         ),
                       ),
                     ),
@@ -470,33 +438,27 @@ class AddProductPage extends ParentWidget {
                     ),
                     const SizedBox(height: 5.0),
                     Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8.0), // Padding inside the container
+                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: const Color.fromARGB(
-                              197, 113, 113, 113), // Border color
-                          width: 1.5, // Border width
+                          color: const Color.fromARGB(197, 113, 113, 113),
+                          width: 1.5,
                         ),
-                        borderRadius:
-                            BorderRadius.circular(8.0), // Rounded corners
+                        borderRadius: BorderRadius.circular(8.0),
                       ),
                       child: DropdownButton2<String>(
                         hint: Text(controller.getProductDetailsModel.value.data
                                 ?.category?.categoryName ??
                             "Select a Store"),
                         style: TextStyle(fontSize: 14, color: Colors.black),
-
                         value:
                             controller.selectedstore.value?.isNotEmpty ?? false
                                 ? controller.selectedstore.value
-                                : null, // Nullable selected value
-
+                                : null,
                         items: controller.getStoreModel.value.data?.docs
                             ?.map((item) {
                           return DropdownMenuItem<String>(
-                            value: item.storeId
-                                .toString(), // Use the correct item value
+                            value: item.storeId.toString(),
                             child: Text(
                               item.storeName.toString(),
                               style: const TextStyle(fontSize: 14),
@@ -506,24 +468,35 @@ class AddProductPage extends ParentWidget {
                         onChanged: (String? newValue) {
                           controller.storebool = true;
                           controller.selectedstore.value = newValue ?? "";
-                          controller.storeid.value =
-                              newValue!; // Update selected item
+                          controller.storeid.value = newValue!;
                         },
-
                         dropdownStyleData: DropdownStyleData(
                           maxHeight: MediaQuery.of(context).size.height * .25,
-                          width: MediaQuery.of(context).size.width * .95,
-                          offset: const Offset(
-                              0, 10), // Adjust top margin for dropdown menu
+                          width: MediaQuery.of(context).size.width * .915,
+                          offset: const Offset(-8, -2),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),
                             color: Colors.white,
                           ),
                         ),
                         isExpanded: true,
-                        underline: const SizedBox(), // Remove default underline
+                        underline: const SizedBox(),
                       ),
                     ),
+                    SizedBox(height: 5.0),
+
+                    controller.getStoreModel.value.data?.docs?.isEmpty ?? true
+                        ? Padding(
+                            padding: EdgeInsets.only(left: 5),
+                            child: Text(
+                              'Please Add Store to Add Product...!',
+                              style: TextStyle(
+                                fontSize: 11.0,
+                                color: Color.fromARGB(255, 144, 58, 58),
+                              ),
+                            ),
+                          )
+                        : SizedBox(),
                     SizedBox(height: 16.0),
 
                     // Description Field
@@ -549,7 +522,6 @@ class AddProductPage extends ParentWidget {
                     ),
                     const SizedBox(height: 5.0),
                     TextFormField(
-                      //focusNode: controller.focusNode1.value,
                       cursorColor: Colors.grey,
                       cursorWidth: 1.5,
                       validator: (value) {
@@ -570,22 +542,19 @@ class AddProductPage extends ParentWidget {
                         hintText: 'Enter a detailed description here...',
                         hintStyle: TextStyle(fontSize: 12),
                         border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              width: 2.0), // Customize border color and width
+                          borderSide: BorderSide(width: 2.0),
                           borderRadius: BorderRadius.all(Radius.circular(8.0)),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(
                               color: Color.fromARGB(82, 151, 92, 71),
-                              width:
-                                  2.0), // Customize border color and width when focused
+                              width: 2.0),
                         ),
                       ),
                     ),
 
-                    SizedBox(height: controller.gm == true ? 40 : 60),
+                    SizedBox(height: 30),
 
-                    // Save as Draft and Next Step Buttons
                     Row(
                       children: [
                         OutlinedButton(

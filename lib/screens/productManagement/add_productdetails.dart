@@ -127,7 +127,7 @@ class AddProductDetails extends ParentWidget {
                         active: 1,
                       ),
                       const SizedBox(height: 16.0),
-                      Container(
+                      SizedBox(
                         width: MediaQuery.of(context).size.width * 0.9,
                         child: const Row(
                           children: [
@@ -232,13 +232,69 @@ class AddProductDetails extends ParentWidget {
                                         MediaQuery.of(context).size.height *
                                             .25,
                                     width:
-                                        MediaQuery.of(context).size.width * .95,
-                                    offset: const Offset(0, 10),
+                                        MediaQuery.of(context).size.width * .44,
+                                    offset: const Offset(-10, -2),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8),
                                       color: Colors.white,
                                     ),
                                   ),
+                                  dropdownSearchData: DropdownSearchData(
+                                    searchController:
+                                        controller.colorEditingController.value,
+                                    searchInnerWidgetHeight: 50,
+                                    searchInnerWidget: Container(
+                                      height: 50,
+                                      padding: const EdgeInsets.only(
+                                        top: 8,
+                                        bottom: 4,
+                                        right: 8,
+                                        left: 8,
+                                      ),
+                                      child: TextFormField(
+                                        expands: true,
+                                        maxLines: null,
+                                        controller: controller
+                                            .colorEditingController.value,
+                                        decoration: InputDecoration(
+                                          isDense: true,
+                                          contentPadding:
+                                              const EdgeInsets.symmetric(
+                                            horizontal: 10,
+                                            vertical: 8,
+                                          ),
+                                          hintText: 'Search Your Colour',
+                                          hintStyle:
+                                              const TextStyle(fontSize: 12),
+                                          border: OutlineInputBorder(
+                                            borderSide: BorderSide(width: 2.0),
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(8.0)),
+                                          ),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                                color: Color.fromARGB(
+                                                    82, 151, 92, 71),
+                                                width: 2.0),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    searchMatchFn: (item, searchValue) {
+                                      return item.value
+                                          .toString()
+                                          .toLowerCase() // Convert item value to lowercase
+                                          .contains(searchValue
+                                              .toLowerCase()); // Convert search value to lowercase
+                                    },
+                                  ),
+                                  //This to clear the search value when you close the menu
+                                  onMenuStateChange: (isOpen) {
+                                    if (!isOpen) {
+                                      controller.colorEditingController.value
+                                          .clear();
+                                    }
+                                  },
                                   isExpanded: true,
                                   underline: const SizedBox(),
                                 ),
@@ -556,7 +612,7 @@ class AddProductDetails extends ParentWidget {
                         child: Row(
                           children: [
                             Expanded(
-                              flex: 7,
+                              flex: 6,
                               child: TextFormField(
                                 validator: (value) {
                                   if (value == '') {
@@ -631,7 +687,12 @@ class AddProductDetails extends ParentWidget {
                                         newValue ?? "";
                                   },
                                   dropdownStyleData: DropdownStyleData(
-                                    offset: const Offset(0, 10),
+                                    maxHeight:
+                                        MediaQuery.of(context).size.height *
+                                            .25,
+                                    width:
+                                        MediaQuery.of(context).size.width * .22,
+                                    offset: const Offset(-10, -2),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8),
                                       color: Colors.white,
@@ -877,7 +938,12 @@ class AddProductDetails extends ParentWidget {
                                         newValue ?? "";
                                   },
                                   dropdownStyleData: DropdownStyleData(
-                                    offset: const Offset(0, 10),
+                                    maxHeight:
+                                        MediaQuery.of(context).size.height *
+                                            .25,
+                                    width: MediaQuery.of(context).size.width *
+                                        .275,
+                                    offset: const Offset(-10, -3),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8),
                                       color: Colors.white,
@@ -944,127 +1010,134 @@ class AddProductDetails extends ParentWidget {
                           ),
                         ),
                       ),
-                      SizedBox(height: controller.gm == true ? 40 : 50),
-                      Row(
-                        children: [
-                          OutlinedButton(
-                            onPressed: () {
-                              if (controller.producteditId == false) {
-                                if (controller.netweightController.value.text
-                                        .isNotEmpty &&
-                                    controller.descriptionController.value.text
-                                        .isNotEmpty &&
-                                    controller.quantityController.value.text
-                                        .isNotEmpty &&
-                                    controller.materialController.value.text
-                                        .isNotEmpty &&
-                                    controller
-                                        .sizeController.value.text.isNotEmpty &&
-                                    controller
-                                        .mrpController.value.text.isNotEmpty &&
-                                    controller.discountController.value.text
-                                        .isNotEmpty &&
-                                    controller.lengthController.value.text
-                                        .isNotEmpty &&
-                                    controller.breadthController.value.text
-                                        .isNotEmpty &&
-                                    controller.dropdownValue.value.isNotEmpty &&
-                                    controller
-                                        .dropdownValues.value.isNotEmpty &&
-                                    controller.heightController.value.text
-                                        .isNotEmpty &&
-                                    controller.selectedColor.value.isNotEmpty &&
-                                    controller.sellingprice.value != 0.0) {
+                      SizedBox(height: 30),
+                      Container(
+                        margin: EdgeInsets.only(bottom: 10),
+                        child: Row(
+                          children: [
+                            OutlinedButton(
+                              onPressed: () {
+                                if (controller.producteditId == false) {
+                                  if (controller.netweightController.value.text
+                                          .isNotEmpty &&
+                                      controller.descriptionController.value
+                                          .text.isNotEmpty &&
+                                      controller.quantityController.value.text
+                                          .isNotEmpty &&
+                                      controller.materialController.value.text
+                                          .isNotEmpty &&
+                                      controller.sizeController.value.text
+                                          .isNotEmpty &&
+                                      controller.mrpController.value.text
+                                          .isNotEmpty &&
+                                      controller.discountController.value.text
+                                          .isNotEmpty &&
+                                      controller.lengthController.value.text
+                                          .isNotEmpty &&
+                                      controller.breadthController.value.text
+                                          .isNotEmpty &&
+                                      controller
+                                          .dropdownValue.value.isNotEmpty &&
+                                      controller
+                                          .dropdownValues.value.isNotEmpty &&
+                                      controller.heightController.value.text
+                                          .isNotEmpty &&
+                                      controller
+                                          .selectedColor.value.isNotEmpty &&
+                                      controller.sellingprice.value != 0.0) {
+                                    controller.addvariants(context);
+                                    controller.clickNext.value = false;
+                                    controller.addProductVariantApi(
+                                        context, controller.productId);
+                                  } else {
+                                    CommonMethods.showToast(
+                                        "Please Fill All the Details");
+                                  }
+                                } else {
                                   controller.addvariants(context);
                                   controller.clickNext.value = false;
                                   controller.addProductVariantApi(
                                       context, controller.productId);
-                                } else {
-                                  CommonMethods.showToast(
-                                      "Please Fill All the Details");
                                 }
-                              } else {
-                                controller.addvariants(context);
-                                controller.clickNext.value = false;
-                                controller.addProductVariantApi(
-                                    context, controller.productId);
-                              }
-                            },
-                            style: OutlinedButton.styleFrom(
-                              side: const BorderSide(color: Colors.grey),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 24, vertical: 12),
+                              },
+                              style: OutlinedButton.styleFrom(
+                                side: const BorderSide(color: Colors.grey),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 24, vertical: 12),
+                              ),
+                              child: Text(
+                                  controller.producteditId == false
+                                      ? 'Save as draft'
+                                      : "Save",
+                                  style: TextStyle(color: Colors.black)),
                             ),
-                            child: Text(
-                                controller.productId == 0
-                                    ? 'Save as draft'
-                                    : "Save",
-                                style: TextStyle(color: Colors.black)),
-                          ),
-                          const Spacer(),
-                          ElevatedButton(
-                            onPressed: () {
-                              if (controller.producteditId == false) {
-                                if (controller.netweightController.value.text
-                                        .isNotEmpty &&
-                                    controller.descriptionController.value.text
-                                        .isNotEmpty &&
-                                    controller.quantityController.value.text
-                                        .isNotEmpty &&
-                                    controller.materialController.value.text
-                                        .isNotEmpty &&
-                                    controller
-                                        .sizeController.value.text.isNotEmpty &&
-                                    controller
-                                        .mrpController.value.text.isNotEmpty &&
-                                    controller.discountController.value.text
-                                        .isNotEmpty &&
-                                    controller.lengthController.value.text
-                                        .isNotEmpty &&
-                                    controller.breadthController.value.text
-                                        .isNotEmpty &&
-                                    controller.dropdownValue.value.isNotEmpty &&
-                                    controller
-                                        .dropdownValues.value.isNotEmpty &&
-                                    controller.heightController.value.text
-                                        .isNotEmpty &&
-                                    controller.selectedColor.value.isNotEmpty &&
-                                    controller.sellingprice.value != 0.0) {
+                            const Spacer(),
+                            ElevatedButton(
+                              onPressed: () {
+                                if (controller.producteditId == false) {
+                                  if (controller.netweightController.value.text
+                                          .isNotEmpty &&
+                                      controller.descriptionController.value
+                                          .text.isNotEmpty &&
+                                      controller.quantityController.value.text
+                                          .isNotEmpty &&
+                                      controller.materialController.value.text
+                                          .isNotEmpty &&
+                                      controller.sizeController.value.text
+                                          .isNotEmpty &&
+                                      controller.mrpController.value.text
+                                          .isNotEmpty &&
+                                      controller.discountController.value.text
+                                          .isNotEmpty &&
+                                      controller.lengthController.value.text
+                                          .isNotEmpty &&
+                                      controller.breadthController.value.text
+                                          .isNotEmpty &&
+                                      controller
+                                          .dropdownValue.value.isNotEmpty &&
+                                      controller
+                                          .dropdownValues.value.isNotEmpty &&
+                                      controller.heightController.value.text
+                                          .isNotEmpty &&
+                                      controller
+                                          .selectedColor.value.isNotEmpty &&
+                                      controller.sellingprice.value != 0.0) {
+                                    controller.addvariants(context);
+                                    controller.clickNext.value = true;
+                                    controller.addProductVariantApi(
+                                        context, controller.productId);
+                                  } else {
+                                    CommonMethods.showToast(
+                                        "Please Fill All the Details");
+                                  }
+                                } else {
                                   controller.addvariants(context);
                                   controller.clickNext.value = true;
                                   controller.addProductVariantApi(
                                       context, controller.productId);
-                                } else {
-                                  CommonMethods.showToast(
-                                      "Please Fill All the Details");
                                 }
-                              } else {
-                                controller.addvariants(context);
-                                controller.clickNext.value = true;
-                                controller.addProductVariantApi(
-                                    context, controller.productId);
-                              }
-                            },
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFF5D2E17),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 24, vertical: 12),
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color(0xFF5D2E17),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 24, vertical: 12),
+                              ),
+                              child: const Row(
+                                children: [
+                                  Text(
+                                    'Next step',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
+                                  Icon(
+                                    Icons.arrow_forward,
+                                    color: Colors.white,
+                                  ),
+                                ],
+                              ),
                             ),
-                            child: const Row(
-                              children: [
-                                Text(
-                                  'Next step',
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                                Icon(
-                                  Icons.arrow_forward,
-                                  color: Colors.white,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
+                          ],
+                        ),
+                      )
                     ],
                   ),
                 ),

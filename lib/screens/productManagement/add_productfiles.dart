@@ -5,7 +5,6 @@ import 'package:bhk_seller_app/common/myUtils.dart';
 import 'package:bhk_seller_app/controller/addproductmediacontroller.dart';
 import 'package:bhk_seller_app/data/response/status.dart';
 import 'package:bhk_seller_app/resources/appconstants.dart';
-import 'package:bhk_seller_app/routes/RoutesClass.dart';
 import 'package:bhk_seller_app/screens/productManagement/buildStepCircle.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -461,8 +460,8 @@ class AddProductfiles extends StatelessWidget {
                                       controller.addProductMediaApi(context);
                                     }
                                   } else {
-                                    Get.offAllNamed(
-                                        RoutesClass.gotoProductScreen());
+                                    CommonMethods.showToast(
+                                        "Please Upload Images");
                                   }
                                 } else {
                                   if (controller.imagefiles.length != 4) {

@@ -112,7 +112,7 @@ class MyBrands extends StatelessWidget {
                                   width: 220,
                                   fit: BoxFit.fill,
                                 ),
-                                const SizedBox(height: 70),
+                                const SizedBox(height: 50),
                                 // Greeting Text
                                 Text(
                                   'Add Your First Brand',
@@ -206,7 +206,7 @@ class MyBrands extends StatelessWidget {
                       height: 50,
                       width: 230,
                       padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                      // margin:
+                      margin: EdgeInsets.only(bottom: 30),
                       // EdgeInsets.only(top: 10),
                       child: ElevatedButton(
                         style: ButtonStyle(

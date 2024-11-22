@@ -31,6 +31,7 @@ class MyStores extends StatelessWidget {
                 ),
               ),
               body: Container(
+                padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
                 color: const Color.fromARGB(195, 247, 243, 233),
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
@@ -103,7 +104,7 @@ class MyStores extends StatelessWidget {
                                     width: 220,
                                     fit: BoxFit.fill,
                                   ),
-                                  const SizedBox(height: 70),
+                                  const SizedBox(height: 40),
                                   const Text(
                                     'Add Your First Store',
                                     style: TextStyle(
@@ -128,7 +129,7 @@ class MyStores extends StatelessWidget {
                                 color: const Color.fromARGB(195, 247, 243, 233),
                                 width: MediaQuery.of(context).size.width,
                                 height:
-                                    MediaQuery.of(context).size.height * 0.826,
+                                    MediaQuery.of(context).size.height * 0.82,
                                 child: ListView.builder(
                                   controller: controller.scrollController.value,
                                   shrinkWrap: true,
@@ -289,6 +290,7 @@ class MyStores extends StatelessWidget {
                   FloatingActionButtonLocation.centerFloat,
               floatingActionButton: controller.StoreList.isEmpty
                   ? Container(
+                      margin: EdgeInsets.only(bottom: 30),
                       height: 50,
                       width: 250,
                       padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
