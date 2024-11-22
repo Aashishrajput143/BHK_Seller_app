@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:bhk_seller_app/Constants/utils.dart';
+import 'package:bhk_seller_app/controller/commondashcontroller.dart';
 import 'package:bhk_seller_app/model/addproductmodel.dart';
 import 'package:bhk_seller_app/model/productdetailsmodel.dart';
 import 'package:bhk_seller_app/repository/productrepository.dart';
@@ -16,6 +17,8 @@ class AddProductDetailsController extends GetxController {
   final repository = ProductRepository();
   int? productId;
   bool producteditId = false;
+  CommonDashController controller = Get.put(CommonDashController());
+
   @override
   void onInit() {
     super.onInit();
@@ -431,19 +434,6 @@ class AddProductDetailsController extends GetxController {
 
   void redirect() {
     if (clickNext.value == true) {
-      print(
-        addProductModel.value.data?.productId ?? 0,
-      );
-      print(
-        addProductModel
-                .value
-                .data
-                ?.variants?[
-                    (addProductModel.value.data?.variants?.length ?? 0) - 1]
-                .variantId ??
-            0,
-      );
-      print(producteditId);
       if (producteditId == true) {
         Get.offNamed(
           RoutesClass.gotoaddProductmediaScreen(),
@@ -476,7 +466,7 @@ class AddProductDetailsController extends GetxController {
         );
       }
     } else {
-      Get.offNamed(RoutesClass.gotoDashboardScreen());
+      controller.selectedScreenIndex.value = 1;
     }
   }
 

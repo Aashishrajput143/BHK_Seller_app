@@ -163,19 +163,6 @@ class MainProfile extends StatelessWidget {
                           'Edit Profile, Manage your profile',
                           Icons.settings_outlined,
                           4),
-                      /*_buildProfileOptionCard(
-                  'Customer Care', 'Policy & helpline', Icons.support, 5),
-              _buildProfileOptionCard(
-                  'My Wallet',
-                  'Wallet history, redeem gift cards',
-                  Icons.account_balance_wallet,
-                  6),
-              _buildProfileOptionCard(
-                  'About Us', 'Our story and something', Icons.info, 7),
-              _buildProfileOptionCard('Refer & Earn',
-                  'Invite your friends & earn rewards', Icons.card_giftcard, 8),
-              _buildProfileOptionCard('Settings',
-                  'Change language, dark mode etc.', Icons.settings, 9),*/
                     ],
                   ),
                 ),

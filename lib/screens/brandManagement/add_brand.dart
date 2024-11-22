@@ -277,7 +277,7 @@ class AddBrand extends StatelessWidget {
                               )
                             : Text("No image selected"),
 
-                        SizedBox(height: 50),
+                        SizedBox(height: 30),
 
                         ElevatedButton(
                           onPressed: () {

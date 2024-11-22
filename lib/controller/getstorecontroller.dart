@@ -14,7 +14,7 @@ class GetStoreController extends GetxController {
   final repository = StoreRepository();
 
   final scrollController = ScrollController().obs;
-  var brandList = List<Docs>.empty(growable: true);
+  var StoreList = List<Docs>.empty(growable: true);
 
   var page = 1.obs;
   var isMoreDataAvailable = false.obs;
@@ -35,7 +35,9 @@ class GetStoreController extends GetxController {
   @override
   void onInit() {
     super.onInit();
+
     getStoreApi();
+    paginateTask();
   }
 
   @override
@@ -75,8 +77,8 @@ class GetStoreController extends GetxController {
       repository.getstoreApi(page.toString()).then((value) {
         setRxRequestStatus(Status.COMPLETED);
         setgetstoredata(value);
-        brandList.clear();
-        brandList.addAll(getStoreModel.value.data?.docs ?? []);
+        StoreList.clear();
+        StoreList.addAll(getStoreModel.value.data?.docs ?? []);
         CommonMethods.showToast(value.message);
         Utils.printLog("Response===> ${value.toString()}");
         print("redirect");
@@ -93,6 +95,7 @@ class GetStoreController extends GetxController {
           }
         }
         Utils.printLog("Error===> ${error.toString()}");
+        Utils.printLog("Error===> ${stackTrace.toString()}");
       });
     } else {
       CommonMethods.showToast(appStrings.weUnableCheckData);
@@ -112,7 +115,7 @@ class GetStoreController extends GetxController {
         setgetstoredata(value);
         if (getStoreModel.value.data?.docs?.isNotEmpty ?? false) {
           print(page);
-          brandList.addAll(getStoreModel.value.data?.docs ?? []);
+          StoreList.addAll(getStoreModel.value.data?.docs ?? []);
           isMoreDataAvailable.value = false;
         } else {
           page--;

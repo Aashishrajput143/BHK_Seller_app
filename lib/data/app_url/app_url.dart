@@ -26,8 +26,8 @@ class AppUrl {
   static String getproductlisting = '$baseUrl/api/product/productlisting';
   static String getproduct = '$baseUrl/api/product/productdetails/';
   static String orders = '$baseUrl/api/order/totalorder';
-  static String totalsales = '$baseUrl/api/order/totalsales';
   static String todayorder = '$baseUrl/api/order/todayorder';
+  static String salesgraph = '$baseUrl/api/order/totalsales?year=';
 
   //post
   static String addbrand = '$baseUrl/api/brand/add';

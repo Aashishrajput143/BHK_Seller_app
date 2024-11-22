@@ -19,7 +19,7 @@ class Brand extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text(
-                  'My Brands',
+                  'Top Selling Brands',
                   style: TextStyle(
                     fontSize: 18.0,
                     fontWeight: FontWeight.bold,

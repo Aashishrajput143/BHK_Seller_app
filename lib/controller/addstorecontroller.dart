@@ -91,9 +91,9 @@ class AddStoreController extends GetxController {
           .then((value) {
         setRxRequestStatus(Status.COMPLETED);
         setaddstoredata(value);
+        Get.back();
         CommonMethods.showToast(value.message);
         Utils.printLog("Response===> ${value.toString()}");
-        Get.back();
       }).onError((error, stackTrace) {
         setError(error.toString());
         setRxRequestStatus(Status.ERROR);

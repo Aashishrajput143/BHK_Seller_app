@@ -23,8 +23,9 @@ class ProductRepository {
     return GetSubCategoryModel.fromJson(response);
   }
 
-  Future<GetBrandModel> getbrandApi() async {
-    dynamic response = await _apiServices.getApi(AppUrl.getbrand);
+  Future<GetBrandModel> getbrandApi(var page) async {
+    dynamic response =
+        await _apiServices.getApi("${AppUrl.getbrand}$page&pageSize=20");
     return GetBrandModel.fromJson(response);
   }
 
@@ -49,6 +50,12 @@ class ProductRepository {
   Future<GetProductModel> getproductApi() async {
     dynamic response = await _apiServices.getApi(
         "${AppUrl.getproductlisting}?product_status=AVAILABLE&isSeller=true");
+    return GetProductModel.fromJson(response);
+  }
+
+  Future<GetProductModel> getTrendingproductApi() async {
+    dynamic response =
+        await _apiServices.getApi("${AppUrl.getproductlisting}?isSeller=true");
     return GetProductModel.fromJson(response);
   }
 

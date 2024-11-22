@@ -29,195 +29,180 @@ class MyBrands extends StatelessWidget {
                   style: const TextStyle(fontSize: 16, color: Colors.white),
                 ),
               ),
-              body: RefreshIndicator(
-                color: Colors.brown,
-                onRefresh: controller.brandRefresh,
-                child: Column(
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
-                      color: const Color.fromARGB(195, 247, 243, 233),
-                      width: MediaQuery.of(context).size.width,
-                      //height: MediaQuery.of(context).size.height,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          controller.getBrandModel.value.data?.docs
-                                      ?.isNotEmpty ??
-                                  true
-                              ? Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    const Text(
-                                      'My Brands',
-                                      style: TextStyle(
-                                        fontSize: 18.0,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-                                        Get.toNamed(
-                                          RoutesClass.gotoaddBrandScreen(),
-                                        )?.then((onValue) {
-                                          controller.getBrandApi();
-                                        });
-                                      },
-                                      child: const Row(
-                                        mainAxisAlignment: MainAxisAlignment
-                                            .center, // Center the content
-                                        children: [
-                                          Icon(
-                                            Icons.add,
-                                            color: Colors.brown,
-                                            size: 22.0,
-                                          ),
-                                          SizedBox(
-                                              width:
-                                                  2), // Space between icon and text
-                                          Text(
-                                            'Add Brand',
-                                            style: TextStyle(
-                                              color: Colors.brown,
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 13,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                )
-                              : Row(),
-                        ],
-                      ),
-                    ),
-                    Column(
+              body: Column(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
+                    color: const Color.fromARGB(195, 247, 243, 233),
+                    width: MediaQuery.of(context).size.width,
+                    //height: MediaQuery.of(context).size.height,
+                    child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        controller.getBrandModel.value.data?.docs?.isNotEmpty ??
-                                true
-                            ? Container(
-                                color: const Color.fromARGB(195, 247, 243, 233),
-                                width: MediaQuery.of(context).size.width,
-                                height:
-                                    MediaQuery.of(context).size.height * 0.83,
-                                child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(
-                                      16.0, 0, 16, 16),
-                                  child: GridView.builder(
-                                    shrinkWrap: true,
-                                    controller:
-                                        controller.scrollController.value,
-                                    itemCount: controller.brandList.length,
-                                    gridDelegate:
-                                        SliverGridDelegateWithFixedCrossAxisCount(
-                                      crossAxisCount: 3,
-                                      mainAxisSpacing: 16,
-                                      crossAxisSpacing: 12,
-                                      childAspectRatio:
-                                          1.3, // Set ratio to make squares
+                        controller.brandList.isEmpty
+                            ? Row()
+                            : Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Text(
+                                    'My Brands',
+                                    style: TextStyle(
+                                      fontSize: 18.0,
+                                      fontWeight: FontWeight.bold,
                                     ),
-                                    itemBuilder: (context, index) {
-                                      return InkWell(
-                                        onTap: () {
-                                          Get.toNamed(
-                                            RoutesClass
-                                                .gotoBrandDetailsScreen(),
-                                            arguments: {
-                                              'brandid': controller
-                                                      .brandList[index]
-                                                      .brandId ??
-                                                  "",
-                                            },
-                                          );
-                                        },
-                                        child: Padding(
-                                          padding: EdgeInsets.only(top: 16),
-                                          child: Container(
-                                            padding: EdgeInsets.all(10),
-                                            decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius:
-                                                  BorderRadius.circular(2),
-                                              border: Border.all(
-                                                color:
-                                                    Colors.grey, // Border color
-                                                width: 1, // Border width
-                                              ),
-                                            ),
-                                            child: Image.network(
-                                              controller.brandList[index]
-                                                      .brandLogo ??
-                                                  "",
-                                              fit: BoxFit.contain,
-                                            ),
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                      Get.toNamed(
+                                        RoutesClass.gotoaddBrandScreen(),
+                                      )?.then((onValue) {
+                                        controller.getBrandApi();
+                                      });
+                                    },
+                                    child: const Row(
+                                      mainAxisAlignment: MainAxisAlignment
+                                          .center, // Center the content
+                                      children: [
+                                        Icon(
+                                          Icons.add,
+                                          color: Colors.brown,
+                                          size: 22.0,
+                                        ),
+                                        SizedBox(
+                                            width:
+                                                2), // Space between icon and text
+                                        Text(
+                                          'Add Brand',
+                                          style: TextStyle(
+                                            color: Colors.brown,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 13,
                                           ),
                                         ),
-                                      );
-                                    },
-                                  ),
-                                ),
-                              )
-                            : Column(
-                                children: [
-                                  // Header Text
-                                  Text(
-                                    "Hi, there.",
-                                    style: TextStyle(
-                                      fontSize: 24,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.blue[900],
-                                    ),
-                                  ),
-                                  const SizedBox(height: 100),
-                                  // Mammoth Image (Use asset image here)
-                                  Image.asset(
-                                    AppImages
-                                        .firstbrand, // Add your mammoth image to assets
-                                    height: 250,
-                                    width: 220,
-                                    fit: BoxFit.fill,
-                                  ),
-                                  const SizedBox(height: 70),
-                                  // Greeting Text
-                                  Text(
-                                    'Add Your First Brand',
-                                    style: TextStyle(
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.blueGrey[900],
-                                    ),
-                                  ),
-                                  const SizedBox(height: 10),
-                                  // Subtext
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 20.0),
-                                    child: Text(
-                                      "Thanks for Adding Brand, we hope your brands can "
-                                      "make our routine a little more enjoyable.",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          color: Colors.grey[700]),
+                                      ],
                                     ),
                                   ),
                                 ],
                               ),
                       ],
                     ),
-                  ],
-                ),
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      controller.brandList.isEmpty
+                          ? Column(
+                              children: [
+                                // Header Text
+                                Text(
+                                  "Hi, there.",
+                                  style: TextStyle(
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.blue[900],
+                                  ),
+                                ),
+                                const SizedBox(height: 100),
+                                // Mammoth Image (Use asset image here)
+                                Image.asset(
+                                  AppImages
+                                      .firstbrand, // Add your mammoth image to assets
+                                  height: 250,
+                                  width: 220,
+                                  fit: BoxFit.fill,
+                                ),
+                                const SizedBox(height: 70),
+                                // Greeting Text
+                                Text(
+                                  'Add Your First Brand',
+                                  style: TextStyle(
+                                    fontSize: 22,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.blueGrey[900],
+                                  ),
+                                ),
+                                const SizedBox(height: 10),
+                                // Subtext
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 20.0),
+                                  child: Text(
+                                    "Thanks for Adding Brand, we hope your brands can "
+                                    "make our routine a little more enjoyable.",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        fontSize: 16, color: Colors.grey[700]),
+                                  ),
+                                ),
+                              ],
+                            )
+                          : Container(
+                              color: const Color.fromARGB(195, 247, 243, 233),
+                              width: MediaQuery.of(context).size.width,
+                              height: MediaQuery.of(context).size.height * 0.83,
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(16.0, 0, 16, 16),
+                                child: GridView.builder(
+                                  shrinkWrap: true,
+                                  controller: controller.scrollController.value,
+                                  itemCount: controller.brandList.length,
+                                  gridDelegate:
+                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 3,
+                                    mainAxisSpacing: 16,
+                                    crossAxisSpacing: 12,
+                                    childAspectRatio:
+                                        1.3, // Set ratio to make squares
+                                  ),
+                                  itemBuilder: (context, index) {
+                                    return InkWell(
+                                      onTap: () {
+                                        Get.toNamed(
+                                          RoutesClass.gotoBrandDetailsScreen(),
+                                          arguments: {
+                                            'brandid': controller
+                                                    .brandList[index].brandId ??
+                                                "",
+                                          },
+                                        );
+                                      },
+                                      child: Padding(
+                                        padding: EdgeInsets.only(top: 16),
+                                        child: Container(
+                                          padding: EdgeInsets.all(10),
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(2),
+                                            border: Border.all(
+                                              color:
+                                                  Colors.grey, // Border color
+                                              width: 1, // Border width
+                                            ),
+                                          ),
+                                          child: Image.network(
+                                            controller.brandList[index]
+                                                    .brandLogo ??
+                                                "",
+                                            fit: BoxFit.contain,
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                    ],
+                  ),
+                ],
               ),
               floatingActionButtonLocation:
                   FloatingActionButtonLocation.centerFloat,
-              floatingActionButton: controller
-                          .getBrandModel.value.data?.docs?.isNotEmpty ??
-                      true
-                  ? Container()
-                  : Container(
+              floatingActionButton: controller.brandList.isEmpty
+                  ? Container(
                       height: 50,
                       width: 230,
                       padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
@@ -247,7 +232,8 @@ class MyBrands extends StatelessWidget {
                             controller.getBrandApi();
                           });
                         },
-                      ))),
+                      ))
+                  : Container()),
           progressBarTransparent(
               controller.rxRequestStatus.value == Status.LOADING,
               MediaQuery.of(context).size.height,

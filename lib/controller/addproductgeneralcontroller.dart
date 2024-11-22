@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:bhk_seller_app/Constants/utils.dart';
+import 'package:bhk_seller_app/controller/commondashcontroller.dart';
 import 'package:bhk_seller_app/model/addproductmodel.dart';
 import 'package:bhk_seller_app/model/getbrandModel.dart';
 import 'package:bhk_seller_app/model/getcategorymodel.dart';
@@ -22,6 +23,7 @@ class AddProductGeneralController extends GetxController {
   bool producteditId = false;
   var nameController = TextEditingController().obs;
   var detaileddescriptionController = TextEditingController().obs;
+  CommonDashController dashcontroller = Get.put(CommonDashController());
 
   bool gm = false;
   bool storebool = false;
@@ -274,7 +276,7 @@ class AddProductGeneralController extends GetxController {
     if (connection == true) {
       setRxRequestStatus(Status.LOADING);
 
-      repository.getbrandApi().then((value) {
+      repository.getbrandApi(1).then((value) {
         setRxRequestStatus(Status.COMPLETED);
         setGetbranddata(value);
         CommonMethods.showToast(value.message);
@@ -325,6 +327,7 @@ class AddProductGeneralController extends GetxController {
           }
         }
         Utils.printLog("Error===> ${error.toString()}");
+        Utils.printLog("Error===> ${stackTrace.toString()}");
       });
     } else {
       CommonMethods.showToast(appStrings.weUnableCheckData);
@@ -342,7 +345,7 @@ class AddProductGeneralController extends GetxController {
                         1]
                 .variantId ==
             null) {
-          Get.offNamed(RoutesClass.gotoProductScreen());
+          dashcontroller.selectedScreenIndex.value = 1;
         } else {
           Get.offNamed(
             RoutesClass.gotoaddProductdetailsScreen(),
@@ -362,7 +365,7 @@ class AddProductGeneralController extends GetxController {
         );
       }
     } else {
-      Get.offNamed(RoutesClass.gotoDashboardScreen());
+      dashcontroller.selectedScreenIndex.value = 0;
     }
   }
 

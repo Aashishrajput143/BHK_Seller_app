@@ -126,7 +126,7 @@ class ProfileController extends GetxController {
           },
         ),
         const Divider(
-          height: 5,
+          height: 3,
           thickness: 0.25,
           endIndent: 0,
           color: Colors.black,

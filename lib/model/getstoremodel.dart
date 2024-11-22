@@ -23,10 +23,10 @@ class Data {
   List<Docs>? docs;
   bool? hasNextPage;
   bool? hasPrevPage;
-  String? limit;
-  String? page;
-  int? totalDocs;
-  int? totalPages;
+  dynamic limit;
+  dynamic page;
+  dynamic totalDocs;
+  dynamic totalPages;
 
   Data(
       {this.docs,
@@ -84,7 +84,7 @@ class Docs {
       this.description,
       this.isActive,
       this.status,
-        this.storeLogo,
+      this.storeLogo,
       this.createdAt,
       this.updatedAt,
       this.address});

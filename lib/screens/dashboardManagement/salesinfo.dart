@@ -7,7 +7,7 @@ class Salesinfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Dashboardcontroller controller = Dashboardcontroller();
+    Dashboardcontroller controller = Get.put(Dashboardcontroller());
     return Obx(
       () => Padding(
         padding: const EdgeInsets.all(16.0),
@@ -19,8 +19,7 @@ class Salesinfo extends StatelessWidget {
                   child: controller.buildDashboardCard(
                     color: const Color.fromARGB(255, 229, 107, 250),
                     icon: Icons.bar_chart,
-                    amount:
-                        '₹ ${controller.getTotalSalesModel.value.data?.totalSales.toString() ?? "0"}',
+                    amount: '₹ 100',
                     label: 'Today Sales',
                   ),
                 ),
@@ -51,10 +50,8 @@ class Salesinfo extends StatelessWidget {
                   child: controller.buildDashboardCard(
                     color: const Color.fromARGB(255, 250, 185, 101),
                     icon: Icons.shopping_bag,
-                    amount: controller
-                            .getTodayOrdersModel.value.data?.totalCount
-                            .toString() ??
-                        "0",
+                    amount:
+                        "${controller.getTodayOrdersModel.value.data?.totalCount ?? "0"}",
                     label: 'Today Order',
                   ),
                 ),

@@ -131,7 +131,7 @@ class EditProfile extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(height: 30),
+                        SizedBox(height: 20),
                         const Row(
                           children: [
                             SizedBox(width: 5),
@@ -410,10 +410,9 @@ class EditProfile extends StatelessWidget {
                         //     ),
                         //   ],
                         // ),
-                        const SizedBox(height: 30),
                         Padding(
                           padding: EdgeInsets.only(
-                              left: 20.0, right: 20.0, top: 45.0),
+                              left: 20.0, right: 20.0, top: 35.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.start,

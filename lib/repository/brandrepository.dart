@@ -15,6 +15,12 @@ class BrandRepository {
 
   Future<GetBrandModel> getbrandApi(var page) async {
     dynamic response =
+        await _apiServices.getApi("${AppUrl.getbrand}$page&pageSize=20");
+    return GetBrandModel.fromJson(response);
+  }
+
+  Future<GetBrandModel> getdashbrandApi(var page) async {
+    dynamic response =
         await _apiServices.getApi("${AppUrl.getbrand}$page&pageSize=10");
     return GetBrandModel.fromJson(response);
   }

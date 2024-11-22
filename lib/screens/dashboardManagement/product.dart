@@ -11,10 +11,7 @@ class ProductSaleScreen extends StatelessWidget {
     Dashboardcontroller controller = Get.put(Dashboardcontroller());
     CommonDashController dashController = Get.put(CommonDashController());
     return Obx(
-      () => Container(
-        color: const Color.fromARGB(
-            195, 247, 243, 233), // Background color below the Shop By Category
-        padding: const EdgeInsets.all(16.0),
+      () => SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -206,53 +203,23 @@ class ProductSaleScreen extends StatelessWidget {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 Text(
-                                  controller
-                                          .getProductModel
-                                          .value
-                                          .data
-                                          ?.docs?[index]
-                                          .variants?[(controller
-                                                      .getProductModel
-                                                      .value
-                                                      .data
-                                                      ?.docs?[index]
-                                                      .variants
-                                                      ?.length ??
-                                                  0) -
-                                              1]
-                                          .sellingPrice ??
-                                      "",
+                                  "₹ ${controller.getProductModel.value.data?.docs?[index].variants?[(controller.getProductModel.value.data?.docs?[index].variants?.length ?? 0) - 1].sellingPrice ?? ""}",
                                   style: const TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold,
-                                    fontSize: 15,
+                                    fontSize: 13,
                                   ),
                                 ),
-                                const SizedBox(width: 6),
+                                const SizedBox(width: 4),
                                 Text(
-                                  controller
-                                          .getProductModel
-                                          .value
-                                          .data
-                                          ?.docs?[index]
-                                          .variants?[(controller
-                                                      .getProductModel
-                                                      .value
-                                                      .data
-                                                      ?.docs?[index]
-                                                      .variants
-                                                      ?.length ??
-                                                  0) -
-                                              1]
-                                          .mrp ??
-                                      "",
+                                  "₹ ${controller.getProductModel.value.data?.docs?[index].variants?[(controller.getProductModel.value.data?.docs?[index].variants?.length ?? 0) - 1].mrp ?? ""}",
                                   style: const TextStyle(
                                     color: Color.fromARGB(198, 143, 142, 142),
                                     fontSize: 10,
                                     decoration: TextDecoration.lineThrough,
                                   ),
                                 ),
-                                const SizedBox(width: 6),
+                                const SizedBox(width: 4),
                                 Text(
                                   '(${controller.getProductModel.value.data?.docs?[index].variants?[(controller.getProductModel.value.data?.docs?[index].variants?.length ?? 0) - 1].discount ?? ""})',
                                   style: const TextStyle(

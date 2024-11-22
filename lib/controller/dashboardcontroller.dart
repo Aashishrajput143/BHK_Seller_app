@@ -6,8 +6,9 @@ import 'package:bhk_seller_app/data/response/status.dart';
 import 'package:bhk_seller_app/model/getbrandModel.dart';
 import 'package:bhk_seller_app/model/getcategorymodel.dart';
 import 'package:bhk_seller_app/model/getproductmodel.dart';
+import 'package:bhk_seller_app/model/salesgraphmodel.dart';
 import 'package:bhk_seller_app/model/todayordermodel.dart';
-import 'package:bhk_seller_app/model/totalsalesmodel.dart';
+import 'package:bhk_seller_app/repository/brandrepository.dart';
 import 'package:bhk_seller_app/repository/orderrepository.dart';
 import 'package:bhk_seller_app/repository/productrepository.dart';
 import 'package:bhk_seller_app/repository/salesrepository.dart';
@@ -20,6 +21,9 @@ class Dashboardcontroller extends GetxController {
   final repository = ProductRepository();
   final salesrepository = SalesRepository();
   final orderrepository = OrderRepository();
+  final brandrepository = BrandRepository();
+  var chartData = <Map<String, dynamic>>[];
+  int currentYear = DateTime.now().year;
 
   void showSuccessDialog() {
     Get.dialog(
@@ -148,10 +152,11 @@ class Dashboardcontroller extends GetxController {
 
     getCategoryApi();
 
-    getTotalSalesApi();
-    getTodayOrderApi();
+    getSalesApi();
+    getTodayorderApi();
     getBrandApi();
     getProductApi();
+    getTrendingProductApi();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (isDialog) {
         showSuccessDialog();
@@ -169,20 +174,23 @@ class Dashboardcontroller extends GetxController {
 
   final getCategoryModel = GetCategoryModel().obs;
   final getBrandModel = GetBrandModel().obs;
-  final getTotalSalesModel = TotalSalesModel().obs;
+  final getSalesModel = SalesGraphModel().obs;
   final getTodayOrdersModel = TodayOrdersModel().obs;
   final getProductModel = GetProductModel().obs;
+  final getTrendingProductModel = GetProductModel().obs;
 
   void setGetCategorydata(GetCategoryModel value) =>
       getCategoryModel.value = value;
 
   void setGetbranddata(GetBrandModel value) => getBrandModel.value = value;
-  void setGetTotalSalesdata(TotalSalesModel value) =>
-      getTotalSalesModel.value = value;
-  void setGetTodayOrderdata(TodayOrdersModel value) =>
+  void setGetTotalSalesdata(SalesGraphModel value) =>
+      getSalesModel.value = value;
+  void setGettodayOrderdata(TodayOrdersModel value) =>
       getTodayOrdersModel.value = value;
   void setGetproductdata(GetProductModel value) =>
       getProductModel.value = value;
+  void setGettrendingproductdata(GetProductModel value) =>
+      getTrendingProductModel.value = value;
 
   @override
   void onReady() {
@@ -190,8 +198,9 @@ class Dashboardcontroller extends GetxController {
     super.onReady();
     getCategoryApi();
     getBrandApi();
-    getTotalSalesApi();
-    getTodayOrderApi();
+    getSalesApi();
+    getTodayorderApi();
+    getTrendingProductApi();
     getProductApi();
   }
 
@@ -202,7 +211,7 @@ class Dashboardcontroller extends GetxController {
     if (connection == true) {
       setRxRequestStatus(Status.LOADING);
 
-      repository.getbrandApi().then((value) {
+      brandrepository.getdashbrandApi(1).then((value) {
         setRxRequestStatus(Status.COMPLETED);
         setGetbranddata(value);
         CommonMethods.showToast(value.message);
@@ -227,18 +236,29 @@ class Dashboardcontroller extends GetxController {
     }
   }
 
-  Future<void> getTotalSalesApi() async {
+  Future<void> getSalesApi() async {
     var connection = await CommonMethods.checkInternetConnectivity();
     Utils.printLog("CheckInternetConnection===> ${connection.toString()}");
 
     if (connection == true) {
       setRxRequestStatus(Status.LOADING);
 
-      salesrepository.gettotalsalesApi().then((value) {
+      int currentYear = DateTime.now().year;
+
+      salesrepository.getsalesApi(currentYear).then((value) {
         setRxRequestStatus(Status.COMPLETED);
         setGetTotalSalesdata(value);
         CommonMethods.showToast(value.message);
         Utils.printLog("Response===> ${value.toString()}");
+        var monthsData = getSalesModel.value.data?.monthsData;
+
+        chartData = monthsData?.map((data) {
+              return {
+                'month': data.month,
+                'sales': data.sales,
+              };
+            }).toList() ??
+            [];
         print("redirect");
       }).onError((error, stackTrace) {
         setError(error.toString());
@@ -259,7 +279,7 @@ class Dashboardcontroller extends GetxController {
     }
   }
 
-  Future<void> getTodayOrderApi() async {
+  Future<void> getTodayorderApi() async {
     var connection = await CommonMethods.checkInternetConnectivity();
     Utils.printLog("CheckInternetConnection===> ${connection.toString()}");
 
@@ -268,8 +288,10 @@ class Dashboardcontroller extends GetxController {
 
       orderrepository.gettodayorderApi().then((value) {
         setRxRequestStatus(Status.COMPLETED);
-        setGetTodayOrderdata(value);
+        setGettodayOrderdata(value);
         CommonMethods.showToast(value.message);
+        Utils.printLog(
+            "> ${getTodayOrdersModel.value.data?.totalCount.toString()}");
         Utils.printLog("Response===> ${value.toString()}");
         print("redirect");
       }).onError((error, stackTrace) {
@@ -357,6 +379,40 @@ class Dashboardcontroller extends GetxController {
     }
   }
 
+  Future<void> getTrendingProductApi() async {
+    var connection = await CommonMethods.checkInternetConnectivity();
+    Utils.printLog("CheckInternetConnection===> ${connection.toString()}");
+
+    if (connection == true) {
+      setRxRequestStatus(Status.LOADING);
+
+      repository.getTrendingproductApi().then((value) {
+        setGettrendingproductdata(value);
+        setRxRequestStatus(Status.COMPLETED);
+        print(
+            "set data===========>${getTrendingProductModel.value.data?.docs?.length}");
+        CommonMethods.showToast(value.message);
+        Utils.printLog("Response===> ${value.toString()}");
+      }).onError((error, stackTrace) {
+        setError(error.toString());
+        setRxRequestStatus(Status.ERROR);
+        if (error.toString().contains("{")) {
+          var errorResponse = json.decode(error.toString());
+          print("errrrorrr=====>$errorResponse");
+          if (errorResponse is Map || errorResponse.containsKey('message')) {
+            CommonMethods.showToast(errorResponse['message']);
+          } else {
+            CommonMethods.showToast("An unexpected error occurred.");
+          }
+        }
+        Utils.printLog("Error===> ${error.toString()}");
+        Utils.printLog("Error===> ${stackTrace.toString()}");
+      });
+    } else {
+      CommonMethods.showToast(appStrings.weUnableCheckData);
+    }
+  }
+
   Widget buildDashboardCard({
     required Color color,
     required IconData icon,
@@ -413,9 +469,10 @@ class Dashboardcontroller extends GetxController {
     // Update the list of items and refresh the UI
     getCategoryApi();
     getBrandApi();
-    getTotalSalesApi();
-    getTodayOrderApi();
+    getSalesApi();
+    getTodayorderApi();
     getProductApi();
+    getTrendingProductApi();
     print("items.length");
   }
 }
