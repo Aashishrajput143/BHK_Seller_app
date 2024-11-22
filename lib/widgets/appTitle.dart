@@ -8,25 +8,6 @@ class AppbarTitle extends StatelessWidget {
     this.hasNotificationData = false,
   }) : super(key: key);
 
-  void _showNotificationPopup(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text('Notification'),
-        content: Center(
-            child: Container(height: 100, child: Text('No Notification.'))),
-        actions: <Widget>[
-          ElevatedButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: Text('Close'),
-          ),
-        ],
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Center(

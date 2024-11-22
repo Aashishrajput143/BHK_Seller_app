@@ -45,9 +45,8 @@ class EditProfile extends StatelessWidget {
                       children: [
                         Padding(
                           padding: EdgeInsets.only(top: 30.0),
-                          child:
-                              new Stack(fit: StackFit.loose, children: <Widget>[
-                            new Row(
+                          child: Stack(fit: StackFit.loose, children: <Widget>[
+                            Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
@@ -64,11 +63,12 @@ class EditProfile extends StatelessWidget {
                                                       ?.avatar
                                                       ?.isNotEmpty ??
                                                   false
-                                              ? NetworkImage(
-                                                  // Otherwise show the network image
-                                                  controller.getProfileModel
-                                                          .value.data?.avatar ??
-                                                      "")
+                                              ? NetworkImage(controller
+                                                      .getProfileModel
+                                                      .value
+                                                      .data
+                                                      ?.avatar ??
+                                                  "")
                                               : AssetImage(
                                                   AppImages.profile,
                                                 ),
@@ -78,24 +78,20 @@ class EditProfile extends StatelessWidget {
                                     : Container(
                                         alignment: const Alignment(0.0, 2.5),
                                         child: CircleAvatar(
-                                          backgroundImage: FileImage(controller
-                                              .imagefiles
-                                              .value!) // If file is selected, show the image
-                                          ,
+                                          backgroundImage: FileImage(
+                                              controller.imagefiles.value!),
                                           radius: 70.0,
                                         ),
                                       ),
-                                //Image.network("${widget.details[0]["avatar"]}",
-                                //    width: 150, height: 150, fit: BoxFit.fill),
                               ],
                             ),
                             Padding(
                                 padding:
                                     EdgeInsets.only(top: 100.0, left: 90.0),
-                                child: new Row(
+                                child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
-                                    new CircleAvatar(
+                                    CircleAvatar(
                                       backgroundColor: Colors.green,
                                       radius: 20.0,
                                       child: IconButton(
@@ -188,6 +184,8 @@ class EditProfile extends StatelessWidget {
                             NoLeadingSpaceFormatter(),
                             EmojiInputFormatter(),
                             RemoveTrailingPeriodsFormatter(),
+                            NoDigitInputFormatter(),
+                            SpecialCharacterValidator(),
                             LengthLimitingTextInputFormatter(20)
                           ],
                           decoration: InputDecoration(
@@ -237,7 +235,6 @@ class EditProfile extends StatelessWidget {
                           },
                           cursorColor: Colors.grey,
                           cursorWidth: 1.5,
-                          //readOnly: true,
                           keyboardType: TextInputType.emailAddress,
                           inputFormatters: [
                             EmailInputFormatter(),

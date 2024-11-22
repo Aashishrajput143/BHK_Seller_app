@@ -6,6 +6,7 @@ import 'package:bhk_seller_app/main.dart';
 import 'package:bhk_seller_app/resources/appconstants.dart';
 import 'package:bhk_seller_app/resources/inputformatter.dart';
 import 'package:bhk_seller_app/screens/productManagement/buildStepCircle.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -27,7 +28,6 @@ class AddProductDetails extends ParentWidget {
                     gradient: AppConstants.customGradient,
                   ),
                 ),
-
                 actions: [
                   controller.producteditId == false
                       ? InkWell(
@@ -55,7 +55,6 @@ class AddProductDetails extends ParentWidget {
                 ],
                 centerTitle: true,
                 iconTheme: const IconThemeData(color: Colors.white),
-                // automaticallyImplyLeading: false,
                 title: Text(
                   controller.producteditId == true
                       ? "Edit Product".toUpperCase()
@@ -69,7 +68,6 @@ class AddProductDetails extends ParentWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Title Row
                       controller.producteditId == true
                           ? const Row(
                               children: [
@@ -106,8 +104,6 @@ class AddProductDetails extends ParentWidget {
                               ],
                             ),
                       SizedBox(height: 5.0),
-
-                      // Subtitle
                       controller.producteditId == true
                           ? const Text(
                               'Edit and manage your product.',
@@ -126,8 +122,6 @@ class AddProductDetails extends ParentWidget {
                               ),
                             ),
                       SizedBox(height: 25.0),
-
-                      // Step Indicator
                       BuildStepCircle(
                         iscompleted: 1,
                         active: 1,
@@ -138,8 +132,7 @@ class AddProductDetails extends ParentWidget {
                         child: const Row(
                           children: [
                             Expanded(
-                              flex:
-                                  7, // Adjust the flex ratio according to your needs
+                              flex: 7,
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
@@ -161,13 +154,9 @@ class AddProductDetails extends ParentWidget {
                                 ],
                               ),
                             ),
-                            SizedBox(
-                                width:
-                                    8), // Space between TextFormField and DropdownButton
-
+                            SizedBox(width: 8),
                             Expanded(
-                              flex:
-                                  7, // Adjust the flex ratio according to your needs
+                              flex: 7,
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
@@ -195,27 +184,24 @@ class AddProductDetails extends ParentWidget {
                       const SizedBox(
                         height: 5,
                       ),
-                      Container(
+                      SizedBox(
                         width: MediaQuery.of(context).size.width * 0.9,
                         child: Row(
                           children: [
                             Expanded(
-                              flex:
-                                  5, // Adjust the flex ratio according to your needs
+                              flex: 5,
                               child: Container(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal:
-                                        8.0), // Padding inside the container
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8.0),
                                 decoration: BoxDecoration(
                                   border: Border.all(
                                     color: const Color.fromARGB(
-                                        197, 113, 113, 113), // Border color
-                                    width: 1.5, // Border width
+                                        197, 113, 113, 113),
+                                    width: 1.5,
                                   ),
-                                  borderRadius: BorderRadius.circular(
-                                      8.0), // Rounded corners
+                                  borderRadius: BorderRadius.circular(8.0),
                                 ),
-                                child: DropdownButton<String>(
+                                child: DropdownButton2<String>(
                                   style: TextStyle(
                                       fontSize: 14, color: Colors.black),
                                   value: controller.selectedColor.value,
@@ -241,20 +227,26 @@ class AddProductDetails extends ParentWidget {
                                     controller.selectedColor.value =
                                         newValue ?? "";
                                   },
-                                  menuMaxHeight:
-                                      MediaQuery.of(context).size.height * .25,
-                                  menuWidth:
-                                      MediaQuery.of(context).size.width * .45,
+                                  dropdownStyleData: DropdownStyleData(
+                                    maxHeight:
+                                        MediaQuery.of(context).size.height *
+                                            .25,
+                                    width:
+                                        MediaQuery.of(context).size.width * .95,
+                                    offset: const Offset(0, 10),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      color: Colors.white,
+                                    ),
+                                  ),
                                   isExpanded: true,
-                                  underline:
-                                      const SizedBox(), // Remove default underline
+                                  underline: const SizedBox(),
                                 ),
                               ),
                             ),
                             const SizedBox(width: 8),
                             Expanded(
-                              flex:
-                                  5, // Adjust the flex ratio according to your needs
+                              flex: 5,
                               child: TextFormField(
                                 validator: (value) {
                                   if (value == '') {
@@ -270,27 +262,25 @@ class AddProductDetails extends ParentWidget {
                                   NoLeadingSpaceFormatter(),
                                   RemoveTrailingPeriodsFormatter(),
                                   EmojiInputFormatter(),
+                                  SpecialCharacterValidator(),
                                   LengthLimitingTextInputFormatter(15)
                                 ],
                                 decoration: const InputDecoration(
                                   hintText: 'Enter Product Size ',
                                   hintStyle: TextStyle(fontSize: 12),
                                   border: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        width:
-                                            2.0), // Customize border color and width
+                                    borderSide: BorderSide(width: 2.0),
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(8.0)),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color: Color.fromARGB(82, 151, 92, 71),
-                                        width:
-                                            2.0), // Customize border color and width when focused
+                                        width: 2.0),
                                   ),
                                 ),
                               ),
-                            ), // Space between TextFormField and DropdownButton
+                            ),
                           ],
                         ),
                       ),
@@ -337,32 +327,27 @@ class AddProductDetails extends ParentWidget {
                           prefixText: '₹ ',
                           hintStyle: TextStyle(fontSize: 12),
                           border: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                width: 2.0), // Customize border color and width
+                            borderSide: BorderSide(width: 2.0),
                             borderRadius:
                                 BorderRadius.all(Radius.circular(8.0)),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                                 color: Color.fromARGB(82, 151, 92, 71),
-                                width:
-                                    2.0), // Customize border color and width when focused
+                                width: 2.0),
                           ),
                         ),
                         onChanged: (value) {
-                          // Call calculateSellingPrice whenever the MRP field changes
                           controller.calculateSellingPrice();
                         },
                       ),
-
                       const SizedBox(height: 16.0),
-                      Container(
+                      SizedBox(
                         width: MediaQuery.of(context).size.width * 0.9,
                         child: const Row(
                           children: [
                             Expanded(
-                              flex:
-                                  7, // Adjust the flex ratio according to your needs
+                              flex: 7,
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
@@ -386,8 +371,7 @@ class AddProductDetails extends ParentWidget {
                             ),
                             SizedBox(width: 8),
                             Expanded(
-                              flex:
-                                  7, // Adjust the flex ratio according to your needs
+                              flex: 7,
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
@@ -415,13 +399,12 @@ class AddProductDetails extends ParentWidget {
                       const SizedBox(
                         height: 5,
                       ),
-                      Container(
+                      SizedBox(
                         width: MediaQuery.of(context).size.width * 0.9,
                         child: Row(
                           children: [
                             Expanded(
-                              flex:
-                                  5, // Adjust the flex ratio according to your needs
+                              flex: 5,
                               child: TextFormField(
                                 validator: (value) {
                                   if (value == '') {
@@ -433,9 +416,8 @@ class AddProductDetails extends ParentWidget {
                                 cursorWidth: 1.5,
                                 keyboardType: TextInputType.number,
                                 inputFormatters: [
-                                  FilteringTextInputFormatter
-                                      .digitsOnly, // Only allow digits
-                                  RangeInputFormatter(), // Limit to 0-100
+                                  FilteringTextInputFormatter.digitsOnly,
+                                  RangeInputFormatter(),
                                 ],
                                 style: const TextStyle(height: 1),
                                 controller: controller.discountController.value,
@@ -444,29 +426,24 @@ class AddProductDetails extends ParentWidget {
                                   suffixText: '%',
                                   hintStyle: TextStyle(fontSize: 12),
                                   border: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        width:
-                                            2.0), // Customize border color and width
+                                    borderSide: BorderSide(width: 2.0),
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(8.0)),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color: Color.fromARGB(82, 151, 92, 71),
-                                        width:
-                                            2.0), // Customize border color and width when focused
+                                        width: 2.0),
                                   ),
                                 ),
                                 onChanged: (value) {
-                                  // Call calculateSellingPrice whenever the MRP field changes
                                   controller.calculateSellingPrice();
                                 },
                               ),
-                            ), // Space between TextFormField and DropdownButton
+                            ),
                             const SizedBox(width: 8),
                             Expanded(
-                              flex:
-                                  5, // Adjust the flex ratio according to your needs
+                              flex: 5,
                               child: TextFormField(
                                 cursorColor: Colors.grey,
                                 cursorWidth: 1.5,
@@ -483,17 +460,14 @@ class AddProductDetails extends ParentWidget {
                                       fontSize: 12,
                                       fontWeight: FontWeight.bold),
                                   border: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        width:
-                                            2.0), // Customize border color and width
+                                    borderSide: BorderSide(width: 2.0),
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(8.0)),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color: Color.fromARGB(82, 151, 92, 71),
-                                        width:
-                                            2.0), // Customize border color and width when focused
+                                        width: 2.0),
                                   ),
                                 ),
                               ),
@@ -544,16 +518,14 @@ class AddProductDetails extends ParentWidget {
                           hintText: 'Enter Quantity',
                           hintStyle: TextStyle(fontSize: 12),
                           border: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                width: 2.0), // Customize border color and width
+                            borderSide: BorderSide(width: 2.0),
                             borderRadius:
                                 BorderRadius.all(Radius.circular(8.0)),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                                 color: Color.fromARGB(82, 151, 92, 71),
-                                width:
-                                    2.0), // Customize border color and width when focused
+                                width: 2.0),
                           ),
                         ),
                       ),
@@ -579,13 +551,12 @@ class AddProductDetails extends ParentWidget {
                         ],
                       ),
                       SizedBox(height: 5.0),
-                      Container(
+                      SizedBox(
                         width: MediaQuery.of(context).size.width * 0.9,
                         child: Row(
                           children: [
                             Expanded(
-                              flex:
-                                  7, // Adjust the flex ratio according to your needs
+                              flex: 7,
                               child: TextFormField(
                                 validator: (value) {
                                   if (value == '') {
@@ -598,6 +569,11 @@ class AddProductDetails extends ParentWidget {
                                 cursorColor: Colors.grey,
                                 cursorWidth: 1.5,
                                 keyboardType: TextInputType.number,
+                                inputFormatters: [
+                                  NoLeadingSpaceFormatter(),
+                                  LengthLimitingTextInputFormatter(7),
+                                  FilteringTextInputFormatter.digitsOnly
+                                ],
                                 style: const TextStyle(height: 1),
                                 controller:
                                     controller.netweightController.value,
@@ -606,43 +582,36 @@ class AddProductDetails extends ParentWidget {
                                       'Enter Net Weight(in ${controller.dropdownValues})',
                                   hintStyle: const TextStyle(fontSize: 12),
                                   border: const OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        width:
-                                            2.0), // Customize border color and width
+                                    borderSide: BorderSide(width: 2.0),
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(8.0)),
                                   ),
                                   focusedBorder: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color: Color.fromARGB(82, 151, 92, 71),
-                                        width:
-                                            2.0), // Customize border color and width when focused
+                                        width: 2.0),
                                   ),
                                 ),
                               ),
                             ),
-                            const SizedBox(
-                                width:
-                                    8), // Space between TextFormField and DropdownButton
+                            const SizedBox(width: 8),
                             Expanded(
                               flex: 2,
                               child: Container(
                                 margin: controller.gm == true
                                     ? const EdgeInsets.fromLTRB(0, 0, 0, 20)
                                     : const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal:
-                                        8.0), // Padding inside the container
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8.0),
                                 decoration: BoxDecoration(
                                   border: Border.all(
                                     color: const Color.fromARGB(
-                                        197, 113, 113, 113), // Border color
-                                    width: 1.5, // Border width
+                                        197, 113, 113, 113),
+                                    width: 1.5,
                                   ),
-                                  borderRadius: BorderRadius.circular(
-                                      8.0), // Rounded corners
+                                  borderRadius: BorderRadius.circular(8.0),
                                 ),
-                                child: DropdownButton<String>(
+                                child: DropdownButton2<String>(
                                   style: TextStyle(
                                       fontSize: 14, color: Colors.black),
                                   value: controller.dropdownValues.value,
@@ -657,15 +626,19 @@ class AddProductDetails extends ParentWidget {
                                       ),
                                     );
                                   }).toList(),
-
                                   onChanged: (String? newValue) {
                                     controller.dropdownValues.value =
                                         newValue ?? "";
                                   },
-                                  isExpanded:
-                                      true, // Make dropdown button take up full width
-                                  underline:
-                                      SizedBox(), // Remove the default underline
+                                  dropdownStyleData: DropdownStyleData(
+                                    offset: const Offset(0, 10),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  isExpanded: true,
+                                  underline: SizedBox(),
                                 ),
                               ),
                             ),
@@ -708,6 +681,7 @@ class AddProductDetails extends ParentWidget {
                         inputFormatters: [
                           NoLeadingSpaceFormatter(),
                           RemoveTrailingPeriodsFormatter(),
+                          SpecialCharacterValidator(),
                           EmojiInputFormatter(),
                           LengthLimitingTextInputFormatter(50)
                         ],
@@ -715,20 +689,17 @@ class AddProductDetails extends ParentWidget {
                           hintText: 'Enter Material Used',
                           hintStyle: TextStyle(fontSize: 12),
                           border: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                width: 2.0), // Customize border color and width
+                            borderSide: BorderSide(width: 2.0),
                             borderRadius:
                                 BorderRadius.all(Radius.circular(8.0)),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                                 color: Color.fromARGB(82, 151, 92, 71),
-                                width:
-                                    2.0), // Customize border color and width when focused
+                                width: 2.0),
                           ),
                         ),
                       ),
-
                       const SizedBox(height: 16.0),
                       Row(
                         mainAxisSize: MainAxisSize.min,
@@ -751,13 +722,12 @@ class AddProductDetails extends ParentWidget {
                         ],
                       ),
                       const SizedBox(height: 5.0),
-                      Container(
+                      SizedBox(
                         width: MediaQuery.of(context).size.width * 0.9,
                         child: Row(
                           children: [
                             Expanded(
-                              flex:
-                                  2, // Adjust the flex ratio according to your needs
+                              flex: 2,
                               child: TextFormField(
                                 validator: (value) {
                                   if (value == '') {
@@ -767,7 +737,6 @@ class AddProductDetails extends ParentWidget {
                                   controller.gm = false;
                                   return null;
                                 },
-                                //focusNode: controller.focusNode1.value,
                                 cursorColor: Colors.grey,
                                 cursorWidth: 1.5,
                                 keyboardType: TextInputType.number,
@@ -782,25 +751,21 @@ class AddProductDetails extends ParentWidget {
                                   hintText: 'Length',
                                   hintStyle: TextStyle(fontSize: 12),
                                   border: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        width:
-                                            2.0), // Customize border color and width
+                                    borderSide: BorderSide(width: 2.0),
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(8.0)),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color: Color.fromARGB(82, 151, 92, 71),
-                                        width:
-                                            2.0), // Customize border color and width when focused
+                                        width: 2.0),
                                   ),
                                 ),
                               ),
                             ),
                             SizedBox(width: 8),
                             Expanded(
-                              flex:
-                                  2, // Adjust the flex ratio according to your needs
+                              flex: 2,
                               child: TextFormField(
                                 validator: (value) {
                                   if (value == '') {
@@ -810,7 +775,6 @@ class AddProductDetails extends ParentWidget {
                                   controller.gm = false;
                                   return null;
                                 },
-                                //focusNode: controller.focusNode1.value,
                                 cursorColor: Colors.grey,
                                 cursorWidth: 1.5,
                                 keyboardType: TextInputType.number,
@@ -825,25 +789,21 @@ class AddProductDetails extends ParentWidget {
                                   hintText: 'Breadth',
                                   hintStyle: TextStyle(fontSize: 12),
                                   border: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        width:
-                                            2.0), // Customize border color and width
+                                    borderSide: BorderSide(width: 2.0),
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(8.0)),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color: Color.fromARGB(82, 151, 92, 71),
-                                        width:
-                                            2.0), // Customize border color and width when focused
+                                        width: 2.0),
                                   ),
                                 ),
                               ),
                             ),
                             SizedBox(width: 8),
                             Expanded(
-                              flex:
-                                  2, // Adjust the flex ratio according to your needs
+                              flex: 2,
                               child: TextFormField(
                                 validator: (value) {
                                   if (value == '') {
@@ -853,7 +813,6 @@ class AddProductDetails extends ParentWidget {
                                   controller.gm = false;
                                   return null;
                                 },
-                                //focusNode: controller.focusNode1.value,
                                 cursorColor: Colors.grey,
                                 cursorWidth: 1.5,
                                 keyboardType: TextInputType.number,
@@ -868,43 +827,36 @@ class AddProductDetails extends ParentWidget {
                                   hintText: 'Height',
                                   hintStyle: TextStyle(fontSize: 12),
                                   border: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        width:
-                                            2.0), // Customize border color and width
+                                    borderSide: BorderSide(width: 2.0),
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(8.0)),
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color: Color.fromARGB(82, 151, 92, 71),
-                                        width:
-                                            2.0), // Customize border color and width when focused
+                                        width: 2.0),
                                   ),
                                 ),
                               ),
                             ),
-                            const SizedBox(
-                                width:
-                                    15), // Space between TextFormField and DropdownButton
+                            const SizedBox(width: 15),
                             Expanded(
                               flex: 3,
                               child: Container(
                                 margin: controller.gm == true
                                     ? const EdgeInsets.fromLTRB(0, 0, 0, 20)
                                     : const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal:
-                                        8.0), // Padding inside the container
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8.0),
                                 decoration: BoxDecoration(
                                   border: Border.all(
                                     color: const Color.fromARGB(
-                                        197, 113, 113, 113), // Border color
-                                    width: 1.5, // Border width
+                                        197, 113, 113, 113),
+                                    width: 1.5,
                                   ),
-                                  borderRadius: BorderRadius.circular(
-                                      8.0), // Rounded corners
+                                  borderRadius: BorderRadius.circular(8.0),
                                 ),
-                                child: DropdownButton<String>(
+                                child: DropdownButton2<String>(
                                   style: TextStyle(
                                       fontSize: 14, color: Colors.black),
                                   value: controller.dropdownValue.value,
@@ -920,22 +872,25 @@ class AddProductDetails extends ParentWidget {
                                       ),
                                     );
                                   }).toList(),
-
                                   onChanged: (String? newValue) {
                                     controller.dropdownValue.value =
                                         newValue ?? "";
                                   },
-                                  isExpanded:
-                                      true, // Make dropdown button take up full width
-                                  underline:
-                                      SizedBox(), // Remove the default underline
+                                  dropdownStyleData: DropdownStyleData(
+                                    offset: const Offset(0, 10),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  isExpanded: true,
+                                  underline: SizedBox(),
                                 ),
                               ),
                             ),
                           ],
                         ),
                       ),
-
                       SizedBox(height: 16),
                       const Row(
                         mainAxisSize: MainAxisSize.min,
@@ -959,7 +914,6 @@ class AddProductDetails extends ParentWidget {
                       ),
                       const SizedBox(height: 5.0),
                       TextFormField(
-                        //focusNode: controller.focusNode1.value,
                         cursorColor: Colors.grey,
                         cursorWidth: 1.5,
                         validator: (value) {
@@ -979,23 +933,18 @@ class AddProductDetails extends ParentWidget {
                           hintText: 'Enter a description here...',
                           hintStyle: TextStyle(fontSize: 12),
                           border: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                width: 2.0), // Customize border color and width
+                            borderSide: BorderSide(width: 2.0),
                             borderRadius:
                                 BorderRadius.all(Radius.circular(8.0)),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                                 color: Color.fromARGB(82, 151, 92, 71),
-                                width:
-                                    2.0), // Customize border color and width when focused
+                                width: 2.0),
                           ),
                         ),
                       ),
-
                       SizedBox(height: controller.gm == true ? 40 : 50),
-
-                      // Save as Draft and Next Step Buttons
                       Row(
                         children: [
                           OutlinedButton(

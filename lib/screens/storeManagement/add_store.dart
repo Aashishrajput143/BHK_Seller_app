@@ -107,6 +107,7 @@ class AddStore extends StatelessWidget {
                             NoLeadingSpaceFormatter(),
                             LengthLimitingTextInputFormatter(20),
                             EmojiInputFormatter(),
+                            SpecialCharacterValidator(),
                             RemoveTrailingPeriodsFormatter()
                           ],
                           decoration: const InputDecoration(
@@ -164,6 +165,7 @@ class AddStore extends StatelessWidget {
                           inputFormatters: [
                             NoLeadingSpaceFormatter(),
                             LengthLimitingTextInputFormatter(50),
+                            SpecialCharacterValidator(),
                             EmojiInputFormatter(),
                             RemoveTrailingPeriodsFormatter()
                           ],
@@ -220,8 +222,9 @@ class AddStore extends StatelessWidget {
                           controller: controller.addressstreetController.value,
                           inputFormatters: [
                             NoLeadingSpaceFormatter(),
-                            LengthLimitingTextInputFormatter(50),
+                            LengthLimitingTextInputFormatter(80),
                             EmojiInputFormatter(),
+                            SpecialCharacterValidator(),
                             RemoveTrailingPeriodsFormatter()
                           ],
                           decoration: const InputDecoration(

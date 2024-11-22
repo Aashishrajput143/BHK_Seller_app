@@ -106,6 +106,7 @@ class AddBrand extends StatelessWidget {
                             NoLeadingSpaceFormatter(),
                             RemoveTrailingPeriodsFormatter(),
                             LengthLimitingTextInputFormatter(20),
+                            SpecialCharacterValidator(),
                             EmojiInputFormatter()
                           ],
                           decoration: const InputDecoration(

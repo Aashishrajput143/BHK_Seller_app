@@ -17,43 +17,41 @@ class DashBoard extends StatelessWidget {
   Widget build(BuildContext context) {
     Dashboardcontroller controller = Get.put(Dashboardcontroller());
     return Obx(() => Stack(children: [
-          Scaffold(
-            body: RefreshIndicator(
-              color: Colors.brown,
-              onRefresh: controller.dashboardRefresh,
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Collections(),
-                    Container(
-                      color: const Color.fromARGB(195, 247, 243, 233),
-                      padding: const EdgeInsets.all(16.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ShopCarousel(),
-                          const SizedBox(height: 11),
-                          Brand(),
-                          const SizedBox(height: 10),
-                          controller.getTrendingProductModel.value.data?.docs
-                                      ?.isNotEmpty ??
-                                  true
-                              ? TrendingProduct()
-                              : SizedBox(),
-                          const SizedBox(height: 20),
-                          Salesgraph(),
-                          const SizedBox(height: 10),
-                          controller.getProductModel.value.data?.docs
-                                      ?.isNotEmpty ??
-                                  true
-                              ? ProductSaleScreen()
-                              : SizedBox(),
-                        ],
-                      ),
+          RefreshIndicator(
+            color: Colors.brown,
+            onRefresh: controller.dashboardRefresh,
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Collections(),
+                  Container(
+                    color: const Color.fromARGB(195, 247, 243, 233),
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ShopCarousel(),
+                        const SizedBox(height: 11),
+                        Brand(),
+                        const SizedBox(height: 10),
+                        controller.getTrendingProductModel.value.data?.docs
+                                    ?.isNotEmpty ??
+                                true
+                            ? TrendingProduct()
+                            : SizedBox(),
+                        const SizedBox(height: 20),
+                        Salesgraph(),
+                        const SizedBox(height: 10),
+                        controller.getProductModel.value.data?.docs
+                                    ?.isNotEmpty ??
+                                true
+                            ? ProductSaleScreen()
+                            : SizedBox(),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),

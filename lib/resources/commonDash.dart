@@ -52,6 +52,7 @@ class CommonDash extends StatelessWidget {
                       ),
                     ),
                     elevation: 0,
+                    automaticallyImplyLeading: true,
                     iconTheme: const IconThemeData(color: Colors.white),
                     toolbarHeight: 68,
                     actions: [
@@ -108,6 +109,7 @@ class CommonDash extends StatelessWidget {
                           ),
                         ),
                         centerTitle: true,
+                        automaticallyImplyLeading: true,
                         iconTheme: const IconThemeData(color: Colors.white),
                         title: Text(
                           controller.screens[selectedScreenIndex]["title"]
@@ -142,6 +144,7 @@ class CommonDash extends StatelessWidget {
                               ),
                             ),
                             centerTitle: true,
+                            automaticallyImplyLeading: true,
                             iconTheme: const IconThemeData(color: Colors.white),
                             title: Text(
                               controller.screens[selectedScreenIndex]["title"]
@@ -157,6 +160,7 @@ class CommonDash extends StatelessWidget {
                               ),
                             ),
                             centerTitle: true,
+                            automaticallyImplyLeading: true,
                             iconTheme: const IconThemeData(color: Colors.white),
                             title: Text(
                               controller.screens[selectedScreenIndex]["title"]

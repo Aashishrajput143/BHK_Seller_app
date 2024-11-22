@@ -24,6 +24,18 @@ class Dashboardcontroller extends GetxController {
   final brandrepository = BrandRepository();
   var chartData = <Map<String, dynamic>>[];
   int currentYear = DateTime.now().year;
+  RxDouble scrollPosition = 0.0.obs;
+  RxDouble maxScrollExtent = 0.0.obs;
+
+  void updateScrollPosition(double position, double maxExtent) {
+    if (position == 0.0) {
+      scrollPosition.value = scrollPosition.value + 10.0;
+    }
+    scrollPosition.value = position;
+    maxScrollExtent.value = maxExtent;
+    print("scrollPosition========>$scrollPosition");
+    print("maxScrollExtent========>$maxScrollExtent");
+  }
 
   void showSuccessDialog() {
     Get.dialog(

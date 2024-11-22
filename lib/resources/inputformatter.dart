@@ -119,3 +119,30 @@ class EmojiInputFormatter extends TextInputFormatter {
     );
   }
 }
+
+class SpecialCharacterValidator extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
+    final RegExp allowedPattern = RegExp(r'^[a-zA-Z0-9 ]*$');
+    if (allowedPattern.hasMatch(newValue.text)) {
+      return newValue;
+    }
+    return oldValue; // Reject changes with special characters
+  }
+}
+
+class NoDigitInputFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+    TextEditingValue oldValue,
+    TextEditingValue newValue,
+  ) {
+    // Use regular expression to remove any digits
+    String filteredText = newValue.text.replaceAll(RegExp(r'\d'), '');
+    return TextEditingValue(
+      text: filteredText,
+      selection: TextSelection.collapsed(offset: filteredText.length),
+    );
+  }
+}

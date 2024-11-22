@@ -6,6 +6,7 @@ import 'package:bhk_seller_app/main.dart';
 import 'package:bhk_seller_app/resources/appconstants.dart';
 import 'package:bhk_seller_app/resources/inputformatter.dart';
 import 'package:bhk_seller_app/screens/productManagement/buildStepCircle.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -138,7 +139,7 @@ class AddProductPage extends ParentWidget {
                         borderRadius:
                             BorderRadius.circular(8.0), // Rounded corners
                       ),
-                      child: DropdownButton<String>(
+                      child: DropdownButton2<String>(
                         hint: Text(controller.getProductDetailsModel.value.data
                                 ?.category?.categoryName ??
                             "Select Category"),
@@ -170,8 +171,16 @@ class AddProductPage extends ParentWidget {
                                     controller.categoryid.value);
                                 print(controller.categoryid.value);
                               },
-                        menuMaxHeight: MediaQuery.of(context).size.height * .25,
-                        menuWidth: MediaQuery.of(context).size.width * .95,
+                        dropdownStyleData: DropdownStyleData(
+                          maxHeight: MediaQuery.of(context).size.height * .25,
+                          width: MediaQuery.of(context).size.width * .95,
+                          offset: const Offset(
+                              0, 10), // Adjust top margin for dropdown menu
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: Colors.white,
+                          ),
+                        ),
                         isExpanded: true,
                         underline: const SizedBox(), // Remove default underline
                       ),
@@ -260,7 +269,7 @@ class AddProductPage extends ParentWidget {
                                 borderRadius: BorderRadius.circular(
                                     8.0), // Rounded corners
                               ),
-                              child: DropdownButton<String>(
+                              child: DropdownButton2<String>(
                                 hint: Text(controller.getProductDetailsModel
                                         .value.data?.category?.categoryName ??
                                     "Select SubCategory"),
@@ -292,10 +301,18 @@ class AddProductPage extends ParentWidget {
                                         controller.subcategoryid.value =
                                             newValue!; // Update selected item
                                       },
-                                menuMaxHeight:
-                                    MediaQuery.of(context).size.height * .25,
-                                menuWidth:
-                                    MediaQuery.of(context).size.width * .45,
+                                dropdownStyleData: DropdownStyleData(
+                                  maxHeight:
+                                      MediaQuery.of(context).size.height * .25,
+                                  width:
+                                      MediaQuery.of(context).size.width * .95,
+                                  offset: const Offset(0,
+                                      10), // Adjust top margin for dropdown menu
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    color: Colors.white,
+                                  ),
+                                ),
                                 isExpanded: true,
                                 underline:
                                     const SizedBox(), // Remove default underline
@@ -319,7 +336,7 @@ class AddProductPage extends ParentWidget {
                                 borderRadius: BorderRadius.circular(
                                     8.0), // Rounded corners
                               ),
-                              child: DropdownButton<String>(
+                              child: DropdownButton2<String>(
                                 hint: Text(controller.getProductDetailsModel
                                         .value.data?.brand?.brandName ??
                                     "Select Brand"),
@@ -350,10 +367,18 @@ class AddProductPage extends ParentWidget {
                                         controller.brandid.value =
                                             newValue!; // Update selected item
                                       },
-                                menuMaxHeight:
-                                    MediaQuery.of(context).size.height * .25,
-                                menuWidth:
-                                    MediaQuery.of(context).size.width * .45,
+                                dropdownStyleData: DropdownStyleData(
+                                  maxHeight:
+                                      MediaQuery.of(context).size.height * .25,
+                                  width:
+                                      MediaQuery.of(context).size.width * .95,
+                                  offset: const Offset(0,
+                                      10), // Adjust top margin for dropdown menu
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    color: Colors.white,
+                                  ),
+                                ),
                                 isExpanded: true,
                                 underline:
                                     const SizedBox(), // Remove default underline
@@ -401,6 +426,7 @@ class AddProductPage extends ParentWidget {
                         NoLeadingSpaceFormatter(),
                         RemoveTrailingPeriodsFormatter(),
                         EmojiInputFormatter(),
+                        SpecialCharacterValidator(),
                         LengthLimitingTextInputFormatter(50)
                       ],
                       controller: controller.nameController.value,
@@ -455,7 +481,7 @@ class AddProductPage extends ParentWidget {
                         borderRadius:
                             BorderRadius.circular(8.0), // Rounded corners
                       ),
-                      child: DropdownButton<String>(
+                      child: DropdownButton2<String>(
                         hint: Text(controller.getProductDetailsModel.value.data
                                 ?.category?.categoryName ??
                             "Select a Store"),
@@ -484,8 +510,16 @@ class AddProductPage extends ParentWidget {
                               newValue!; // Update selected item
                         },
 
-                        menuMaxHeight: MediaQuery.of(context).size.height * .25,
-                        menuWidth: MediaQuery.of(context).size.width * .95,
+                        dropdownStyleData: DropdownStyleData(
+                          maxHeight: MediaQuery.of(context).size.height * .25,
+                          width: MediaQuery.of(context).size.width * .95,
+                          offset: const Offset(
+                              0, 10), // Adjust top margin for dropdown menu
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            color: Colors.white,
+                          ),
+                        ),
                         isExpanded: true,
                         underline: const SizedBox(), // Remove default underline
                       ),
