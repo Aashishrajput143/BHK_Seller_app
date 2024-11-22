@@ -56,8 +56,7 @@ class AddProductMediaController extends GetxController {
         } else {
           mediaimage = true;
           errormessage.value = "";
-          imagefiles
-              .addAll(pickedfiles); // Add picked files to the observable list
+          imagefiles.addAll(pickedfiles);
           print("Total images: ${imagefiles.length}");
         }
       } else {
@@ -87,7 +86,6 @@ class AddProductMediaController extends GetxController {
   void setError(String value) => error.value = value;
   RxString error = ''.obs;
   void setRxRequestStatus(Status value) => rxRequestStatus.value = value;
-  // void setAddProductnData(SignUpModel value) => addproductData.value = value;
 
   void setaddProductMediadata(AddProductMediaModel value) =>
       addProductMediaModel.value = value;
@@ -186,8 +184,8 @@ class AddProductMediaController extends GetxController {
               : const Color.fromARGB(255, 140, 136, 136),
           child: completed
               ? const Icon(
-                  Icons.check_circle, // Tick icon
-                  color: Colors.green, // Change color if needed
+                  Icons.check_circle,
+                  color: Colors.green,
                 )
               : Text(
                   "0$stepNumber",
@@ -209,7 +207,6 @@ class AddProductMediaController extends GetxController {
     );
   }
 
-// Helper method to build the divider between steps
   Widget buildStepDivider() {
     return Container(
       margin: const EdgeInsets.fromLTRB(5, 0, 3, 0),
@@ -221,9 +218,9 @@ class AddProductMediaController extends GetxController {
             width: 10,
           ),
           Icon(
-            Icons.arrow_forward_ios, // Right arrow icon
-            size: 10, // Size of the arrow
-            color: Colors.grey[500], // Light grey color
+            Icons.arrow_forward_ios,
+            size: 10,
+            color: Colors.grey[500],
           ),
         ],
       ),
