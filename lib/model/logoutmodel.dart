@@ -1,6 +1,6 @@
 class LogoutModel {
   String? message;
-  Null? data;
+  dynamic data;
 
   LogoutModel({this.message, this.data});
 

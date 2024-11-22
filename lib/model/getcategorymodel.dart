@@ -73,7 +73,7 @@ class Docs {
   String? type;
   String? categoryLogo;
   String? description;
-  Null? parentId;
+  dynamic parentId;
   String? createdAt;
   String? updatedAt;
   bool? isActive;

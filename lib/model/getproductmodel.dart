@@ -75,7 +75,7 @@ class Docs {
   bool? isDisabled;
   String? productStatus;
   String? adminApprovalStatus;
-  Null? adminRemarks;
+  dynamic adminRemarks;
   String? updatedAt;
   List<Variants>? variants;
   Category? category;
@@ -231,7 +231,7 @@ class Variants {
 class Media {
   int? mediaId;
   Images? images;
-  Null? videos;
+  dynamic videos;
   String? createdAt;
   String? updatedAt;
 
@@ -291,7 +291,7 @@ class Category {
   String? type;
   String? categoryLogo;
   String? description;
-  Null? parentId;
+  dynamic parentId;
   String? createdAt;
   String? updatedAt;
   bool? isActive;
