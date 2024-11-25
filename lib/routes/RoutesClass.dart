@@ -6,6 +6,7 @@ import 'package:bhk_seller_app/screens/changepassword.dart';
 import 'package:bhk_seller_app/screens/dashboardManagement/notifications.dart';
 import 'package:bhk_seller_app/screens/brandManagement/add_brand.dart';
 import 'package:bhk_seller_app/screens/brandManagement/my_brands.dart';
+import 'package:bhk_seller_app/screens/faq.dart';
 import 'package:bhk_seller_app/screens/ordersManagement/orderdetails.dart';
 import 'package:bhk_seller_app/screens/privacypolicy.dart';
 import 'package:bhk_seller_app/screens/profileManagement/edit_profile_screen.dart';
@@ -55,6 +56,7 @@ class RoutesClass {
   static String ordersdetails = '/ordersdetails';
   static String termscondition = '/termscondition';
   static String privacypolicy = '/privacypolicy';
+  static String faq = '/faq';
 
   //BR1
   static String gotoSplash() => splash;
@@ -84,6 +86,7 @@ class RoutesClass {
   static String gotoProductDetailScreen() => productdetail;
   static String gotoTermsConditionScreen() => termscondition;
   static String gotoPrivacyPolicyScreen() => privacypolicy;
+  static String gotoFAQScreen() => faq;
   static List<GetPage> routes = [
     GetPage(
       name: splash,
@@ -238,6 +241,12 @@ class RoutesClass {
     GetPage(
       name: privacypolicy,
       page: () => PrivacyPolicy(),
+      transition: Transition.fade,
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
+    GetPage(
+      name: faq,
+      page: () => FAQ(),
       transition: Transition.fade,
       transitionDuration: const Duration(milliseconds: 300),
     ),
