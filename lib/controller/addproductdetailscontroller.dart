@@ -465,7 +465,7 @@ class AddProductDetailsController extends GetxController {
         );
       }
     } else {
-      Get.offNamed(
+      Get.offAllNamed(
         RoutesClass.gotoProductScreen(),
       );
     }

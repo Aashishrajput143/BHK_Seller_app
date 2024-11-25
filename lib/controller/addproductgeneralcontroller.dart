@@ -343,7 +343,7 @@ class AddProductGeneralController extends GetxController {
                         1]
                 .variantId ==
             null) {
-          Get.offNamed(
+          Get.offAllNamed(
             RoutesClass.gotoProductScreen(),
           );
         } else {
@@ -365,7 +365,7 @@ class AddProductGeneralController extends GetxController {
         );
       }
     } else {
-      Get.offNamed(
+      Get.offAllNamed(
         RoutesClass.gotoProductScreen(),
       );
     }

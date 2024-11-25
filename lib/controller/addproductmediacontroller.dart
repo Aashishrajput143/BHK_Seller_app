@@ -166,7 +166,7 @@ class AddProductMediaController extends GetxController {
   }
 
   redirect() {
-    Get.offNamed(
+    Get.offAllNamed(
       RoutesClass.gotoProductScreen(),
     );
   }
