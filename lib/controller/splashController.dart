@@ -1,16 +1,22 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../Constants/utils.dart';
 import '../common/constants.dart';
 import '../routes/RoutesClass.dart';
 
-class SplashController extends GetxController {
+class SplashController extends GetxController
+    with GetSingleTickerProviderStateMixin {
+  late final AnimationController animationController;
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
+    animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 6),
+    )..repeat();
     navigate();
   }
 
@@ -19,7 +25,7 @@ class SplashController extends GetxController {
           Utils.printLog("token $value"),
           if (value != "" && value != null)
             {
-              Timer(const Duration(seconds: 1), () {
+              Future.delayed(const Duration(seconds: 7), () {
                 Get.offAllNamed(RoutesClass.gotoDashboardScreen());
               }),
               print(value)
@@ -31,5 +37,11 @@ class SplashController extends GetxController {
               {Get.offAllNamed(RoutesClass.gotoLoginScreen())}
             }
         });
+  }
+
+  @override
+  void onClose() {
+    animationController.dispose();
+    super.onClose();
   }
 }

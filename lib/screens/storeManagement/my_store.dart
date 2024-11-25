@@ -31,7 +31,7 @@ class MyStores extends StatelessWidget {
                 ),
               ),
               body: Container(
-                padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
+                padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
                 color: const Color.fromARGB(195, 247, 243, 233),
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height,
@@ -41,7 +41,7 @@ class MyStores extends StatelessWidget {
                     controller.StoreList.isEmpty
                         ? const SizedBox()
                         : Container(
-                            padding: EdgeInsets.fromLTRB(16, 16, 16, 8),
+                            padding: EdgeInsets.symmetric(vertical: 8),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -125,7 +125,6 @@ class MyStores extends StatelessWidget {
                                 ],
                               )
                             : Container(
-                                padding: EdgeInsets.symmetric(horizontal: 16),
                                 color: const Color.fromARGB(195, 247, 243, 233),
                                 width: MediaQuery.of(context).size.width,
                                 height:

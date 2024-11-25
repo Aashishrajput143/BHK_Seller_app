@@ -2,19 +2,14 @@ import 'package:bhk_seller_app/resources/colors.dart';
 import 'package:bhk_seller_app/routes/RoutesClass.dart';
 import 'package:bhk_seller_app/screens/splashScreen.dart';
 import 'package:firebase_core/firebase_core.dart';
-// import 'package:dhurmaati/Constants/constants.dart';
-// import 'package:dhurmaati/model/cartModel.dart';
-// import 'package:dhurmaati/screens/login_screen.dart';
-// import 'package:dhurmaati/screens/main_dashboard_page.dart';
 
 import 'package:flutter/material.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:get/get.dart';
 import 'dart:async';
 
 import 'package:scoped_model/scoped_model.dart';
 import 'package:overlay_support/overlay_support.dart';
 import 'model/cartModel.dart';
-// import 'model/subscriptionModel.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,10 +19,9 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  // const MyApp({Key? key}) : super(key: key);
   final CartModel model;
 
-  const MyApp({Key? key, required this.model}) : super(key: key);
+  const MyApp({super.key, required this.model});
   @override
   Widget build(BuildContext context) {
     return OverlaySupport.global(
@@ -46,7 +40,7 @@ class MyApp extends StatelessWidget {
 }
 
 abstract class ParentWidget extends StatelessWidget {
-  const ParentWidget({Key? key}) : super(key: key);
+  const ParentWidget({super.key});
   Widget buildingView(BuildContext context, double h, double w);
 
   @override

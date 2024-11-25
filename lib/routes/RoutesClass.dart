@@ -1,11 +1,13 @@
 import 'package:bhk_seller_app/binding/signupbinding.dart';
 import 'package:bhk_seller_app/resources/commonDash.dart';
+import 'package:bhk_seller_app/screens/Termsconditions.dart.dart';
 import 'package:bhk_seller_app/screens/brandManagement/brand_details.dart';
 import 'package:bhk_seller_app/screens/changepassword.dart';
 import 'package:bhk_seller_app/screens/dashboardManagement/notifications.dart';
 import 'package:bhk_seller_app/screens/brandManagement/add_brand.dart';
 import 'package:bhk_seller_app/screens/brandManagement/my_brands.dart';
 import 'package:bhk_seller_app/screens/ordersManagement/orderdetails.dart';
+import 'package:bhk_seller_app/screens/privacypolicy.dart';
 import 'package:bhk_seller_app/screens/profileManagement/edit_profile_screen.dart';
 import 'package:bhk_seller_app/screens/productManagement/add_productdetails.dart';
 import 'package:bhk_seller_app/screens/productManagement/add_productfiles.dart';
@@ -51,6 +53,8 @@ class RoutesClass {
   static String viewprofile = '/viewprofile';
   static String productdetail = '/productdetail';
   static String ordersdetails = '/ordersdetails';
+  static String termscondition = '/termscondition';
+  static String privacypolicy = '/privacypolicy';
 
   //BR1
   static String gotoSplash() => splash;
@@ -78,6 +82,8 @@ class RoutesClass {
   static String gotoEditProfileScreen() => editprofile;
   static String gotoViewProfileScreen() => viewprofile;
   static String gotoProductDetailScreen() => productdetail;
+  static String gotoTermsConditionScreen() => termscondition;
+  static String gotoPrivacyPolicyScreen() => privacypolicy;
   static List<GetPage> routes = [
     GetPage(
       name: splash,
@@ -220,6 +226,18 @@ class RoutesClass {
     GetPage(
       name: productdetail,
       page: () => ProductPreview(),
+      transition: Transition.fade,
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
+    GetPage(
+      name: termscondition,
+      page: () => TermsConditions(),
+      transition: Transition.fade,
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
+    GetPage(
+      name: privacypolicy,
+      page: () => PrivacyPolicy(),
       transition: Transition.fade,
       transitionDuration: const Duration(milliseconds: 300),
     ),

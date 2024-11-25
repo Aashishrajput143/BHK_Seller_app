@@ -36,7 +36,7 @@ class Collections extends StatelessWidget {
                 children: [
                   Container(
                     margin: const EdgeInsets.all(12.0),
-                    width: w * 0.45,
+                    width: w * 0.455,
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
                       color: Colors.orange[100],
@@ -88,7 +88,7 @@ class Collections extends StatelessWidget {
                   ),
                   Container(
                     margin: const EdgeInsets.fromLTRB(0, 12, 12, 12),
-                    width: w * 0.45,
+                    width: w * 0.455,
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
                       color: Colors.blue[100],
@@ -140,7 +140,7 @@ class Collections extends StatelessWidget {
                   ),
                   Container(
                     margin: const EdgeInsets.fromLTRB(0, 12, 12, 12),
-                    width: w * 0.45,
+                    width: w * 0.455,
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
                       color: Colors.red[100],
@@ -192,7 +192,7 @@ class Collections extends StatelessWidget {
                   ),
                   Container(
                     margin: const EdgeInsets.all(12.0),
-                    width: w * 0.45,
+                    width: w * 0.455,
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
                       color: Colors.orange[100],
@@ -244,7 +244,7 @@ class Collections extends StatelessWidget {
                   ),
                   Container(
                     margin: const EdgeInsets.fromLTRB(0, 12, 12, 12),
-                    width: w * 0.45,
+                    width: w * 0.455,
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
                       color: Colors.blue[100],
@@ -301,7 +301,7 @@ class Collections extends StatelessWidget {
               height: 2,
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 130),
               child: Obx(() {
                 double progress = (controller.scrollPosition.value /
                         controller.maxScrollExtent.value)

@@ -199,7 +199,9 @@ class Appbardrawer extends StatelessWidget {
                           style: TextStyle(
                               color: const Color.fromARGB(255, 76, 72, 72),
                               fontSize: 14)),
-                      onTap: () {},
+                      onTap: () {
+                        Get.toNamed(RoutesClass.gotoTermsConditionScreen());
+                      },
                     ),
                     ListTile(
                       minTileHeight: 7,
@@ -208,7 +210,9 @@ class Appbardrawer extends StatelessWidget {
                           style: TextStyle(
                               color: const Color.fromARGB(255, 76, 72, 72),
                               fontSize: 14)),
-                      onTap: () {},
+                      onTap: () {
+                        Get.toNamed(RoutesClass.gotoPrivacyPolicyScreen());
+                      },
                     ),
                     ListTile(
                       minTileHeight: 7,
