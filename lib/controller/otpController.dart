@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../Constants/utils.dart';
-import '../common/CommonMethods.dart';
-import '../common/Constants.dart';
+import '../common/commonmethods.dart';
+import '../common/constants.dart';
 import '../data/response/status.dart';
 import '../model/signUpModel.dart';
 import '../repository/loginRepository.dart';

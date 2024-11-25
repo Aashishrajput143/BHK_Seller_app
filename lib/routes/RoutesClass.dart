@@ -1,4 +1,4 @@
-import 'package:bhk_seller_app/binding/signUpBinding.dart';
+import 'package:bhk_seller_app/binding/signupbinding.dart';
 import 'package:bhk_seller_app/resources/commonDash.dart';
 import 'package:bhk_seller_app/screens/brandManagement/brand_details.dart';
 import 'package:bhk_seller_app/screens/changepassword.dart';
@@ -19,7 +19,7 @@ import 'package:bhk_seller_app/screens/storeManagement/my_store.dart';
 import 'package:bhk_seller_app/screens/storeManagement/store_details.dart';
 import 'package:get/get.dart';
 
-import '../binding/loginBinding.dart';
+import '../binding/loginbinding.dart';
 import '../screens/login_screen.dart';
 import '../screens/otpScreen.dart';
 import '../screens/registration_screen.dart';

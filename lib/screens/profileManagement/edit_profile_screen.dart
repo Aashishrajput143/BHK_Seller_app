@@ -1,5 +1,5 @@
 // import 'dart:html';
-import 'package:bhk_seller_app/common/CommonMethods.dart';
+import 'package:bhk_seller_app/common/commonmethods.dart';
 import 'package:bhk_seller_app/common/myUtils.dart';
 import 'package:bhk_seller_app/controller/updateprofilecontroller.dart';
 import 'package:bhk_seller_app/data/response/status.dart';

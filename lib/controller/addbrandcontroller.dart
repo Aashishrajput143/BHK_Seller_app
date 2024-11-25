@@ -9,7 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../common/CommonMethods.dart';
+import '../common/commonmethods.dart';
 import '../data/response/status.dart';
 import '../resources/strings.dart';
 

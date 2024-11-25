@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:get/get.dart';
 
 import '../Constants/utils.dart';
-import '../common/Constants.dart';
+import '../common/constants.dart';
 import '../routes/RoutesClass.dart';
 
 class SplashController extends GetxController {

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:bhk_seller_app/Constants/utils.dart';
-import 'package:bhk_seller_app/common/CommonMethods.dart';
+import 'package:bhk_seller_app/common/commonmethods.dart';
 import 'package:bhk_seller_app/data/response/status.dart';
 import 'package:bhk_seller_app/model/getbrandModel.dart';
 import 'package:bhk_seller_app/model/getcategorymodel.dart';

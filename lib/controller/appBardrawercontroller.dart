@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:bhk_seller_app/Constants/utils.dart';
-import 'package:bhk_seller_app/common/Constants.dart';
+import 'package:bhk_seller_app/common/constants.dart';
 import 'package:bhk_seller_app/model/getprofilemodel.dart';
 import 'package:bhk_seller_app/model/logoutmodel.dart';
 import 'package:bhk_seller_app/repository/logoutRepository.dart';
@@ -10,7 +10,7 @@ import 'package:bhk_seller_app/routes/RoutesClass.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../common/CommonMethods.dart';
+import '../common/commonmethods.dart';
 import '../data/response/status.dart';
 import '../resources/strings.dart';
 

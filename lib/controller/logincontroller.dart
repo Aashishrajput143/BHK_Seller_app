@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:bhk_seller_app/common/Constants.dart';
+import 'package:bhk_seller_app/common/constants.dart';
 import 'package:bhk_seller_app/model/signUpModel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import '../Constants/utils.dart';
-import '../common/CommonMethods.dart';
+import '../common/commonmethods.dart';
 import '../data/response/status.dart';
 import '../repository/loginRepository.dart';
 import '../resources/strings.dart';

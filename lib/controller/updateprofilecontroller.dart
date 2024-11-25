@@ -14,7 +14,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
 
-import '../common/CommonMethods.dart';
+import '../common/commonmethods.dart';
 import '../data/response/status.dart';
 import '../resources/strings.dart';
 

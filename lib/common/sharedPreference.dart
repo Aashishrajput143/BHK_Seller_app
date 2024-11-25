@@ -1,8 +1,8 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'Constants.dart';
+import 'constants.dart';
 
-class AppPreferences{
+class AppPreferences {
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
   saveStringPreference(String key, String value) async {
@@ -34,41 +34,38 @@ class AppPreferences{
   //   await prefs.setStringList(key, value);
   // }
 
-
   getStringPreference(String key) async {
     final SharedPreferences prefs = await _prefs;
-    return prefs.getString(key)??'';
+    return prefs.getString(key) ?? '';
   }
 
   getBoolPreference(String key) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.getBool(key)??false;
+    return prefs.getBool(key) ?? false;
   }
 
   getIntPreference(String key) async {
     final SharedPreferences prefs = await _prefs;
-    return prefs.getInt(key)??-1;
+    return prefs.getInt(key) ?? -1;
   }
 
   getDoublePreference(String key) async {
     final SharedPreferences prefs = await _prefs;
-    return prefs.getDouble(key)??-1;
+    return prefs.getDouble(key) ?? -1;
   }
 
   getListPreference(String key) async {
     final SharedPreferences prefs = await _prefs;
-    return prefs.getStringList(key)??'';
+    return prefs.getStringList(key) ?? '';
   }
 
-   clearPreferences() async {
+  clearPreferences() async {
     await appPreferences.saveStringPreference(Constants.firstName, '');
     await appPreferences.saveStringPreference(Constants.lastName, '');
     await appPreferences.saveStringPreference(Constants.accessToken, '');
     await appPreferences.saveBoolPreference(Constants.keepLoggedIn, false);
     await appPreferences.saveBoolPreference(Constants.keepRememberIn, false);
-
   }
-
 
   static final AppPreferences _appPreferences = AppPreferences._internal();
   factory AppPreferences() {

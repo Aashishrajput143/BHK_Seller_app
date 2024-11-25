@@ -7,8 +7,8 @@ bool _barrierDismissible = true, _showLogs = false;
 class LoadingIndicator {
   late _Body _dialog;
 
-  LoadingIndicator(BuildContext context, {bool isDismissible = false, bool showLogs = false})
-  {
+  LoadingIndicator(BuildContext context,
+      {bool isDismissible = false, bool showLogs = false}) {
     _context = context;
     _barrierDismissible = isDismissible;
     _showLogs = showLogs;
@@ -61,9 +61,9 @@ class LoadingIndicator {
             _dismissingContext = context;
             return WillPopScope(
               onWillPop: () async => _barrierDismissible,
-              child:Dialog(
+              child: Dialog(
                   elevation: 0.0,
-                  backgroundColor:Colors.transparent,
+                  backgroundColor: Colors.transparent,
                   child: _dialog),
             );
           },
@@ -118,7 +118,7 @@ class _BodyState extends State<_Body> {
         children: <Widget>[
           SizedBox(
             child: CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.red),
+              valueColor: AlwaysStoppedAnimation<Color>(Colors.red),
             ),
             height: 40.0,
             width: 40.0,

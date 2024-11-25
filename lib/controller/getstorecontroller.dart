@@ -6,7 +6,7 @@ import 'package:bhk_seller_app/repository/storerepository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../common/CommonMethods.dart';
+import '../common/commonmethods.dart';
 import '../data/response/status.dart';
 import '../resources/strings.dart';
 

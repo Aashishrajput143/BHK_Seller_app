@@ -3,13 +3,12 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/snackbar/snackbar.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 import 'package:path_provider/path_provider.dart';
+
 class CommonMethods {
-  static String version="";
+  static String version = "";
   static Future<bool> checkInternetConnectivity() async {
     bool isConnected = await InternetConnectionChecker().hasConnection;
 /*    final Connectivity _connectivity = Connectivity();
@@ -42,35 +41,38 @@ class CommonMethods {
   }
 
   static void moveCursorToastPos(TextEditingController textField) {
-    var cursorPos =  TextSelection.fromPosition(
-         TextPosition(offset: textField.text.length));
+    var cursorPos =
+        TextSelection.fromPosition(TextPosition(offset: textField.text.length));
     textField.selection = cursorPos;
   }
 
-  static void showToast(message){
-    Get.showSnackbar(GetSnackBar(message: message.toString(),
+  static void showToast(message) {
+    Get.showSnackbar(GetSnackBar(
+      message: message.toString(),
       isDismissible: false,
       duration: const Duration(seconds: 2),
     ));
   }
 
-  static void showProgress(){
-    Get.dialog( const Center(
-      child: CircularProgressIndicator(
-        color: Colors.black,),), barrierDismissible: false,
-      useSafeArea: true,);
+  static void showProgress() {
+    Get.dialog(
+      const Center(
+        child: CircularProgressIndicator(
+          color: Colors.black,
+        ),
+      ),
+      barrierDismissible: false,
+      useSafeArea: true,
+    );
   }
 
-
-  static void inputFocusChange(BuildContext context, FocusNode currentFocus, FocusNode nextFocus) {
+  static void inputFocusChange(
+      BuildContext context, FocusNode currentFocus, FocusNode nextFocus) {
     currentFocus.unfocus();
     FocusScope.of(context).requestFocus(nextFocus);
   }
 
-  bool  isConnect=false;
-
-
-
+  bool isConnect = false;
 
   // static void showImageInPopUp(BuildContext context, String imageUrl) {
   //   showGeneralDialog(context: context,
@@ -101,10 +103,6 @@ class CommonMethods {
   //
   // }
 
-
-
-
-
   static Future<String> createFileOfPdfUrl(link) async {
     String pathPDF = "";
     try {
@@ -118,10 +116,9 @@ class CommonMethods {
       await file.writeAsBytes(bytes);
       pathPDF = file.path;
       return pathPDF;
-    }catch(e){
+    } catch (e) {
       print("error ->>>>${e.toString()}");
       return "Eror";
     }
   }
-
 }
