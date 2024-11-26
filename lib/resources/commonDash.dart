@@ -221,9 +221,9 @@ class CommonDash extends StatelessWidget {
               items: [
                 BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
                 BottomNavigationBarItem(
-                    icon: Icon(Icons.inventory_2_outlined), label: 'Orders'),
+                    icon: Icon(Icons.inventory_2), label: 'Orders'),
                 BottomNavigationBarItem(
-                    icon: Icon(Icons.local_offer_outlined), label: 'Listing'),
+                    icon: Icon(Icons.local_offer), label: 'Listing'),
                 BottomNavigationBarItem(
                     icon: Icon(Icons.assignment), label: 'Inventory'),
                 BottomNavigationBarItem(
