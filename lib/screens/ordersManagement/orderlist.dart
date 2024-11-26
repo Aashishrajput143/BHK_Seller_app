@@ -107,7 +107,8 @@ class OrderList extends StatelessWidget {
                                           Get.toNamed(RoutesClass
                                               .gotoOrderDetailsScreen());
                                         } else if (value == 'Track Order') {
-                                          // Code for canceling order
+                                          Get.toNamed(RoutesClass
+                                              .gotoOrderTrackingScreen());
                                         } else if (value == 'View Invoice') {
                                           // Code for contacting support
                                         }

@@ -1,3 +1,4 @@
+import 'package:bhk_seller_app/controller/commondashcontroller.dart';
 import 'package:bhk_seller_app/controller/dashboardcontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,6 +10,7 @@ class Salesgraph extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Dashboardcontroller controller = Get.put(Dashboardcontroller());
+    CommonDashController dashController = Get.put(CommonDashController());
     return SizedBox(
       height: 350,
       child: Column(
@@ -25,9 +27,14 @@ class Salesgraph extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Text(
-                  "View All>",
-                  style: TextStyle(fontSize: 14.0, color: Colors.brown),
+                InkWell(
+                  onTap: () {
+                    dashController.selectedScreenIndex.value = 3;
+                  },
+                  child: Text(
+                    'View All>',
+                    style: TextStyle(fontSize: 14.0, color: Colors.brown),
+                  ),
                 ),
               ],
             ),

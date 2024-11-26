@@ -1,4 +1,5 @@
 import 'package:bhk_seller_app/controller/commondashcontroller.dart';
+import 'package:bhk_seller_app/controller/inventoryscreencontroller.dart';
 import 'package:bhk_seller_app/controller/orderscreencontroller.dart';
 import 'package:bhk_seller_app/controller/productscreencontroller.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +19,7 @@ class CommonDash extends StatelessWidget {
     CommonDashController controller = Get.put(CommonDashController());
     OrderController ordercontroller = Get.put(OrderController());
     ProductController productcontroller = Get.put(ProductController());
+    InventoryController inventorycontroller = Get.put(InventoryController());
 
     return Obx(() {
       int selectedScreenIndex = controller.selectedScreenIndex.value;
@@ -28,6 +30,8 @@ class CommonDash extends StatelessWidget {
           controller.screens[selectedScreenIndex]["title"] == "HOME";
       final isProductPage =
           controller.screens[selectedScreenIndex]["title"] == "MY PRODUCTS";
+      final isInventoryPage =
+          controller.screens[selectedScreenIndex]["title"] == "Inventory";
 
       return WillPopScope(
         onWillPop: () async {
@@ -35,7 +39,7 @@ class CommonDash extends StatelessWidget {
           return false;
         },
         child: DefaultTabController(
-          length: isOrderDetailsPage
+          length: isOrderDetailsPage || isInventoryPage
               ? 2
               : isProductPage
                   ? 4
@@ -116,7 +120,7 @@ class CommonDash extends StatelessWidget {
                               fontSize: 16, color: Colors.white),
                         ),
                       )
-                    : isProductPage
+                    : isInventoryPage
                         ? AppBar(
                             flexibleSpace: Container(
                               decoration: const BoxDecoration(
@@ -124,16 +128,14 @@ class CommonDash extends StatelessWidget {
                               ),
                             ),
                             bottom: TabBar(
-                              controller: productcontroller.tabController,
+                              controller: inventorycontroller.tabController,
                               labelColor: Colors.white,
                               unselectedLabelColor: Colors.white,
                               indicatorColor: Colors.green,
                               indicatorWeight: 4,
                               tabs: [
-                                Tab(text: 'Approved'),
-                                Tab(text: 'Pending'),
-                                Tab(text: 'Cancel'),
-                                Tab(text: 'Draft'),
+                                Tab(text: 'Sales Management'),
+                                Tab(text: 'Stock Management'),
                               ],
                               labelStyle: const TextStyle(
                                 fontSize: 14,
@@ -151,22 +153,61 @@ class CommonDash extends StatelessWidget {
                                   fontSize: 16, color: Colors.white),
                             ),
                           )
-                        : AppBar(
-                            flexibleSpace: Container(
-                              decoration: const BoxDecoration(
-                                gradient: AppConstants.customGradient,
+                        : isProductPage
+                            ? AppBar(
+                                flexibleSpace: Container(
+                                  decoration: const BoxDecoration(
+                                    gradient: AppConstants.customGradient,
+                                  ),
+                                ),
+                                bottom: TabBar(
+                                  controller: productcontroller.tabController,
+                                  labelColor: Colors.white,
+                                  unselectedLabelColor: Colors.white,
+                                  indicatorColor: Colors.green,
+                                  indicatorWeight: 4,
+                                  tabs: [
+                                    Tab(text: 'Approved'),
+                                    Tab(text: 'Pending'),
+                                    Tab(text: 'Cancel'),
+                                    Tab(text: 'Draft'),
+                                  ],
+                                  labelStyle: const TextStyle(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.normal,
+                                    height: 1.7,
+                                  ),
+                                ),
+                                centerTitle: true,
+                                automaticallyImplyLeading: true,
+                                iconTheme:
+                                    const IconThemeData(color: Colors.white),
+                                title: Text(
+                                  controller.screens[selectedScreenIndex]
+                                          ["title"]
+                                      .toUpperCase(),
+                                  style: const TextStyle(
+                                      fontSize: 16, color: Colors.white),
+                                ),
+                              )
+                            : AppBar(
+                                flexibleSpace: Container(
+                                  decoration: const BoxDecoration(
+                                    gradient: AppConstants.customGradient,
+                                  ),
+                                ),
+                                centerTitle: true,
+                                automaticallyImplyLeading: true,
+                                iconTheme:
+                                    const IconThemeData(color: Colors.white),
+                                title: Text(
+                                  controller.screens[selectedScreenIndex]
+                                          ["title"]
+                                      .toUpperCase(),
+                                  style: const TextStyle(
+                                      fontSize: 16, color: Colors.white),
+                                ),
                               ),
-                            ),
-                            centerTitle: true,
-                            automaticallyImplyLeading: true,
-                            iconTheme: const IconThemeData(color: Colors.white),
-                            title: Text(
-                              controller.screens[selectedScreenIndex]["title"]
-                                  .toUpperCase(),
-                              style: const TextStyle(
-                                  fontSize: 16, color: Colors.white),
-                            ),
-                          ),
             drawer: Appbardrawer(),
             body: controller.screens[selectedScreenIndex]["screen"],
             bottomNavigationBar: BottomNavigationBar(

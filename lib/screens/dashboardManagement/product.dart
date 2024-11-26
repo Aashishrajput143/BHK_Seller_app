@@ -30,7 +30,7 @@ class ProductSaleScreen extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
-                      dashController.selectedScreenIndex.value = 1;
+                      dashController.selectedScreenIndex.value = 2;
                     },
                     child: Text(
                       'View All>',

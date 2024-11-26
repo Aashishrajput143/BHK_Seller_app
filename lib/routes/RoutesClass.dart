@@ -8,6 +8,7 @@ import 'package:bhk_seller_app/screens/brandManagement/add_brand.dart';
 import 'package:bhk_seller_app/screens/brandManagement/my_brands.dart';
 import 'package:bhk_seller_app/screens/faq.dart';
 import 'package:bhk_seller_app/screens/ordersManagement/orderdetails.dart';
+import 'package:bhk_seller_app/screens/ordersManagement/trackingorder.dart';
 import 'package:bhk_seller_app/screens/privacypolicy.dart';
 import 'package:bhk_seller_app/screens/profileManagement/edit_profile_screen.dart';
 import 'package:bhk_seller_app/screens/productManagement/add_productdetails.dart';
@@ -46,6 +47,8 @@ class RoutesClass {
   static String addproductdetails = '/addproductdetails';
   static String addproductmedia = '/addproductmedia';
   static String orders = '/orders';
+  static String ordersdetails = '/ordersdetails';
+  static String ordertracking = '/ordertracking';
   static String profile = '/profile';
   static String notifications = '/notifications';
   static String changepassword = '/changepassword';
@@ -53,7 +56,7 @@ class RoutesClass {
   static String editprofile = '/editprofile';
   static String viewprofile = '/viewprofile';
   static String productdetail = '/productdetail';
-  static String ordersdetails = '/ordersdetails';
+
   static String termscondition = '/termscondition';
   static String privacypolicy = '/privacypolicy';
   static String faq = '/faq';
@@ -77,6 +80,7 @@ class RoutesClass {
   static String gotoaddProductmediaScreen() => addproductmedia;
   static String gotoOrderScreen() => orders;
   static String gotoOrderDetailsScreen() => ordersdetails;
+  static String gotoOrderTrackingScreen() => ordertracking;
   static String gotoProfileScreen() => profile;
   static String gotoNotificationScreen() => notifications;
   static String gotoChangePasswordScreen() => changepassword;
@@ -187,6 +191,12 @@ class RoutesClass {
     GetPage(
       name: ordersdetails,
       page: () => OrderDetailsPage(),
+      transition: Transition.fade,
+      transitionDuration: const Duration(milliseconds: 300),
+    ),
+    GetPage(
+      name: ordertracking,
+      page: () => OrderTrackingPage(),
       transition: Transition.fade,
       transitionDuration: const Duration(milliseconds: 300),
     ),
