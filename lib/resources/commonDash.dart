@@ -19,8 +19,6 @@ class CommonDash extends StatelessWidget {
     OrderController ordercontroller = Get.put(OrderController());
     ProductController productcontroller = Get.put(ProductController());
 
-    //controller.selectedScreenIndex.value = index;
-
     return Obx(() {
       int selectedScreenIndex = controller.selectedScreenIndex.value;
 
@@ -179,18 +177,16 @@ class CommonDash extends StatelessWidget {
               onTap: (index) {
                 controller.selectScreen(index);
               },
-              items: const [
+              items: [
                 BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
                 BottomNavigationBarItem(
-                    icon: Icon(Icons.card_giftcard_rounded), label: 'Products'),
-
+                    icon: Icon(Icons.inventory_2_outlined), label: 'Orders'),
                 BottomNavigationBarItem(
-                    icon: Icon(Icons.view_list_outlined), label: 'Orders'),
-
+                    icon: Icon(Icons.local_offer_outlined), label: 'Listing'),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.assignment), label: 'Inventory'),
                 BottomNavigationBarItem(
                     icon: Icon(Icons.person), label: 'Profile'),
-
-                // BottomNavigationBarItem(icon: Icon(Icons.library_add), label: "List"),
               ],
             ),
           ),

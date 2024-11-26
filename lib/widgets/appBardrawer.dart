@@ -32,7 +32,7 @@ class Appbardrawer extends StatelessWidget {
                       child: InkWell(
                         onTap: () {
                           Navigator.of(context).pop();
-                          commoncontroller.selectedScreenIndex.value = 3;
+                          commoncontroller.selectedScreenIndex.value = 4;
                         },
                         child: UserAccountsDrawerHeader(
                           decoration: const BoxDecoration(
@@ -123,7 +123,7 @@ class Appbardrawer extends StatelessWidget {
                           style: TextStyle(color: Colors.black, fontSize: 15)),
                       onTap: () {
                         Navigator.of(context).pop();
-                        commoncontroller.selectedScreenIndex.value = 1;
+                        commoncontroller.selectedScreenIndex.value = 2;
                       },
                     ),
 
@@ -179,7 +179,7 @@ class Appbardrawer extends StatelessWidget {
                           style: TextStyle(color: Colors.black, fontSize: 15)),
                       onTap: () {
                         Navigator.of(context).pop();
-                        commoncontroller.selectedScreenIndex.value = 3;
+                        commoncontroller.selectedScreenIndex.value = 4;
                       },
                     ),
                     Divider(),

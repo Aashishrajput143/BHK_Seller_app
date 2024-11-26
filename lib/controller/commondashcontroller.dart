@@ -1,4 +1,5 @@
 import 'package:bhk_seller_app/screens/dashboardManagement/dashboard.dart';
+import 'package:bhk_seller_app/screens/inventorymanagement/inventory.dart';
 import 'package:bhk_seller_app/screens/ordersManagement/order_screen.dart';
 import 'package:bhk_seller_app/screens/productManagement/product_screen.dart';
 import 'package:bhk_seller_app/screens/profileManagement/main_profile.dart';
@@ -7,7 +8,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class CommonDashController extends GetxController {
-  // Use an Rx to manage the selected screen index
   var selectedScreenIndex = 0.obs;
 
   void showExitDialog() {
@@ -63,8 +63,9 @@ class CommonDashController extends GetxController {
   // List of screens and titles
   final List<Map<String, dynamic>> screens = [
     {"screen": DashBoard(), "title": "HOME"},
-    {"screen": ProductScreen(), "title": "MY PRODUCTS"},
     {"screen": OrderScreen(), "title": "ORDERS DETAILS"},
+    {"screen": ProductScreen(), "title": "MY PRODUCTS"},
+    {"screen": Inventory(), "title": "Inventory"},
     {"screen": MainProfile(), "title": "Profile & More"}
   ];
 

@@ -17,7 +17,7 @@ class ProfileController extends GetxController {
     print(index);
     switch (index) {
       case 1: //MyOrders
-        commonDashController.selectedScreenIndex.value = 2;
+        commonDashController.selectedScreenIndex.value = 1;
 
         break;
       case 2: //Mystores

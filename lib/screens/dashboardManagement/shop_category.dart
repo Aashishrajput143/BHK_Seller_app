@@ -3,8 +3,8 @@ import 'package:bhk_seller_app/resources/images.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ShopCarousel extends StatelessWidget {
-  const ShopCarousel({super.key});
+class ShopCategory extends StatelessWidget {
+  const ShopCategory({super.key});
 
   @override
   Widget build(BuildContext context) {
