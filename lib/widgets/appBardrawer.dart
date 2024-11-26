@@ -2,6 +2,7 @@ import 'package:bhk_seller_app/common/myUtils.dart';
 import 'package:bhk_seller_app/controller/appBardrawercontroller.dart';
 import 'package:bhk_seller_app/controller/commondashcontroller.dart';
 import 'package:bhk_seller_app/data/response/status.dart';
+import 'package:bhk_seller_app/resources/images.dart';
 import 'package:bhk_seller_app/routes/RoutesClass.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -161,7 +162,19 @@ class Appbardrawer extends StatelessWidget {
                     ),
                     ListTile(
                       minTileHeight: 7,
-                      leading: Icon(Icons.account_circle, color: Colors.black),
+                      leading: CircleAvatar(
+                        backgroundColor: Color.fromARGB(195, 250, 248, 238),
+                        backgroundImage: controller.getProfileModel.value.data
+                                    ?.avatar?.isNotEmpty ??
+                                false
+                            ? NetworkImage(
+                                controller.getProfileModel.value.data?.avatar ??
+                                    "")
+                            : AssetImage(
+                                AppImages.profile,
+                              ),
+                        radius: 14.0,
+                      ),
                       title: Text('Account Info',
                           style: TextStyle(color: Colors.black, fontSize: 15)),
                       onTap: () {
