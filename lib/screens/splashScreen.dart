@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:bhk_seller_app/controller/splashController.dart';
+import 'package:bhk_seller_app/controller/splashcontroller.dart';
 import 'package:bhk_seller_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
