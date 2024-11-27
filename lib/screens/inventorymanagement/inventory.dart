@@ -1,4 +1,5 @@
 import 'package:bhk_seller_app/controller/inventoryscreencontroller.dart';
+import 'package:bhk_seller_app/screens/inventorymanagement/saleslisting.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,7 +18,7 @@ class Inventory extends StatelessWidget {
             child: TabBarView(
               controller: controller.tabController,
               children: [
-                Center(child: Text("No Sales Found")),
+                SalesList(),
                 Center(child: Text("No Stock Found")),
               ],
             ),

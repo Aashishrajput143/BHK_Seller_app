@@ -16,6 +16,8 @@ class AppImages {
   static get firstbrand => 'assets/images/firstbrand.gif';
   static get storeimage => 'assets/images/storeimage.png';
   static get firststock => 'assets/images/firststock.gif';
+  static get loader => 'assets/images/loader.gif';
+  static get loader1 => 'assets/images/loader1.gif';
 
   static final AppImages _appImages = AppImages._internal();
   factory AppImages() {

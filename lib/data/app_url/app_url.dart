@@ -3,9 +3,10 @@ class AppUrl {
   //static const String baseUrl = 'https://php8.singsys.net/gis/server/public/api';
 
   //Staging
-  static const String baseUrl = 'http://192.168.31.204:8087';
-  static const String baseUrl2 = 'http://192.168.31.204:8000';
-  static const String baseUrl3 = 'http://192.168.31.204:8086';
+  static const String baseUrl = 'http://192.168.31.205:8087';
+  static const String baseUrl2 = 'http://192.168.31.205:8000';
+  static const String baseUrl3 = 'http://192.168.31.205:8086';
+  static const String baseUrl4 = 'http://192.168.31.205:8088';
 
   //Authenication
   static String register = '$baseUrl/api/user/register';
@@ -28,6 +29,7 @@ class AppUrl {
   static String orders = '$baseUrl/api/order/totalorder';
   static String todayorder = '$baseUrl/api/order/todayorder';
   static String salesgraph = '$baseUrl/api/order/totalsales?year=';
+  static String color = '$baseUrl4/api/attribute/getattribute';
 
   //post
   static String addbrand = '$baseUrl/api/brand/add';

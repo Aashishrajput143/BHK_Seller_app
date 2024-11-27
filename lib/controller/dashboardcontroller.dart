@@ -26,6 +26,22 @@ class Dashboardcontroller extends GetxController {
   int currentYear = DateTime.now().year;
   RxDouble scrollPosition = 0.0.obs;
   RxDouble maxScrollExtent = 0.0.obs;
+  var dropdownmonth = 'Last 7 days'.obs;
+  var dropdownsold = 'Product sales'.obs;
+
+  List<String> daysfilter = [
+    'Last 7 days',
+    'Last 30 days',
+    'Last 12 months',
+    'This week',
+    'This month',
+    'Year to date',
+  ];
+
+  List<String> salesfilter = [
+    'Product sales',
+    'Units sold',
+  ];
 
   void updateScrollPosition(double position, double maxExtent) {
     if (position == 0.0) {
@@ -423,56 +439,6 @@ class Dashboardcontroller extends GetxController {
     } else {
       CommonMethods.showToast(appStrings.weUnableCheckData);
     }
-  }
-
-  Widget buildDashboardCard({
-    required Color color,
-    required IconData icon,
-    required String amount,
-    required String label,
-  }) {
-    return Container(
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: InkWell(
-        onTap: () {
-          // Action when tapped
-        },
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                icon,
-                color: Colors.white,
-                size: 40,
-              ),
-              SizedBox(height: 16),
-              Text(
-                amount,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(height: 8),
-              Text(
-                label,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 12,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
   }
 
   Future<void> dashboardRefresh() async {

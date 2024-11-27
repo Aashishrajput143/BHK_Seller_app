@@ -448,7 +448,7 @@ class AddProductPage extends ParentWidget {
                       ),
                       child: DropdownButton2<String>(
                         hint: Text(controller.getProductDetailsModel.value.data
-                                ?.category?.categoryName ??
+                                ?.store?.storeName ??
                             "Select a Store"),
                         style: TextStyle(fontSize: 14, color: Colors.black),
                         value:

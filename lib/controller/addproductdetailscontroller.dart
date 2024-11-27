@@ -233,25 +233,27 @@ class AddProductDetailsController extends GetxController {
   }
 
   Color getColor(String color) {
-    switch (color) {
-      case 'Red':
+    switch (color.toLowerCase()) {
+      case 'red':
         return Colors.red;
-      case 'Green':
+      case 'green':
         return Colors.green;
-      case 'Blue':
+      case 'blue':
         return Colors.blue;
-      case 'Yellow':
+      case 'yellow':
         return Colors.yellow;
-      case 'Purple':
+      case 'purple':
         return Colors.purple;
-      case 'Pink':
+      case 'pink':
         return Colors.pink;
-      case 'Orange':
+      case 'orange':
         return Colors.orange;
-      case 'Black':
+      case 'black':
         return Colors.black;
-      case 'White':
+      case 'white':
         return Colors.white;
+      case 'skyblue':
+        return Colors.lightBlue;
       default:
         return Colors.black;
     }

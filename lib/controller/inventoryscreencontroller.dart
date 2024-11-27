@@ -1,10 +1,13 @@
 import 'package:bhk_seller_app/Constants/utils.dart';
+import 'package:bhk_seller_app/controller/saleslistingcontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class InventoryController extends GetxController
     with GetSingleTickerProviderStateMixin {
   late TabController tabController;
+  SalesListingController saleslistingcontroller =
+      Get.put(SalesListingController());
 
   @override
   void onInit() {
@@ -14,6 +17,7 @@ class InventoryController extends GetxController
       Utils.closeKeyboard(Get.context!);
 
       if (tabController.index == 0) {
+        saleslistingcontroller.getSalesApi();
         print("active");
       } else if (tabController.index == 1) {
         print("jjjj");

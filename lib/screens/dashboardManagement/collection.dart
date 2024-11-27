@@ -14,8 +14,8 @@ class Collections extends StatelessWidget {
     double h = MediaQuery.of(context).size.height;
     scrollController.addListener(() {
       double position = 0;
-      if (scrollController.position.pixels < 14) {
-        position = 15;
+      if (scrollController.position.pixels < 38) {
+        position = 40;
       } else {
         position = scrollController.position.pixels;
       }
@@ -310,7 +310,7 @@ class Collections extends StatelessWidget {
                   maxSteps: 50,
                   progressType: LinearProgressBar.progressTypeLinear,
                   currentStep: controller.scrollPosition < 15
-                      ? 1
+                      ? 2
                       : (progress * 50).toInt(),
                   progressColor: const Color.fromARGB(255, 193, 94, 58),
                   backgroundColor: const Color.fromARGB(255, 252, 234, 208),

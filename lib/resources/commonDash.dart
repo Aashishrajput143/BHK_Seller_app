@@ -134,7 +134,7 @@ class CommonDash extends StatelessWidget {
                               indicatorColor: Colors.green,
                               indicatorWeight: 4,
                               tabs: [
-                                Tab(text: 'Sales Management'),
+                                Tab(text: 'Sales Statistics'),
                                 Tab(text: 'Stock Management'),
                               ],
                               labelStyle: const TextStyle(
