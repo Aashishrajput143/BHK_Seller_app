@@ -1,5 +1,5 @@
 import 'package:bhk_seller_app/Constants/constants.dart';
-import 'package:bhk_seller_app/controller/registrationController.dart';
+import 'package:bhk_seller_app/controller/registrationcontroller.dart';
 import 'package:bhk_seller_app/main.dart';
 import 'package:bhk_seller_app/resources/strings.dart';
 import 'package:flutter/material.dart';

@@ -2,7 +2,9 @@ import 'dart:convert';
 
 import 'package:bhk_seller_app/Constants/utils.dart';
 import 'package:bhk_seller_app/model/addproductmodel.dart';
+import 'package:bhk_seller_app/model/colormodel.dart';
 import 'package:bhk_seller_app/model/productdetailsmodel.dart';
+import 'package:bhk_seller_app/repository/attributerepository.dart';
 import 'package:bhk_seller_app/repository/productrepository.dart';
 import 'package:bhk_seller_app/routes/RoutesClass.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +16,7 @@ import '../resources/strings.dart';
 
 class AddProductDetailsController extends GetxController {
   final repository = ProductRepository();
+  final attributerepository = AttributeRepository();
   int? productId;
   bool producteditId = false;
 
@@ -26,6 +29,7 @@ class AddProductDetailsController extends GetxController {
     if (producteditId == true) {
       getproductDetailsApi(productId);
     }
+    getColorApi();
   }
 
   var netweightController = TextEditingController().obs;
@@ -38,7 +42,7 @@ class AddProductDetailsController extends GetxController {
   var lengthController = TextEditingController().obs;
   var breadthController = TextEditingController().obs;
   var heightController = TextEditingController().obs;
-  var colorEditingController = TextEditingController().obs;
+  var colorController = TextEditingController().obs;
 
   var dropdownValues = 'gm'.obs;
   var dropdownValue = 'cm'.obs;
@@ -46,7 +50,8 @@ class AddProductDetailsController extends GetxController {
   bool gm = false;
   var clickNext = false.obs;
 
-  var selectedColor = 'Red'.obs;
+  var selectedColor = Rxn<String>();
+  var selectedColorcheck = "blue".obs;
 
   var sellingprice = 0.0.obs;
 
@@ -266,14 +271,48 @@ class AddProductDetailsController extends GetxController {
   var isProductAdded = false.obs;
   final rxRequestStatus = Status.COMPLETED.obs;
   final addProductModel = AddProductModel().obs;
+  final getColorModel = GetColorsModel().obs;
   final getProductDetailsModel = ProductDetailsModel().obs;
   void setError(String value) => error.value = value;
   RxString error = ''.obs;
   void setRxRequestStatus(Status value) => rxRequestStatus.value = value;
   // void setAddProductnData(SignUpModel value) => addproductData.value = value;
   void setProductdata(AddProductModel value) => addProductModel.value = value;
+  void setColordata(GetColorsModel value) => getColorModel.value = value;
   void setGetProductDetailsdata(ProductDetailsModel value) =>
       getProductDetailsModel.value = value;
+
+  Future<void> getColorApi() async {
+    var connection = await CommonMethods.checkInternetConnectivity();
+    Utils.printLog("CheckInternetConnection===> ${connection.toString()}");
+
+    if (connection == true) {
+      setRxRequestStatus(Status.LOADING);
+
+      attributerepository.getcolorApi().then((value) {
+        setRxRequestStatus(Status.COMPLETED);
+        setColordata(value);
+        CommonMethods.showToast(value.message);
+        Utils.printLog("Response===> ${value.toString()}");
+        print("redirect");
+      }).onError((error, stackTrace) {
+        setError(error.toString());
+        setRxRequestStatus(Status.ERROR);
+        if (error.toString().contains("{")) {
+          var errorResponse = json.decode(error.toString());
+          print("errrrorrr=====>$errorResponse");
+          if (errorResponse is Map || errorResponse.containsKey('message')) {
+            CommonMethods.showToast(errorResponse['message']);
+          } else {
+            CommonMethods.showToast("An unexpected error occurred.");
+          }
+        }
+        Utils.printLog("Error===> ${error.toString()}");
+      });
+    } else {
+      CommonMethods.showToast(appStrings.weUnableCheckData);
+    }
+  }
 
   Future<void> addProductVariantApi(context, productId) async {
     var connection = await CommonMethods.checkInternetConnectivity();
@@ -345,13 +384,14 @@ class AddProductDetailsController extends GetxController {
         print(splitValues[3]);
         dropdownValues.value = splitweight[1];
         dropdownValue.value = splitValues[3];
-        selectedColor.value = getProductDetailsModel
+        selectedColorcheck.value = getProductDetailsModel
                 .value
                 .data
                 ?.variants?[
                     (getProductDetailsModel.value.data?.variants?.length ?? 0) -
                         1]
-                .color ??
+                .color
+                ?.toLowerCase() ??
             "";
         sellingprice.value = double.parse(getProductDetailsModel
                 .value

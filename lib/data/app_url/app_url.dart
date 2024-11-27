@@ -29,7 +29,7 @@ class AppUrl {
   static String orders = '$baseUrl/api/order/totalorder';
   static String todayorder = '$baseUrl/api/order/todayorder';
   static String salesgraph = '$baseUrl/api/order/totalsales?year=';
-  static String color = '$baseUrl4/api/attribute/getattribute';
+  static String color = '$baseUrl4/api/attribute/getattribute/color';
 
   //post
   static String addbrand = '$baseUrl/api/brand/add';

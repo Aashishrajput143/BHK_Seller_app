@@ -202,11 +202,14 @@ class AddProductDetails extends ParentWidget {
                                   borderRadius: BorderRadius.circular(8.0),
                                 ),
                                 child: DropdownButton2<String>(
+                                  hint: Text("Select a Colour"),
                                   style: TextStyle(
                                       fontSize: 14, color: Colors.black),
-                                  value: controller.selectedColor.value,
+                                  value: controller.selectedColorcheck.value,
                                   alignment: Alignment.center,
-                                  items: controller.colors.map((String color) {
+                                  items: controller
+                                      .getColorModel.value.data?[0].value
+                                      ?.map((String color) {
                                     return DropdownMenuItem(
                                       alignment: AlignmentDirectional.center,
                                       value: color,
@@ -226,6 +229,8 @@ class AddProductDetails extends ParentWidget {
                                   onChanged: (newValue) {
                                     controller.selectedColor.value =
                                         newValue ?? "";
+                                    controller.selectedColorcheck.value =
+                                        newValue ?? "";
                                   },
                                   dropdownStyleData: DropdownStyleData(
                                     maxHeight:
@@ -241,7 +246,7 @@ class AddProductDetails extends ParentWidget {
                                   ),
                                   dropdownSearchData: DropdownSearchData(
                                     searchController:
-                                        controller.colorEditingController.value,
+                                        controller.colorController.value,
                                     searchInnerWidgetHeight: 50,
                                     searchInnerWidget: Container(
                                       height: 50,
@@ -254,8 +259,8 @@ class AddProductDetails extends ParentWidget {
                                       child: TextFormField(
                                         expands: true,
                                         maxLines: null,
-                                        controller: controller
-                                            .colorEditingController.value,
+                                        controller:
+                                            controller.colorController.value,
                                         decoration: InputDecoration(
                                           isDense: true,
                                           contentPadding:
@@ -291,8 +296,7 @@ class AddProductDetails extends ParentWidget {
                                   //This to clear the search value when you close the menu
                                   onMenuStateChange: (isOpen) {
                                     if (!isOpen) {
-                                      controller.colorEditingController.value
-                                          .clear();
+                                      controller.colorController.value.clear();
                                     }
                                   },
                                   isExpanded: true,
@@ -1042,8 +1046,8 @@ class AddProductDetails extends ParentWidget {
                                           .dropdownValues.value.isNotEmpty &&
                                       controller.heightController.value.text
                                           .isNotEmpty &&
-                                      controller
-                                          .selectedColor.value.isNotEmpty &&
+                                      controller.selectedColorcheck.value
+                                          .isNotEmpty &&
                                       controller.sellingprice.value != 0.0) {
                                     controller.addvariants(context);
                                     controller.clickNext.value = false;
@@ -1099,8 +1103,8 @@ class AddProductDetails extends ParentWidget {
                                           .dropdownValues.value.isNotEmpty &&
                                       controller.heightController.value.text
                                           .isNotEmpty &&
-                                      controller
-                                          .selectedColor.value.isNotEmpty &&
+                                      controller.selectedColorcheck.value
+                                          .isNotEmpty &&
                                       controller.sellingprice.value != 0.0) {
                                     controller.addvariants(context);
                                     controller.clickNext.value = true;
