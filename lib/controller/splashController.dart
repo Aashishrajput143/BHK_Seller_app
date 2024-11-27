@@ -32,9 +32,9 @@ class SplashController extends GetxController
             }
           else
             {
-              // Timer(const Duration(seconds: 3),
-              //     () => Get.offAllNamed(RoutesClass.gotoLoginScreen()))
-              {Get.offAllNamed(RoutesClass.gotoLoginScreen())}
+              Future.delayed(const Duration(seconds: 5), () {
+                Get.offAllNamed(RoutesClass.gotoLoginScreen());
+              }),
             }
         });
   }
