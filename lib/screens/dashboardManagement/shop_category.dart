@@ -35,22 +35,41 @@ class ShopCategory extends StatelessWidget {
                     padding: EdgeInsets.only(right: 13, left: 3),
                     child: Column(
                       children: [
-                        CircleAvatar(
-                          backgroundImage: controller
-                                      .getCategoryModel
-                                      .value
-                                      .data
-                                      ?.docs?[index]
-                                      .categoryLogo
-                                      ?.isNotEmpty ??
-                                  false
-                              ? NetworkImage(controller.getCategoryModel.value
-                                      .data?.docs?[index].categoryLogo ??
-                                  "")
-                              : AssetImage(AppImages
-                                  .product4), // Default image if logo not found
-                          radius: 35,
-                        ),
+                        controller.getCategoryModel.value.data?.docs?[index]
+                                    .categoryLogo?.isNotEmpty ??
+                                true
+                            ? CircleAvatar(
+                                backgroundColor: Colors.grey.shade300,
+                                radius: 35,
+                                child: ClipOval(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(
+                                        0.0), // Padding inside the CircleAvatar
+                                    child: Image.network(
+                                      width: 70,
+                                      height: 70,
+                                      controller.getCategoryModel.value.data
+                                              ?.docs?[index].categoryLogo ??
+                                          "",
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                              )
+                            : CircleAvatar(
+                                backgroundColor: Colors.grey.shade300,
+                                radius: 35,
+                                child: ClipOval(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(
+                                        10.0), // Padding inside the CircleAvatar
+                                    child: Image.asset(
+                                      AppImages.product3,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                              ),
                         const SizedBox(height: 5),
                         Text(
                           controller.getCategoryModel.value.data?.docs?[index]

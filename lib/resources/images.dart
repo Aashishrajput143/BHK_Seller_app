@@ -1,23 +1,22 @@
 class AppImages {
   static get logo => 'assets/images/logo.png';
-  static get product1 => 'assets/images/Product1.jpg';
-  static get product2 => 'assets/images/Product2.jpg';
+  static get product1 => 'assets/images/Product1.png';
+  static get product2 => 'assets/images/Product2.png';
   static get product3 => 'assets/images/Product3.png';
-  static get product4 => 'assets/images/Product4.jpeg';
-  static get product5 => 'assets/images/Product5.jpeg';
-  static get product6 => 'assets/images/Product6.jpeg';
-  static get product7 => 'assets/images/Product7.jpeg';
-  static get product8 => 'assets/images/Product8.jpg';
+  static get product4 => 'assets/images/Product4.png';
+  static get product5 => 'assets/images/Product5.png';
+  static get product6 => 'assets/images/Product6.png';
+  static get product7 => 'assets/images/Product7.png';
+  static get product8 => 'assets/images/Product8.png';
   static get googleicon => 'assets/images/google_icon.png';
   static get bhkbackground => 'assets/images/BHKbacground.jpg';
   static get profile => 'assets/images/Profile.png';
-  static get myproductcart => 'assets/images/myproductcart.gif';
+  static get myproductcart => 'assets/images/myproductcart.png';
   static get orderscreen => 'assets/images/orderscreen.gif';
-  static get firstbrand => 'assets/images/firstbrand.gif';
+  static get firstbrand => 'assets/images/firstbrand.png';
   static get storeimage => 'assets/images/storeimage.png';
-  static get firststock => 'assets/images/firststock.gif';
-  static get loader => 'assets/images/loader.gif';
-  static get loader1 => 'assets/images/loader1.gif';
+  static get firststock => 'assets/images/firststock.png';
+  static get loaderouter => 'assets/images/splashscreenouter.png';
 
   static final AppImages _appImages = AppImages._internal();
   factory AppImages() {

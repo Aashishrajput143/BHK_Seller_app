@@ -15,7 +15,8 @@ import '../repository/loginRepository.dart';
 import '../resources/strings.dart';
 import '../routes/RoutesClass.dart';
 
-class OtpController extends GetxController {
+class OtpController extends GetxController
+    with GetSingleTickerProviderStateMixin {
   final _api = OtpRepository();
   final _apiLogin = LoginRepository();
   var checkInternetValue = false.obs();
@@ -24,6 +25,8 @@ class OtpController extends GetxController {
   var otpController = TextEditingController().obs;
   var otp = "".obs;
   final logInData = SignUpModel().obs;
+
+  late final AnimationController animationController;
 
   void setLoginData(SignUpModel value) => logInData.value = value;
   final rxRequestStatus = Status.COMPLETED.obs;
@@ -53,6 +56,10 @@ class OtpController extends GetxController {
     if (Get.arguments['countryCode'] != null) {
       countryCode.value = Get.arguments['countryCode'];
     }
+    animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 6),
+    )..repeat();
     print("${referenceId.value} ${identity.value} ${countryCode.value}");
   }
 
@@ -158,5 +165,11 @@ class OtpController extends GetxController {
     //}
     Get.offNamed(RoutesClass.gotoDashboardScreen(),
         arguments: {"isDialog": true});
+  }
+
+  @override
+  void onClose() {
+    animationController.dispose();
+    super.onClose();
   }
 }

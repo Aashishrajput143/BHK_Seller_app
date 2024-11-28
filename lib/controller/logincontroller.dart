@@ -14,12 +14,24 @@ import '../repository/loginRepository.dart';
 import '../resources/strings.dart';
 import '../routes/RoutesClass.dart';
 
-class LoginController extends GetxController {
+class LoginController extends GetxController
+    with GetSingleTickerProviderStateMixin {
   var emailController = TextEditingController().obs;
   var phoneController = TextEditingController().obs;
   var passwordController = TextEditingController().obs;
   var countryCode = "".obs;
   ValueNotifier userCredential = ValueNotifier('');
+
+  late final AnimationController animationController;
+  @override
+  void onInit() {
+    super.onInit();
+    animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 6),
+    )..repeat();
+  }
+
   final _api = LoginRepository();
   var checkInternetValue = false.obs();
   var phoneNumberFocusNode = FocusNode().obs;
@@ -128,5 +140,11 @@ class LoginController extends GetxController {
       if (phoneController.value.text.isNotEmpty)
         "countryCode": countryCode.value
     });
+  }
+
+  @override
+  void onClose() {
+    animationController.dispose();
+    super.onClose();
   }
 }

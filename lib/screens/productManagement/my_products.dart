@@ -385,14 +385,14 @@ class MyProducts extends StatelessWidget {
                                     color: Colors.blue[900],
                                   ),
                                 ),
-                                SizedBox(height: 50),
+                                SizedBox(height: 100),
                                 Image.asset(
                                   AppImages.myproductcart,
-                                  height: 250,
-                                  width: 220,
-                                  fit: BoxFit.fill,
+                                  height: 120,
+                                  width: 130,
+                                  fit: BoxFit.contain,
                                 ),
-                                SizedBox(height: 50),
+                                SizedBox(height: 120),
                                 Text(
                                   'Add Your First Product',
                                   style: TextStyle(

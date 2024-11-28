@@ -1,4 +1,5 @@
 import 'package:bhk_seller_app/Constants/utils.dart';
+import 'package:bhk_seller_app/controller/ordercontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,8 +13,10 @@ class OrderController extends GetxController
     tabController = TabController(vsync: this, length: 2);
     tabController.addListener(() {
       Utils.closeKeyboard(Get.context!);
+      GetOrderController controller = Get.put(GetOrderController());
 
       if (tabController.index == 0) {
+        controller.getOrdersApi();
         print("active");
       } else if (tabController.index == 1) {
         print("jjjj");

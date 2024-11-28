@@ -1,6 +1,9 @@
+import 'dart:math';
+
 import 'package:bhk_seller_app/common/myUtils.dart';
 import 'package:bhk_seller_app/controller/otpController.dart';
 import 'package:bhk_seller_app/main.dart';
+import 'package:bhk_seller_app/resources/images.dart';
 import 'package:bhk_seller_app/resources/inputformatter.dart';
 import 'package:bhk_seller_app/resources/strings.dart';
 import 'package:bhk_seller_app/routes/RoutesClass.dart';
@@ -36,10 +39,52 @@ class Otpscreen extends ParentWidget {
                         child: SingleChildScrollView(
                           child: Column(
                             children: [
-                              Image.asset(
-                                'assets/images/loader1.gif',
-                                width: 150,
-                                height: 150,
+                              Container(
+                                width:
+                                    150, // Adjust the width of the rectangle as needed
+                                height:
+                                    150, // Adjust the height of the rectangle as needed
+                                decoration: BoxDecoration(
+                                  color: Colors.white, // White background color
+                                  borderRadius: BorderRadius.circular(
+                                      8), // Rounded corners (optional)
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.black.withOpacity(
+                                          0.1), // Soft shadow effect
+                                      blurRadius: 10,
+                                      offset: Offset(0, 4),
+                                    ),
+                                  ],
+                                ),
+                                child: Stack(
+                                  alignment: Alignment.center,
+                                  children: [
+                                    AnimatedBuilder(
+                                      animation: controller.animationController,
+                                      builder: (context, child) {
+                                        return Transform.rotate(
+                                          angle: controller
+                                                  .animationController.value *
+                                              2 *
+                                              pi,
+                                          child: child,
+                                        );
+                                      },
+                                      child: Image.asset(
+                                        AppImages.loaderouter,
+                                        width: 100,
+                                        height: 100,
+                                        fit: BoxFit.contain,
+                                      ),
+                                    ),
+                                    Image.asset(
+                                      AppImages.logo,
+                                      width: 40,
+                                      height: 40,
+                                    ),
+                                  ],
+                                ),
                               ),
                               const SizedBox(
                                 height: 25,

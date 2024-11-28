@@ -58,8 +58,8 @@ class Appbardrawer extends StatelessWidget {
                                 fontWeight: FontWeight.bold),
                           ),
                           accountEmail: Text(
-                              controller.getProfileModel.value.data?.email
-                                          ?.isNotEmpty ??
+                              controller.getProfileModel.value.data?.phoneNo
+                                          ?.isEmpty ??
                                       true
                                   ? controller
                                           .getProfileModel.value.data?.email ??

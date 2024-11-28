@@ -68,8 +68,7 @@ class MainProfile extends StatelessWidget {
                       height: 5,
                     ),
                     Text(
-                      controller.getProfileModel.value.data?.email
-                                  ?.isNotEmpty ??
+                      controller.getProfileModel.value.data?.phoneNo?.isEmpty ??
                               true
                           ? controller.getProfileModel.value.data?.email ??
                               "User@gmail.com"

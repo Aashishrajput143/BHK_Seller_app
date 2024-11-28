@@ -152,17 +152,15 @@ class AddProductPage extends ParentWidget {
                             ),
                           );
                         }).toList(),
-                        onChanged: (controller.producteditId == true)
-                            ? null
-                            : (String? newValue) {
-                                controller.selectedsubcategory.value = null;
-                                controller.selectedcategory.value =
-                                    newValue ?? "";
-                                controller.categoryid.value = newValue!;
-                                controller.getSubCategoryApi(
-                                    controller.categoryid.value);
-                                print(controller.categoryid.value);
-                              },
+                        onChanged: (String? newValue) {
+                          controller.selectedsubcategory.value = null;
+                          controller.selectedcategory.value = newValue ?? "";
+                          controller.categoryid.value = newValue!;
+                          controller
+                              .getSubCategoryApi(controller.categoryid.value);
+                          controller.categorybool = true;
+                          print(controller.categoryid.value);
+                        },
                         dropdownStyleData: DropdownStyleData(
                           maxHeight: MediaQuery.of(context).size.height * .25,
                           width: MediaQuery.of(context).size.width * .918,
@@ -274,14 +272,12 @@ class AddProductPage extends ParentWidget {
                                     ),
                                   );
                                 }).toList(),
-                                onChanged: (controller.producteditId == true)
-                                    ? null
-                                    : (String? newValue) {
-                                        controller.selectedsubcategory.value =
-                                            newValue ?? "";
-                                        controller.subcategoryid.value =
-                                            newValue!;
-                                      },
+                                onChanged: (String? newValue) {
+                                  controller.selectedsubcategory.value =
+                                      newValue ?? "";
+                                  controller.subcategoryid.value = newValue!;
+                                  controller.subcategorybool = true;
+                                },
                                 dropdownStyleData: DropdownStyleData(
                                   maxHeight:
                                       MediaQuery.of(context).size.height * .25,
@@ -333,13 +329,12 @@ class AddProductPage extends ParentWidget {
                                     ),
                                   );
                                 }).toList(),
-                                onChanged: (controller.producteditId == true)
-                                    ? null
-                                    : (String? newValue) {
-                                        controller.selectedbrand.value =
-                                            newValue ?? "";
-                                        controller.brandid.value = newValue!;
-                                      },
+                                onChanged: (String? newValue) {
+                                  controller.selectedbrand.value =
+                                      newValue ?? "";
+                                  controller.brandid.value = newValue!;
+                                  controller.brandbool = true;
+                                },
                                 dropdownStyleData: DropdownStyleData(
                                   maxHeight:
                                       MediaQuery.of(context).size.height * .25,

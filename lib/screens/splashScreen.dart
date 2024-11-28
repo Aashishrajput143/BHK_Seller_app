@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:bhk_seller_app/controller/splashcontroller.dart';
 import 'package:bhk_seller_app/main.dart';
+import 'package:bhk_seller_app/resources/images.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -30,11 +31,11 @@ class SplashScreen extends ParentWidget {
                     );
                   },
                   child: Image.asset(
-                    'assets/images/splashscreenouter.png',
+                    AppImages.loaderouter,
                   ),
                 ),
                 Image.asset(
-                  'assets/images/logo.png',
+                  AppImages.logo,
                   width: 70,
                   height: 70,
                 ),

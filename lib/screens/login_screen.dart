@@ -1,5 +1,8 @@
+import 'dart:math';
+
 import 'package:bhk_seller_app/common/myUtils.dart';
 import 'package:bhk_seller_app/controller/logincontroller.dart';
+import 'package:bhk_seller_app/resources/images.dart';
 import 'package:bhk_seller_app/resources/inputformatter.dart';
 import 'package:bhk_seller_app/resources/strings.dart';
 import 'package:flutter/material.dart';
@@ -50,10 +53,35 @@ class LoginScreen extends StatelessWidget {
                                             bottomRight: Radius.circular(150),
                                             bottomLeft: Radius.circular(150))),
                                     child: Center(
-                                      child: Image.asset(
-                                        Constant.backss,
-                                        height: 125.0,
-                                        width: 125.0,
+                                      child: Stack(
+                                        alignment: Alignment.center,
+                                        children: [
+                                          AnimatedBuilder(
+                                            animation:
+                                                controller.animationController,
+                                            builder: (context, child) {
+                                              return Transform.rotate(
+                                                angle: controller
+                                                        .animationController
+                                                        .value *
+                                                    2 *
+                                                    pi,
+                                                child: child,
+                                              );
+                                            },
+                                            child: Image.asset(
+                                              AppImages.loaderouter,
+                                              width: 100,
+                                              height: 100,
+                                              fit: BoxFit.contain,
+                                            ),
+                                          ),
+                                          Image.asset(
+                                            AppImages.logo,
+                                            width: 40,
+                                            height: 40,
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ),
@@ -441,7 +469,7 @@ class LoginScreen extends StatelessWidget {
                                           height: MediaQuery.of(context)
                                                   .size
                                                   .height *
-                                              0.09,
+                                              0.06,
                                         ),
                                         SizedBox(
                                           height: MediaQuery.of(context)

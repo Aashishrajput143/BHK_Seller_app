@@ -25,6 +25,9 @@ class AddProductGeneralController extends GetxController {
 
   bool gm = false;
   bool storebool = false;
+  bool categorybool = false;
+  bool subcategorybool = false;
+  bool brandbool = false;
   var clickNext = false.obs;
 
   var selectedcategory = Rxn<String>();
@@ -96,10 +99,9 @@ class AddProductGeneralController extends GetxController {
         if (producteditId == true) "productId": productId,
         "product_name": nameController.value.text,
         "description": detaileddescriptionController.value.text,
-        if (producteditId != true) "categoryId": int.parse(categoryid.value),
-        if (producteditId != true)
-          "subcategory": int.parse(subcategoryid.value),
-        if (producteditId != true) "brandId": int.parse(brandid.value),
+        if (storebool == true) "categoryId": int.parse(categoryid.value),
+        if (storebool == true) "subcategory": int.parse(subcategoryid.value),
+        if (storebool == true) "brandId": int.parse(brandid.value),
         if (storebool == true) "storeId": int.parse(storeid.value),
         /*"variants": [
           {

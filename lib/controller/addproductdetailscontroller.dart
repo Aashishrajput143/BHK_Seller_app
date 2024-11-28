@@ -4,6 +4,7 @@ import 'package:bhk_seller_app/Constants/utils.dart';
 import 'package:bhk_seller_app/model/addproductmodel.dart';
 import 'package:bhk_seller_app/model/colormodel.dart';
 import 'package:bhk_seller_app/model/productdetailsmodel.dart';
+import 'package:bhk_seller_app/model/sizemodel.dart';
 import 'package:bhk_seller_app/repository/attributerepository.dart';
 import 'package:bhk_seller_app/repository/productrepository.dart';
 import 'package:bhk_seller_app/routes/RoutesClass.dart';
@@ -30,19 +31,21 @@ class AddProductDetailsController extends GetxController {
       getproductDetailsApi(productId);
     }
     getColorApi();
+    getSizeApi();
   }
 
   var netweightController = TextEditingController().obs;
   var descriptionController = TextEditingController().obs;
   var quantityController = TextEditingController().obs;
   var materialController = TextEditingController().obs;
-  var sizeController = TextEditingController().obs;
   var mrpController = TextEditingController().obs;
   var discountController = TextEditingController().obs;
   var lengthController = TextEditingController().obs;
   var breadthController = TextEditingController().obs;
   var heightController = TextEditingController().obs;
+
   var colorController = TextEditingController().obs;
+  var sizeController = TextEditingController().obs;
 
   var dropdownValues = 'gm'.obs;
   var dropdownValue = 'cm'.obs;
@@ -52,6 +55,9 @@ class AddProductDetailsController extends GetxController {
 
   var selectedColor = Rxn<String>();
   var selectedColorcheck = "blue".obs;
+
+  var selectedSize = Rxn<String>();
+  var selectedSizecheck = "xs".obs;
 
   var sellingprice = 0.0.obs;
 
@@ -209,7 +215,7 @@ class AddProductDetailsController extends GetxController {
         "sellingPrice": sellingprice.value,
         "mrp": double.parse(mrpController.value.text),
         "color": selectedColor.value,
-        "size": sizeController.value.text,
+        "size": selectedSize.value,
         "tax": 0.00,
         "weight": weight,
         "quantity": int.parse(quantityController.value.text),
@@ -272,6 +278,7 @@ class AddProductDetailsController extends GetxController {
   final rxRequestStatus = Status.COMPLETED.obs;
   final addProductModel = AddProductModel().obs;
   final getColorModel = GetColorsModel().obs;
+  final getSizeModel = GetSizeModel().obs;
   final getProductDetailsModel = ProductDetailsModel().obs;
   void setError(String value) => error.value = value;
   RxString error = ''.obs;
@@ -279,6 +286,7 @@ class AddProductDetailsController extends GetxController {
   // void setAddProductnData(SignUpModel value) => addproductData.value = value;
   void setProductdata(AddProductModel value) => addProductModel.value = value;
   void setColordata(GetColorsModel value) => getColorModel.value = value;
+  void setSizedata(GetSizeModel value) => getSizeModel.value = value;
   void setGetProductDetailsdata(ProductDetailsModel value) =>
       getProductDetailsModel.value = value;
 
@@ -292,6 +300,38 @@ class AddProductDetailsController extends GetxController {
       attributerepository.getcolorApi().then((value) {
         setRxRequestStatus(Status.COMPLETED);
         setColordata(value);
+        CommonMethods.showToast(value.message);
+        Utils.printLog("Response===> ${value.toString()}");
+        print("redirect");
+      }).onError((error, stackTrace) {
+        setError(error.toString());
+        setRxRequestStatus(Status.ERROR);
+        if (error.toString().contains("{")) {
+          var errorResponse = json.decode(error.toString());
+          print("errrrorrr=====>$errorResponse");
+          if (errorResponse is Map || errorResponse.containsKey('message')) {
+            CommonMethods.showToast(errorResponse['message']);
+          } else {
+            CommonMethods.showToast("An unexpected error occurred.");
+          }
+        }
+        Utils.printLog("Error===> ${error.toString()}");
+      });
+    } else {
+      CommonMethods.showToast(appStrings.weUnableCheckData);
+    }
+  }
+
+  Future<void> getSizeApi() async {
+    var connection = await CommonMethods.checkInternetConnectivity();
+    Utils.printLog("CheckInternetConnection===> ${connection.toString()}");
+
+    if (connection == true) {
+      setRxRequestStatus(Status.LOADING);
+
+      attributerepository.getsizeApi().then((value) {
+        setRxRequestStatus(Status.COMPLETED);
+        setSizedata(value);
         CommonMethods.showToast(value.message);
         Utils.printLog("Response===> ${value.toString()}");
         print("redirect");
@@ -427,7 +467,8 @@ class AddProductDetailsController extends GetxController {
                         1]
                 .material ??
             "";
-        sizeController.value.text = getProductDetailsModel
+
+        selectedSizecheck.value = getProductDetailsModel
                 .value
                 .data
                 ?.variants?[

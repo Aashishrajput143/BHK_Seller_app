@@ -307,37 +307,106 @@ class AddProductDetails extends ParentWidget {
                             const SizedBox(width: 8),
                             Expanded(
                               flex: 5,
-                              child: TextFormField(
-                                validator: (value) {
-                                  if (value == '') {
-                                    return '*Required Field! Please enter Size';
-                                  }
-                                  return null;
-                                },
-                                cursorColor: Colors.grey,
-                                cursorWidth: 1.5,
-                                style: const TextStyle(height: 1),
-                                controller: controller.sizeController.value,
-                                inputFormatters: [
-                                  NoLeadingSpaceFormatter(),
-                                  RemoveTrailingPeriodsFormatter(),
-                                  EmojiInputFormatter(),
-                                  SpecialCharacterValidator(),
-                                  LengthLimitingTextInputFormatter(15)
-                                ],
-                                decoration: const InputDecoration(
-                                  hintText: 'Enter Product Size ',
-                                  hintStyle: TextStyle(fontSize: 12),
-                                  border: OutlineInputBorder(
-                                    borderSide: BorderSide(width: 2.0),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(8.0)),
+                              child: Container(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8.0),
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: const Color.fromARGB(
+                                        197, 113, 113, 113),
+                                    width: 1.5,
                                   ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color: Color.fromARGB(82, 151, 92, 71),
-                                        width: 2.0),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                child: DropdownButton2<String>(
+                                  hint: Text("Select a Size"),
+                                  style: TextStyle(
+                                      fontSize: 14, color: Colors.black),
+                                  value: controller.selectedSizecheck.value,
+                                  alignment: Alignment.center,
+                                  items: controller
+                                      .getSizeModel.value.data?[0].value
+                                      ?.map((String size) {
+                                    return DropdownMenuItem(
+                                        alignment: AlignmentDirectional.center,
+                                        value: size,
+                                        child: Text(size));
+                                  }).toList(),
+                                  onChanged: (newValue) {
+                                    controller.selectedSize.value =
+                                        newValue ?? "";
+                                    controller.selectedSizecheck.value =
+                                        newValue ?? "";
+                                  },
+                                  dropdownStyleData: DropdownStyleData(
+                                    maxHeight:
+                                        MediaQuery.of(context).size.height *
+                                            .25,
+                                    width:
+                                        MediaQuery.of(context).size.width * .44,
+                                    offset: const Offset(-10, -2),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      color: Colors.white,
+                                    ),
                                   ),
+                                  dropdownSearchData: DropdownSearchData(
+                                    searchController:
+                                        controller.sizeController.value,
+                                    searchInnerWidgetHeight: 50,
+                                    searchInnerWidget: Container(
+                                      height: 50,
+                                      padding: const EdgeInsets.only(
+                                        top: 8,
+                                        bottom: 4,
+                                        right: 8,
+                                        left: 8,
+                                      ),
+                                      child: TextFormField(
+                                        expands: true,
+                                        maxLines: null,
+                                        controller:
+                                            controller.sizeController.value,
+                                        decoration: InputDecoration(
+                                          isDense: true,
+                                          contentPadding:
+                                              const EdgeInsets.symmetric(
+                                            horizontal: 10,
+                                            vertical: 8,
+                                          ),
+                                          hintText: 'Search Your Size',
+                                          hintStyle:
+                                              const TextStyle(fontSize: 12),
+                                          border: OutlineInputBorder(
+                                            borderSide: BorderSide(width: 2.0),
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(8.0)),
+                                          ),
+                                          focusedBorder: OutlineInputBorder(
+                                            borderSide: BorderSide(
+                                                color: Color.fromARGB(
+                                                    82, 151, 92, 71),
+                                                width: 2.0),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    searchMatchFn: (item, searchValue) {
+                                      return item.value
+                                          .toString()
+                                          .toLowerCase() // Convert item value to lowercase
+                                          .contains(searchValue
+                                              .toLowerCase()); // Convert search value to lowercase
+                                    },
+                                  ),
+                                  //This to clear the search value when you close the menu
+                                  onMenuStateChange: (isOpen) {
+                                    if (!isOpen) {
+                                      controller.sizeController.value.clear();
+                                    }
+                                  },
+                                  isExpanded: true,
+                                  underline: const SizedBox(),
                                 ),
                               ),
                             ),
