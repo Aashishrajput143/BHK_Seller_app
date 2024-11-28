@@ -389,11 +389,7 @@ class ProductPreview extends StatelessWidget {
                               //     );
                               //   }),
                               // ),
-                              Text(
-                                "Stock : ${controller.getProductDetailsModel.value.data?.variants?[(controller.getProductDetailsModel.value.data?.variants?.length ?? 0) - 1].quantity ?? "Not Available"} Units",
-                                style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.bold),
-                              ),
+
                               SizedBox(height: 16),
                               Text(
                                 'Hey, only few Stock left',

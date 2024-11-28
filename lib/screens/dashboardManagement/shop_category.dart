@@ -39,7 +39,7 @@ class ShopCategory extends StatelessWidget {
                                     .categoryLogo?.isNotEmpty ??
                                 true
                             ? CircleAvatar(
-                                backgroundColor: Colors.grey.shade300,
+                                backgroundColor: Colors.brown.shade100,
                                 radius: 35,
                                 child: ClipOval(
                                   child: Padding(
@@ -57,7 +57,7 @@ class ShopCategory extends StatelessWidget {
                                 ),
                               )
                             : CircleAvatar(
-                                backgroundColor: Colors.grey.shade300,
+                                backgroundColor: Colors.brown.shade100,
                                 radius: 35,
                                 child: ClipOval(
                                   child: Padding(
